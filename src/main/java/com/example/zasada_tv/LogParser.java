@@ -1,11 +1,11 @@
 package com.example.zasada_tv;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+
 
 /**
  * В этом классе проиходит парсинг входящих логов
@@ -61,7 +61,7 @@ public class LogParser {
     /**
      * Метод, который парсит входящие логи и выводит результат каждого действия на экран
      * */
-    public static void parse() {
+    public static ArrayList<Player> parse() {
         try {
             File f = new File("E:\\Server\\csgo\\console.log");
             //File f = new File("E:\\Server\\console.log");
@@ -170,6 +170,8 @@ public class LogParser {
                     // убираем отображение всего, кроме K A D
                     // выводим в БД всё
                     // player_stats.clear(); или просто у каждого убрать статистику
+                    return player_stats;
+                    //match_start();
                 }
                 else if (readLine.contains("Team playing \"CT\":")){
                     String new_ct = get_substring_space(readLine.substring(readLine.indexOf("\"CT\":")));
@@ -235,6 +237,7 @@ public class LogParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return new ArrayList<>();
     }
 
 
@@ -474,7 +477,7 @@ public class LogParser {
      * @param input - входная строка, из которой будем вылинять количество денег
      * @return количество денег после операции
      * */
-    private static @NotNull String get_money(@NotNull String input){
+    private static String get_money(String input){
         int start = input.indexOf("$") + 1;
         int end = input.indexOf("(") - 1;
 
@@ -489,7 +492,7 @@ public class LogParser {
      * @param ch2 - второй символ, для которого ищем индекс. Им закончится наша подстрока
      * @return полученная подстрока
      * */
-    private static @NotNull String get_substring_idx(@NotNull String input, String ch1, String ch2){
+    private static String get_substring_idx(String input, String ch1, String ch2){
         int start = input.indexOf(ch1) + 1;
         int end = input.indexOf(ch2);
 
@@ -504,7 +507,7 @@ public class LogParser {
      * @param ch2 - второй символ, для которого ищем индекс. Им закончится наша подстрока
      * @return полученная подстрока
      * */
-    private static @NotNull String get_substring_lidx(@NotNull String input, String ch1, String ch2){
+    private static String get_substring_lidx(String input, String ch1, String ch2){
         int start = input.indexOf(ch1) + 1;
         int end = input.lastIndexOf(ch2);
 
@@ -517,7 +520,7 @@ public class LogParser {
      * @param input - входная строка, из которой будем вылинять подстроку
      * @return полученная подстрока
      * */
-    private static @NotNull String get_substring_space(@NotNull String input) {
+    private static String get_substring_space(String input) {
         int start = input.indexOf(" ") + 1;
 
         return input.substring(start);
