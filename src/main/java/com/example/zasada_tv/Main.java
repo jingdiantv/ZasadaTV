@@ -40,11 +40,13 @@ public class Main implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//testAdmin();
-		//testPlayer();
-		//testTeam();
-		//testTournament();
+		// Тестируем запросы в БД
+		testAdmin();
+		testPlayer();
+		testTeam();
+		testTournament();
 
+		// Тестируем добавление статистики после парсинга в БД
 		String match_id = "1";
 
 		ArrayList<Player> players = LogParser.parse();
@@ -60,7 +62,6 @@ public class Main implements CommandLineRunner {
 						playerStats.setKills(kills);
 						playerStats.setAssists(assists);
 						playerStats.setDeaths(deaths);
-						playerStats.setKd((float)kills / deaths);
 						System.out.println(playerDoc.toString());
 						playerRepository.save(playerDoc);
 					}
@@ -75,7 +76,7 @@ public class Main implements CommandLineRunner {
 		playerRepository.deleteAll();
 
 		ArrayList<PlayerStats> playerStats = new ArrayList<PlayerStats>();
-		playerStats.add(new PlayerStats("1", 20,5, 15,1.33));
+		playerStats.add(new PlayerStats("1", 20,5, 15));
 
 		ArrayList<TournamentHistoryPlayers> tournamentHistoryPlayers = new ArrayList<TournamentHistoryPlayers>();
 		tournamentHistoryPlayers.add(new TournamentHistoryPlayers("Pugachev Major 2022", "ПУПА"));
