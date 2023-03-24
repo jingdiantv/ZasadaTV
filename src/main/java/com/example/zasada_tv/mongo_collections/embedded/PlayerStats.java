@@ -16,12 +16,12 @@ public class PlayerStats {
     private double kd;
 
 
-    public PlayerStats(String match_id, int kills, int assists, int deaths, double kd){
+    public PlayerStats(String match_id, int kills, int assists, int deaths){
         this.match_id = match_id;
         this.kills = kills;
         this.assists = assists;
         this.deaths = deaths;
-        this.kd = kd;
+        setKd();
     }
 
 
@@ -29,6 +29,14 @@ public class PlayerStats {
     public String toString() {
         return String.format("PlayerStats{match_id=%s, kills=%d, assists=%d, deaths=%d, kd=%f}",
                 match_id, kills, assists, deaths, kd);
+    }
+
+
+    private void setKd(){
+        if (deaths != 0)
+            this.kd = (float)kills / deaths;
+        else
+            this.kd = (float)kills;
     }
 
 
@@ -54,20 +62,17 @@ public class PlayerStats {
 
     public void setKills(int kills) {
         this.kills = kills;
+        setKd();
     }
 
 
     public void setDeaths(int deaths) {
         this.deaths = deaths;
+        setKd();
     }
 
 
     public void setAssists(int assists) {
         this.assists = assists;
-    }
-
-
-    public void setKd(double kd) {
-        this.kd = kd;
     }
 }
