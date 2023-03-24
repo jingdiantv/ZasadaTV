@@ -123,6 +123,7 @@ public class LogParser {
                 else if (readLine.contains("committed suicide")){
                     String nick = get_substring_idx(readLine, "\"", "<");
                     //System.out.println(nick + " совершил суицид");
+                    fix_stats("", nick);
                     death_reset(nick);
                 }
                 else if (readLine.contains("World triggered \"Round_Start\"")){
