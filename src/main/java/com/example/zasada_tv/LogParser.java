@@ -108,8 +108,12 @@ public class LogParser {
                     String nick2 = get_substring_idx(readLine.substring(readLine.indexOf("killed")), "\"", "<");
 
                     //System.out.println(nick1 + " убил " + nick2 + " с помощью " + gun + " - " + killed_how);
-
-                    fix_stats(nick1, nick2);
+                    if(isTeamKill(nick1, nick2)) {
+                        fix_stats(nick1, nick2, -1);
+                        System.out.println(nick1 + " убил тиммейта " + nick2 + " с помощью " + gun);
+                    }
+                    else
+                        fix_stats(nick1, nick2, 1);
                     death_reset(nick2);
                     set_killer_gun(nick1, gun);
                 }
@@ -123,7 +127,7 @@ public class LogParser {
                 else if (readLine.contains("committed suicide")){
                     String nick = get_substring_idx(readLine, "\"", "<");
                     //System.out.println(nick + " совершил суицид");
-                    fix_stats("", nick);
+                    fix_stats("", nick, 1);
                     death_reset(nick);
                 }
                 else if (readLine.contains("World triggered \"Round_Start\"")){
@@ -234,11 +238,36 @@ public class LogParser {
                     String nick = get_substring_idx(readLine, "\"", "<");
                     //System.out.println(nick + " раздефузил бомбу");
                 }
+                else if (readLine.contains("disconnected (reason \"")){
+                    String nick = get_substring_idx(readLine, "\"", "<");
+                    System.out.println(nick + " вышел с сервера");
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return new ArrayList<>();
+    }
+
+
+    /**
+     * В данном методе мы проверяем команды двух игроков (убийцы и убитого) на идентичность,
+     * дабы выяснить, тимкилл ли это
+     * @param nick1 - убийца
+     * @param nick2 - убитый
+     * */
+    private static boolean isTeamKill(String nick1, String nick2) {
+        String team1 = "";
+        String team2 = "";
+
+        for (Player player : player_stats){
+            if (Objects.equals(player.getNickname(), nick1))
+                team1 = player.getTeam();
+            else if (Objects.equals(player.getNickname(), nick2))
+                team2 = player.getTeam();
+        }
+
+        return Objects.equals(team1, team2) && !team1.isEmpty() && !team2.isEmpty();
     }
 
 
@@ -249,7 +278,7 @@ public class LogParser {
         int ct = 0;
         int t = 0;
         for (Player player : player_stats){
-            if(player.getHp() > 0) {
+            if (player.getHp() > 0) {
                 if (Objects.equals(player.getTeam(), "CT"))
                     ct++;
                 else if (Objects.equals(player.getTeam(), "TERRORIST"))
@@ -369,13 +398,13 @@ public class LogParser {
 
     /**
      * Данный метод исправляет статистику убийцы и убитого - увеличивает килы и смерти
-     * @param nick1 - убийцаю У него увеличиваются килы
+     * @param nick1 - убийца. У него увеличиваются килы
      * @param nick2 - убитый. У него увеличиваются смерти
      * */
-    private static void fix_stats(String nick1, String nick2) {
+    private static void fix_stats(String nick1, String nick2, int score) {
         for (Player player_stat : player_stats) {
             if (Objects.equals(player_stat.getNickname(), nick1)) {
-                int kills = player_stat.getKills() + 1;
+                int kills = player_stat.getKills() + score;
                 player_stat.setKills(kills);
             }
 
