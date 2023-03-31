@@ -19,10 +19,11 @@ public class Matches {
     private String status;
     private String nameFirst;
     private String nameSecond;
+    private String type;
 
 
     public Matches(String matchId, int scoreFirst, int scoreSecond, LocalDateTime matchDate,
-                   String status, String nameFirst, String nameSecond){
+                   String status, String nameFirst, String nameSecond, String type){
         this.matchId = matchId;
         this.scoreFirst = scoreFirst;
         this.scoreSecond = scoreSecond;
@@ -30,6 +31,7 @@ public class Matches {
         this.status = status;
         this.nameFirst = nameFirst;
         this.nameSecond = nameSecond;
+        this.type = type;
     }
 
 
@@ -41,10 +43,10 @@ public class Matches {
         String minutes = fix_number(matchDate.getMinute());
 
         return String.format("Matches{matchId=%s, scoreFirst=%d, scoreSecond=%d, " +
-                        "matchDate=%s-%s-%d %s:%s, status=%s, nameFirst=%s, nameSecond=%s}",
+                        "matchDate=%s-%s-%d %s:%s, status=%s, nameFirst=%s, nameSecond=%s, type=%s}",
                 matchId, scoreFirst, scoreSecond, day, month,
                 matchDate.getYear(), hour, minutes, status, nameFirst,
-                nameSecond);
+                nameSecond, type);
     }
 
 
