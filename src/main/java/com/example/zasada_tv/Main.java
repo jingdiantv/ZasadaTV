@@ -107,13 +107,13 @@ public class Main implements CommandLineRunner {
 		teamRepository.deleteAll();
 
 		TeamDoc teamDoc1 = new TeamDoc("ПУПА", "Одна из первых команд города",
-				"Россия", "Пугачёв", "disk.yandex.ru/i/ADFb9AuidHo9SQ");
+				"Россия", "Пугачёв", "disk.yandex.ru/i/ADFb9AuidHo9SQ", 900);
 
 		TeamDoc teamDoc2 = new TeamDoc("DreamTeam", "Вторая из первых команд города",
-				"Россия", "Пугачёв", "disk.yandex.ru/i/s8nMFeOec3uklA");
+				"Россия", "Пугачёв", "disk.yandex.ru/i/s8nMFeOec3uklA", 100);
 
 		TeamDoc teamDoc3 = new TeamDoc("G2", "Одна из лучших команд мира",
-				"Франция", "Марсель", "");
+				"Франция", "Марсель", "", 500);
 
 		teamRepository.save(teamDoc1);
 		teamRepository.save(teamDoc2);
@@ -150,7 +150,7 @@ public class Main implements CommandLineRunner {
 		requests.add(new Requests("3", "zxcCursed", "Отказано"));
 
 		ArrayList<Matches> matches = new ArrayList<Matches>();
-		matches.add(new Matches("1", 16, 19, LocalDateTime.now(), "Закончен", "ПУПА", "DreamTeam"));
+		matches.add(new Matches("1", 16, 19, LocalDateTime.now(), "Закончен", "ПУПА", "DreamTeam", "bo3"));
 
 		TournamentDoc tournamentDoc1 = new TournamentDoc("Pugachev Major 2022", LocalDateTime.now(), LocalDateTime.now(),
 				"LAN", "Окончен", "Россия", "Пугачёв", "",
