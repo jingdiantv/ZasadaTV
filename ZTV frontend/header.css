@@ -23,7 +23,8 @@
     margin-left: 32px;
     
     /* background-image: url('file:///C:/Users/1/Desktop/ZTV%20frontend/LOGO.svg'); */
-    background-image: url('file:///C:/Users/1/Desktop/ZTV%20frontend/img/web/Frame_13.svg');
+    /* background-image: url('file:///C:/Users/1/Desktop/ZTV%20frontend/img/web/Frame_13.svg'); */
+    background-image: url('img\\web\\Frame_13.svg');
     background-size: cover;
   }
   .navigation {

@@ -16,7 +16,8 @@
     align-items: center;
     margin-right: 150px;
     /* background-image: url('file:///C:/Users/1/Desktop/ZTV%20frontend/LOGO.svg'); */
-    background-image: url('file:///C:/Users/1/Desktop/ZTV%20frontend/img/web/LOGOTYPE.svg');
+    /* background-image: url('file:///C:/Users/1/Desktop/ZTV%20frontend/img/web/LOGOTYPE.svg'); */
+    background-image: url('img\\web\\LOGOTYPE.svg');
     background-size: cover;
 }
 .close {

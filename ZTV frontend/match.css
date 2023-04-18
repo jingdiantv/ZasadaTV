@@ -21,7 +21,7 @@
     flex-direction: column-reverse;
     align-items: center;
     
-    background:linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(25, 25, 25, 1)), url("file:///C:/Users/1/Desktop/ZTV%20frontend/img/flags/dragon.svg");
+    background:linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(25, 25, 25, 1)), url("img\\flags\\dragon.svg");
     height: auto;
     width: 250px;
     display: flex;
@@ -36,7 +36,7 @@
     right:0;
     bottom:0;
     /* background-color: blue; */
-    background:linear-gradient(to left, rgba(0, 0, 0, 0.4), rgba(25, 25, 25, 1)), url("file:///C:/Users/1/Desktop/ZTV%20frontend/img/flags/RU.svg");
+    background:linear-gradient(to left, rgba(0, 0, 0, 0.4), rgba(25, 25, 25, 1)), url("img\\flags\\RU.svg");
     
     height: auto;
     width: 250px;
@@ -46,7 +46,7 @@
     width: 80px;
     height: 80px;
     margin: 0 auto;
-    background-image: url('file:///C:/Users/1/Desktop/ZTV%20frontend/img/teams_logo/AbuDabi.svg');
+    background-image: url('img\\teams_logo\\AbuDabi.svg');
     align-items: center;
     justify-content: center;
     display: flex;
@@ -59,7 +59,7 @@
     width: 80px;
     height: 80px;
     margin: 0 auto;
-    background-image: url('file:///C:/Users/1/Desktop/ZTV%20frontend/img/teams_logo/pupa.svg');
+    background-image: url('img\\teams_logo\\pupa.svg');
     align-items: center;
     justify-content: center;
     display: flex;
