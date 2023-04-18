@@ -1,0 +1,46 @@
+/*Кнопка с серым фоном, при наведении темнеет. Текст белый(логин, регистрация)*/
+.full_grey_button{
+    padding: 0px;
+    margin: 0 auto;
+}
+.full_grey_button input{
+    color: white;
+    background-color: #4D4d4d;
+    width: 200px;
+    height: 40px;
+    outline: none;
+    font-family: var(--text-regular-lcg);
+    border: 1px solid #4d4d4d;
+    font-size: 14px;
+}
+.full_grey_button input:hover{
+    background-color: #3c3c3c;
+}
+
+/*Кнопка с прозрычным фоном и темной обводкой, при наведении светлеет. 
+Текст темный(регистрация в окне логина)*/
+.transparent_grey_border_button{
+    box-sizing: border-box;
+    width: 200px;
+    height: 40px;
+    
+    border: 2px solid rgba(77, 77, 77, 0.5);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.transparent_grey_border_button input{
+    color: #7C7C7C;
+    font-family: var(--text-regular-lcg);
+    font-size: 14px;
+    width: 200px;
+    height: 40px;
+    outline: none;
+    background-color: var(--window);
+    box-shadow: 0px 0px 0px transparent;
+    border: 0px solid transparent;
+}
+.transparent_grey_border_button:hover{
+    background-color: var(--plashka);
+}
