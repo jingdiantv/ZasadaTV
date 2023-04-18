@@ -40,6 +40,7 @@ public class Main implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+<<<<<<< HEAD
 //		testAdmin();
 //		testPlayer();
 //		testTeam();
@@ -50,9 +51,18 @@ public class Main implements CommandLineRunner {
 //			playerRepository.save(playerDoc);
 //			System.out.println(playerDoc.toString());
 		}
+=======
+		// Тестируем запросы в БД
+		testAdmin();
+		testPlayer();
+		testTeam();
+		testTournament();
+>>>>>>> 87863366ec66292fae03e815f8bb29e3edea5067
 
+		// Тестируем добавление статистики после парсинга в БД
 		String match_id = "1";
 
+<<<<<<< HEAD
 //		ArrayList<Player> players = LogParser.parse();
 //		for(Player player : players){
 //			for(PlayerDoc playerDoc : playerRepository.findByNick(player.getNickname())){
@@ -73,6 +83,27 @@ public class Main implements CommandLineRunner {
 //				}
 //			}
 //		}
+=======
+		ArrayList<Player> players = LogParser.parse();
+		for(Player player : players){
+			for(PlayerDoc playerDoc : playerRepository.findByNick(player.getNickname())){
+				for(PlayerStats playerStats : playerDoc.getPlayerStats()){
+					if(Objects.equals(playerStats.getMatch_id(), match_id)){
+						System.out.println(playerDoc.toString());
+						int kills = playerStats.getKills() + player.getKills();
+						int assists = playerStats.getAssists() + player.getAssists();
+						int deaths = playerStats.getDeaths() + player.getDeaths();
+
+						playerStats.setKills(kills);
+						playerStats.setAssists(assists);
+						playerStats.setDeaths(deaths);
+						System.out.println(playerDoc.toString());
+						playerRepository.save(playerDoc);
+					}
+				}
+			}
+		}
+>>>>>>> 87863366ec66292fae03e815f8bb29e3edea5067
 	}
 
 
@@ -81,7 +112,7 @@ public class Main implements CommandLineRunner {
 		playerRepository.deleteAll();
 
 		ArrayList<PlayerStats> playerStats = new ArrayList<PlayerStats>();
-		playerStats.add(new PlayerStats("1", 20,5, 15,1.33));
+		playerStats.add(new PlayerStats("1", 20,5, 15));
 
 		ArrayList<TournamentHistoryPlayers> tournamentHistoryPlayers = new ArrayList<TournamentHistoryPlayers>();
 		tournamentHistoryPlayers.add(new TournamentHistoryPlayers("Pugachev Major 2022", "ПУПА"));
@@ -112,13 +143,13 @@ public class Main implements CommandLineRunner {
 		teamRepository.deleteAll();
 
 		TeamDoc teamDoc1 = new TeamDoc("ПУПА", "Одна из первых команд города",
-				"Россия", "Пугачёв", "disk.yandex.ru/i/ADFb9AuidHo9SQ");
+				"Россия", "Пугачёв", "disk.yandex.ru/i/ADFb9AuidHo9SQ", 900);
 
 		TeamDoc teamDoc2 = new TeamDoc("DreamTeam", "Вторая из первых команд города",
-				"Россия", "Пугачёв", "disk.yandex.ru/i/s8nMFeOec3uklA");
+				"Россия", "Пугачёв", "disk.yandex.ru/i/s8nMFeOec3uklA", 100);
 
 		TeamDoc teamDoc3 = new TeamDoc("G2", "Одна из лучших команд мира",
-				"Франция", "Марсель", "");
+				"Франция", "Марсель", "", 500);
 
 		teamRepository.save(teamDoc1);
 		teamRepository.save(teamDoc2);
@@ -155,7 +186,7 @@ public class Main implements CommandLineRunner {
 		requests.add(new Requests("3", "zxcCursed", "Отказано"));
 
 		ArrayList<Matches> matches = new ArrayList<Matches>();
-		matches.add(new Matches("1", 16, 19, LocalDateTime.now(), "Закончен", "ПУПА", "DreamTeam"));
+		matches.add(new Matches("1", 16, 19, LocalDateTime.now(), "Закончен", "ПУПА", "DreamTeam", "bo3"));
 
 		TournamentDoc tournamentDoc1 = new TournamentDoc("Pugachev Major 2022", LocalDateTime.now(), LocalDateTime.now(),
 				"LAN", "Окончен", "Россия", "Пугачёв", "",
