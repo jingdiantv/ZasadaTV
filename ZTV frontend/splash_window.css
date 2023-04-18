@@ -1,0 +1,55 @@
+/*Положение хедера нашего окна*/
+.header_splash_window{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/*Позиция логотипа*/
+.logo_splash_window{
+    display: flex;
+
+    height: 55px;
+    width: 75px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 150px;
+    padding-bottom: 25px;
+    background-image: url('img\\web\\LOGOTYPE.svg');
+    background-size: cover;
+}
+
+/*Крестик на закрытие*/
+.close {
+    display: inline-block;
+   
+    color: black;
+    padding: 0 12px;
+    margin: 10px;
+    text-decoration: none;
+    font-family: var(--text-regular-lcg);
+    font-size: 14pt;
+    cursor:pointer;
+  }
+.close:hover {
+    color: white;
+}
+
+/*Стартовые настройки окошка*/
+#splash_window {
+    align-items: center;
+    gap: 10px;
+    width: 500px;
+    height: fit-content;
+    text-align: center;
+    padding: 12px 0px 35px;
+    color: #0000cc;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    background: var(--splash-window);
+  }

@@ -1,6 +1,7 @@
 :root {
   
     --text-font: 'Arial Black', sans-serif;
+    --text-regular-lcg: 'GraphikLCGRegular';
     --font-h1: normal 900 44px/48px var(--text-font);
     --font-h2: normal 900 44px/48px var(--text-font);
     --font-h4: normal 700 24px/28px var(--text-font);
@@ -21,6 +22,7 @@
 
     --header: #0f0f0f;
     --plashka: #141414;
+    --splash-window: #242424;
     --base: #0f0f0f;
 
     --base-04: #1f1f1f;

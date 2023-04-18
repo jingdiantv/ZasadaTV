@@ -1,0 +1,53 @@
+/*Половинчатые тектовые поля(регистрация, например)*/
+.text-field_half{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.text-field_half input{
+    width: 197px;
+    height: 30px;
+    font-family: var(--text-regular-lcg);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: var(--plashka);
+    background-clip: padding-box;
+    color: white;
+    border: 1px solid var(--plashka);
+    outline: none;
+    margin: 0 auto;
+    display: block;
+}
+.text-field_half input::placeholder{
+    color: #ffffff 70%;
+    opacity: 0.4;
+    font-family: var(--text-regular-lcg);
+}
+
+/*Длинные текстовые поля(логин)*/
+.text-field input{
+    margin: 0 auto;
+    display: block;
+    width: 400px;
+    height: 30px;
+    padding: 0.375rem 0.75rem;
+    font-family: var(--text-regular-lcg);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: #141414;
+    background-clip: padding-box;
+    color: white;
+    border: 1px solid #141414;
+    outline: none;
+}
+.text-field input::placeholder{
+    color: #ffffff 70%;
+    opacity: 0.4;
+    font-family: var(--text-regular-lcg);
+}
