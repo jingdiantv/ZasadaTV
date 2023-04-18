@@ -40,33 +40,39 @@ public class Main implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//testAdmin();
-		//testPlayer();
-		//testTeam();
-		//testTournament();
+//		testAdmin();
+//		testPlayer();
+//		testTeam();
+//		testTournament();
+		for(PlayerDoc playerDoc : playerRepository.findByNick("Tamada")){
+			System.out.println(playerDoc.toString());
+//			playerDoc.getPlayerStats().add(new PlayerStats("2", 10,5, 1,10.0));
+//			playerRepository.save(playerDoc);
+//			System.out.println(playerDoc.toString());
+		}
 
 		String match_id = "1";
 
-		ArrayList<Player> players = LogParser.parse();
-		for(Player player : players){
-			for(PlayerDoc playerDoc : playerRepository.findByNick(player.getNickname())){
-				for(PlayerStats playerStats : playerDoc.getPlayerStats()){
-					if(Objects.equals(playerStats.getMatch_id(), match_id)){
-						System.out.println(playerDoc.toString());
-						int kills = playerStats.getKills() + player.getKills();
-						int assists = playerStats.getAssists() + player.getAssists();
-						int deaths = playerStats.getDeaths() + player.getDeaths();
-
-						playerStats.setKills(kills);
-						playerStats.setAssists(assists);
-						playerStats.setDeaths(deaths);
-						playerStats.setKd((float)kills / deaths);
-						System.out.println(playerDoc.toString());
-						playerRepository.save(playerDoc);
-					}
-				}
-			}
-		}
+//		ArrayList<Player> players = LogParser.parse();
+//		for(Player player : players){
+//			for(PlayerDoc playerDoc : playerRepository.findByNick(player.getNickname())){
+//				for(PlayerStats playerStats : playerDoc.getPlayerStats()){
+//					if(Objects.equals(playerStats.getMatch_id(), match_id)){
+//						System.out.println(playerDoc.toString());
+//						int kills = playerStats.getKills() + player.getKills();
+//						int assists = playerStats.getAssists() + player.getAssists();
+//						int deaths = playerStats.getDeaths() + player.getDeaths();
+//
+//						playerStats.setKills(kills);
+//						playerStats.setAssists(assists);
+//						playerStats.setDeaths(deaths);
+//						playerStats.setKd((float)kills / deaths);
+//						System.out.println(playerDoc.toString());
+//						playerRepository.save(playerDoc);
+//					}
+//				}
+//			}
+//		}
 	}
 
 

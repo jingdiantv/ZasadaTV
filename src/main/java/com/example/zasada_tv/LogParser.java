@@ -63,7 +63,7 @@ public class LogParser {
      * */
     public static ArrayList<Player> parse() {
         try {
-            File f = new File("E:\\Server\\csgo\\console.log");
+            File f = new File("C:\\Users\\1\\Desktop\\ZTV\\console.log");
             //File f = new File("E:\\Server\\console.log");
 
             BufferedReader b = new BufferedReader(new FileReader(f));

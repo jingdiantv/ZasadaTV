@@ -1,0 +1,421 @@
+.plashka{
+    height: 100px;
+    width: 100%;
+    background-color: var(--plashka);
+}
+.header_match{
+    position: relative;
+    margin: 0 auto;
+    height: 150px;
+    width: 940px;
+    background: #191919;
+}
+.flag_1st{
+    position: absolute;
+    left:0;
+    top:0;
+    
+    bottom:0;
+    /* background-color: red; */
+   
+    flex-direction: column-reverse;
+    align-items: center;
+    
+    background:linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(25, 25, 25, 1)), url("file:///C:/Users/1/Desktop/ZTV%20frontend/img/flags/dragon.svg");
+    height: auto;
+    width: 250px;
+    display: flex;
+    
+}
+.flag_2st{
+    position: absolute;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    top:0;
+    right:0;
+    bottom:0;
+    /* background-color: blue; */
+    background:linear-gradient(to left, rgba(0, 0, 0, 0.4), rgba(25, 25, 25, 1)), url("file:///C:/Users/1/Desktop/ZTV%20frontend/img/flags/RU.svg");
+    
+    height: auto;
+    width: 250px;
+}
+.logo_1st{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    background-image: url('file:///C:/Users/1/Desktop/ZTV%20frontend/img/teams_logo/AbuDabi.svg');
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    left: 84px;
+    top: 22px;
+    background-size: cover;
+}
+.logo_2st{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    background-image: url('file:///C:/Users/1/Desktop/ZTV%20frontend/img/teams_logo/pupa.svg');
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    left: 84px;
+    top: 22px;
+    z-index: 1;
+    background-size: cover;
+}
+.name_team_1st{
+   
+    
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    position: absolute;
+    margin: 0 auto;
+    margin-bottom: 28px;
+    width: 80px;
+    flex-direction: column;
+}
+.name_team_1st a{
+    text-decoration: none;
+    font-family: "GraphikLCGMedium";
+    font-weight: 500;
+    font-size: 20px;
+    /* color: white;
+    -webkit-text-stroke: 1px rgb(85, 85, 85); */
+    color: white;
+}
+#points_1st{
+    color: red;
+    font-family: "GraphikLCGMedium";
+    font-size: 20px;
+    margin-bottom: 9px;
+}
+#points_2st{
+    color: green;
+    font-family: "GraphikLCGMedium";
+    font-size: 20px;
+    margin-bottom: 9px;
+}
+ .name_team_2st  a{
+    text-decoration: none;
+    font-family: "GraphikLCGMedium";
+    font-weight: 500;
+    font-size: 20px;
+    /* color: white;
+    -webkit-text-stroke: 1px rgb(85, 85, 85); */
+    color: white;
+    
+}
+.name_team_2st{
+    
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    position: absolute;
+    margin: 0 auto;
+    margin-bottom: 28px;
+    width: 80px;
+    flex-direction: column;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}
+.container p{
+    font-family: "GraphikLCGMedium";
+    font-size: 14px;
+    line-height: 120%;
+    color: white;
+}
+.container_time_match{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin:13px auto;
+    height: 130px;
+    width: 100%;
+}
+.container_time_match_time a{
+    font-size: 32px;
+    font-weight: 500;
+    font-family: "GraphikLCGMedium";
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+.container_time_match_date{
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    margin-top: 16px;
+    font-family: "GraphikLCGRegular";
+}
+.container_time_match_cup{
+    color: #1cbcff;
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    font-family: "GraphikLCGRegular";
+}
+.container_time_match_cup a{
+    text-decoration: none;
+    color: #1cbcff;
+}
+.container_time_match_cup a:hover{
+    transition: color 0.2s 0s ease-in-out;
+    color: #8dddff;
+}
+.container_time_match_live{
+    color: white;
+    font-family: "GraphikLCGMedium";
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 15px;
+}
+.match_info_upcoming{
+    margin: 0 auto;
+    margin-top: 60px;
+    width: 939px;
+    background-color: var(--base);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.match_info_upcoming_maps_desc{
+    display: flex;
+    width: 330px;
+    height: 73px;
+    background-color: #191919;
+    margin-bottom: 25px;
+}
+.match_info_upcoming_maps_desc p{
+    color: #ffffff;
+   
+    font-family: "GraphikLCGRegular";
+    font-size: 12px;
+    
+    line-height: 120%;
+    opacity: 0.5;
+    margin-left: 10px;
+}
+.maps_news{
+    width: 320px;
+    height: 148px;
+    background-color: #191919;
+    padding: 5px;
+    margin-bottom: 25px;
+}
+.maps_news p{
+    font-family: "GraphikLCGREgular";
+    font-size: 12px;
+    line-height: 120%;
+    margin: 0;
+    margin-top: 5px;
+    color: white;
+    opacity: 0.5;
+}
+.match_info_upcoming_stream{
+    display: flex;
+    margin-right: 0;
+    width: 330px;
+    height: 32px;
+    background-color: #242424;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.match_info_upcoming_stream p{
+    color: white;
+    font-family: "GraphikLCGMedium";
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 120%;
+    margin-left: 5px;
+
+}
+.stream{
+    width: 100%;
+    height: 32px;
+    background-color: #191919;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.stream p{
+    margin: 0;
+    margin-left: 5px;
+    margin-top: 9px;
+    font-size: 12px;
+}
+.stream_country{
+    width: 20px;
+    height: 15px;
+    margin-left: 6px;
+    margin-top: 9px;
+}
+#stream_1 .stream_country{
+    background-image: url("img/flags/mini/Spain\ \(ES\).svg");
+}
+#stream_2 .stream_country{
+    background-image: url("img/flags/mini/Russia\ \(RU\).svg");
+}
+#stream_3 .stream_country{
+    background-image: url("img/flags/mini/Russia\ \(RU\).svg");
+}
+#stream_4 .stream_country{
+    background-image: url("img/flags/mini/Spain\ \(ES\).svg");
+}
+#stream_5 .stream_country{
+    background-image: url("img/flags/mini/Spain\ \(ES\).svg");
+}
+.stream_viewers {
+    display: flex;
+    margin-right: 5px;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.stream_viewers p{
+    margin: 0;
+}
+.stream_viewers a{
+    width: 10px;
+    height: 10px;
+    margin-left: 5px;
+    background-image: url("img/twitch_link.svg");
+}
+.map_upcoming{
+    width: 330px;
+    height: 30px;
+    
+    background-image: url('img/maps/desc/TBA.svg');
+    margin-bottom: 5px;
+
+}
+.map{
+    display: flex;
+    width: 330px;
+    height: 77px;
+    margin-bottom: 5px;
+    flex-direction: column;
+}
+
+.map_points .score{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: white;
+    opacity: 0.7;
+    
+    align-content: flex-end;
+    font-family: "GraphikLCGRegular";
+    font-size: 12px;
+}
+#map_1 .map_img{
+    background-image: url("img/maps/desc/overpass.jpg");
+    height: 30px;
+    width: 330px;
+}
+#map_2{
+    opacity: 0.3;
+}
+#map_2 .map_img{
+    background-image: url("img/maps/desc/anubis.svg");
+    height: 30px;
+    width: 330px;
+}
+#map_3{
+    opacity: 0.3;
+}
+#map_3 .map_img{
+    background-image: url("img/maps/desc/nuke.svg");
+    height: 30px;
+    width: 330px;
+}
+
+.map_points{
+    background-color: #191919;
+    height: 47px;
+    width: 320px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-between;
+    padding: 5px;
+}
+.map_points .first_team{
+    width: 86px;
+    height: 37px;
+    background-color: red;
+}
+.map_points .second_team{
+    width: 86px;
+    height: 37px;
+    background-color: #1cbcff;
+}
+.scoreboard_block{
+    width: 648px;
+    height: 497px;
+    background-color: var(--base);
+    margin: 0 auto;
+    margin-top: 70px;
+    overflow-x: hidden;
+}
+.scoreboard_block p, .scroll_logs_block p, .match_statistic_block p{
+    font-family: "GraphikLCGMedium";
+    font-size: 14px;
+    margin: 0;
+    margin-bottom: 5px;
+    color: white;
+    
+}
+.scoreboard{
+    width: 648px;
+    height: 475px;
+    background-color: #1cbcff;
+}
+.scroll_logs_block{
+    width: 651px;
+    height: 378px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+.scroll_logs{
+    overflow: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(0, 75%, 5%);
+    width: 648px;
+    height: 356px;
+    
+    background-color: #1cbcff;
+}
+.scroll_logs::-webkit-scrollbar {
+    width: 8px;               /* ширина scrollbar */
+  }
+  .scroll_logs::-webkit-scrollbar-track {
+    background: #242424;        /* цвет дорожки */
+  }
+  .scroll_logs::-webkit-scrollbar-thumb {
+    background-color: #191919;    /* цвет плашки */
+    border-radius: 20px;       /* закругления плашки */
+    /*border: 3px solid orange;   padding вокруг плашки */
+  }
+  .scroll_logs::-webkit-scrollbar-corner {
+    background: #242424;
+  }
+  .match_statistic_block{
+    margin: 0 auto;
+    background-color: var(--base);
+    width: 648px;
+    height: 475px;
+    margin-top: 50px;
+  }

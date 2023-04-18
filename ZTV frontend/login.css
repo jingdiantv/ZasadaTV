@@ -1,0 +1,126 @@
+.header_login{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+.logo_login{
+    display: flex;
+    /* height: 68px;
+    width: 216px;
+    margin-left: 10px; */ 
+
+    height: 55px;
+    width: 75px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 150px;
+    /* background-image: url('file:///C:/Users/1/Desktop/ZTV%20frontend/LOGO.svg'); */
+    background-image: url('file:///C:/Users/1/Desktop/ZTV%20frontend/img/web/LOGOTYPE.svg');
+    background-size: cover;
+}
+.close {
+    display: inline-block;
+   
+    color: black;
+    padding: 0 12px;
+    margin: 10px;
+    text-decoration: none;
+    /* background: #141414; */
+    font-family: var(--text-font);
+    font-size: 14pt;
+    cursor:pointer;
+  }
+.close:hover {
+    /* background: #e6e6ff; */
+    color: white;
+}
+.text-field{
+    padding: 20px;
+}
+.text-field_input{
+    margin: 0 auto;
+    display: block;
+    width: 400px;
+    height: 30px;
+    padding: 0.375rem 0.75rem;
+    font-family: var(--text-font);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: #141414;
+    background-clip: padding-box;
+    color: white;
+    border: 1px solid #141414;
+    outline: none;
+}
+.text-field_input::placeholder{
+    color: #ffffff 70%;
+    opacity: 0.4;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.keeplogin{
+    margin-left: 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.keeplogin input, .keeplogin label{
+    display: inline-block;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+.keeplogin input#loginkeeping{
+    margin-right: 5xp;
+}
+.keeplogin label{
+    font-size: 14px;
+
+}
+.login_button{
+    
+    padding: 20px;
+    margin: 0 auto;
+}
+.login_button input{
+    color: white;
+    background-color: #4D4d4d;
+    width: 200px;
+    height: 40px;
+    outline: none;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #4d4d4d;
+    font-size: 14px;
+}
+.login_button input:hover{
+    background-color: #3c3c3c;
+}
+#zatemnenie {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+  }
+  #okno {
+    width: 500px;
+    height: 350px;
+    text-align: center;
+    padding: 15px;
+    /* border: 3px solid #0000cc;
+    border-radius: 10px; */
+    color: #0000cc;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    background: #242424;
+  }
+  #zatemnenie:target {display: block;}
+  
