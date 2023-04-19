@@ -14,10 +14,11 @@
     color: white;
 }
 .keeplogin input#loginkeeping{
-    margin-right: 5xp;
+    margin-right: 5px;
 }
 .keeplogin label{
-    font-size: 14px;
+    font-size: 13px;
+    font-family: var(--text-regular-lcg);
 }
 
 

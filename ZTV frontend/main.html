@@ -129,10 +129,10 @@
             <div class="col_center_gap10">
               <div class="row_center_6">
                 <div class="text-field_half">
-                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Никнейм пользователя">
+                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Имя пользователя">
                 </div>
                 <div class="text-field_half">
-                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Выберите страну">
+                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Фамилия пользователя">
                 </div>
               </div>
               <div class="row_center_6">
@@ -145,10 +145,41 @@
               </div>
               <div class="row_center_6">
                 <div class="text-field_half">
-                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Имя пользователя">
+                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Никнейм пользователя">
                 </div>
                 <div class="text-field_half">
-                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Фамилия пользователя">
+                  <div class="text-field_half_selector">
+                    <div id="text_field_half_select">
+                      <p id="selectText">Выберите страну</p>
+                      <img src="img/arrow.svg" id="arrowIcon">
+                    </div>
+                    <ul id="select_list" class="hide">
+                        <li class="text_field_half_options">
+                          <img src="img/flags/mini/Russia.svg">
+                          <p>Россия</p>
+                        </li>
+                        <li class="text_field_half_options">
+                          <img src="img/flags/mini/IsleOfMan.svg">
+                          <p>Остров Мэн</p>
+                        </li>
+                        <li class="text_field_half_options">
+                          <img src="img/flags/mini/Albania.svg">
+                          <p>Албания</p>
+                        </li>
+                        <li class="text_field_half_options">
+                          <img src="img/flags/mini/Spain.svg">
+                          <p>Испания</p>
+                        </li>
+                        <li class="text_field_half_options">
+                          <img src="img/flags/mini/Belize.svg">
+                          <p>Белиз</p>
+                        </li>
+                        <li class="text_field_half_options">
+                          <img src="img/flags/mini/Kosovo.svg">
+                          <p>Косово</p>
+                        </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -185,6 +216,7 @@
       
     </div>
 
-    <script  src="main.js"></script>
+    <script src="main.js"></script>
+    <script src="half_selector.js"></script>
   </body>
 </html>
