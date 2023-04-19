@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="variables.css">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="auto_layout.css">
+    <link rel="stylesheet" href="text_fields.css">
+    <link rel="stylesheet" href="splash_window.css">
+    <link rel="stylesheet" href="buttons.css">
     <link
       rel="icon"
       type="image/svg+xml"
@@ -51,7 +56,7 @@
               <button class="login-btn">
                 
                 <span class="login-btn__name">
-                    <a href="login.html">
+                    <a href="#authorize">
                   Личный кабинет</a
                   ></span>
                 <div class="login-btn__icon">
@@ -74,6 +79,85 @@
           </div>
         </div>
       </header>
+
+      <!-- Реализуем окно логина -->
+      <div id="authorize">
+        <div id="splash_window">
+          <div class="header_splash_window">
+            <div class="logo_splash_window"></div>
+            <a href="#" class="close">X</a>
+          </div>
+          <div class="col_center_gap30">
+            <div class="col_right_gap20">
+              <div class="col_center_gap10">
+                <div class="text-field">
+                  <input class="text-field_input" type="text" name="login" id="login" placeholder="Имя пользователя">
+                </div>
+                <div class="text-field">
+                  <input class="text-field_input" type="password" name="password" id="password" placeholder="Пароль">
+                </div>
+              </div>
+              <div class="keeplogin">
+                <input type="checkbox" name="loginkeeping" if="loginkeeping" value="loginkeeping"/>
+                <label for="loginkeeping">Запомнить меня</label>
+              </div>
+            </div>
+            <div class ="col_center_gap_20">
+              <div class="full_grey_button">
+                <input type="submit" id="loginsubmit" value="Войти">
+              </div>
+              <div class="transparent_grey_border_button text">
+                <a href="#signup" class="close">
+                  <input type="submit" id="loginsubmit" value="Регистрация">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Реализуем окно для регистрации -->
+      <div id="signup">
+        <div id="splash_window">
+          <div class="header_splash_window">
+            <div class="logo_splash_window"></div>
+            <a href="#" class="close">X</a>
+          </div>
+          <div class="col_center_gap30">
+            <div class="col_center_gap10">
+              <div class="row_center_6">
+                <div class="text-field_half">
+                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Никнейм пользователя">
+                </div>
+                <div class="text-field_half">
+                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Выберите страну">
+                </div>
+              </div>
+              <div class="row_center_6">
+                <div class="text-field_half">
+                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Пароль">
+                </div>
+                <div class="text-field_half">
+                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Почта">
+                </div>
+              </div>
+              <div class="row_center_6">
+                <div class="text-field_half">
+                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Имя пользователя">
+                </div>
+                <div class="text-field_half">
+                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Фамилия пользователя">
+                </div>
+              </div>
+            </div>
+            <div class="full_grey_button">
+              <input type="submit" id="loginsubmit" value="Зарегистрироваться">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TODO: сделать топ команд-->
 
       <main>
 
@@ -101,6 +185,6 @@
       
     </div>
 
-    
+    <script  src="main.js"></script>
   </body>
 </html>
