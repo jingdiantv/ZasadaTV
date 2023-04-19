@@ -263,19 +263,19 @@
     margin-top: 9px;
 }
 #stream_1 .stream_country{
-    background-image: url("img/flags/mini/Spain\ \(ES\).svg");
+    background-image: url("img/flags/mini/Spain.svg");
 }
 #stream_2 .stream_country{
-    background-image: url("img/flags/mini/Russia\ \(RU\).svg");
+    background-image: url("img/flags/mini/Russia.svg");
 }
 #stream_3 .stream_country{
-    background-image: url("img/flags/mini/Russia\ \(RU\).svg");
+    background-image: url("img/flags/mini/Russia.svg");
 }
 #stream_4 .stream_country{
-    background-image: url("img/flags/mini/Spain\ \(ES\).svg");
+    background-image: url("img/flags/mini/Spain.svg");
 }
 #stream_5 .stream_country{
-    background-image: url("img/flags/mini/Spain\ \(ES\).svg");
+    background-image: url("img/flags/mini/Spain.svg");
 }
 .stream_viewers {
     display: flex;
