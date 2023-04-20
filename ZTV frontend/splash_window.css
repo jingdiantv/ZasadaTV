@@ -52,4 +52,5 @@
     left: 0;
     margin: auto;
     background: var(--splash-window);
+    z-index: 1;
   }
