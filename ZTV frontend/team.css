@@ -1,0 +1,57 @@
+/*Прямоугольник для отображения игроков команды*/
+.team_rectangle{
+    width: fit-content;
+    height: auto;
+
+    margin-left:auto;
+    margin-right:auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 15px 0px;
+    gap: 20px;
+
+    background: var(--base-09);
+}
+
+/*Всё связанное с ником*/
+.nick_team{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 3px;
+
+    /* transform: rotate(90deg); */
+}
+.nick_team p{
+    font-family: var(--text-regular-lcg);
+    font-size: 16px;
+    margin: 0;
+    color: white;
+    pointer-events: none; /*вроде отключил ховер*/
+}
+.nick_team img{
+    height: 12px;
+}
+
+.team_nick_back{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+}
+
+.team_nick_fix{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0px;
+    /* position: relative; */
+}

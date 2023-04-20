@@ -47,3 +47,19 @@
 .nick img{
     height: 12px;
 }
+
+/*Предварительно кропаю фотку, чтоб поместилось больше*/
+.crop_team img{
+    width: 145px;
+    height: 230px;
+}
+
+.players_team{
+    width: 127px;
+    height: 158px;
+    overflow: hidden;
+    object-position: center;
+}
+.players_team img{
+    margin: -5px 0px 0px -10px;
+}
