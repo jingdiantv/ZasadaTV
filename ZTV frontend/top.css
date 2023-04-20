@@ -1,0 +1,83 @@
+/*Топ команд*/
+.top_teams{
+    width: 724px;
+    margin-left:auto;
+    margin-right:auto;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 25px;
+    gap: 25px;
+}
+.top_teams p{
+    color: white;
+    font-size: 24px;
+    margin: 0;
+    font-family: var(--text-medium-lcg);
+}
+
+/*Это прямоугольник шириной в 50px*/
+.rectangle_50px_top{
+    width: 724px;
+    height: 50px;
+    background: var(--plashka);
+    
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+}
+.rectangle_50px_top_text{
+    font-family: var(--text-medium-lcg);
+}
+.rectangle_50px_top_text p{
+    color: var(--base-08);
+    font-size: 20px;
+    margin: 0;
+}
+.rectangle_50px_top_nick{
+    font-family: var(--text-regular-lcg);
+}
+.rectangle_50px_top_nick p{
+    color: var(--base-08);
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+}
+.rectangle_50px_top img{
+    height: 30px;
+}
+.rectangle_50px_top:hover{
+    background: var(--base-09);
+}
+
+/*Прямоугольник для отображения игроков топ-1 команды*/
+.top1_team_rectangle{
+    width: 724px;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 15px 15px;
+    gap: 15px;
+
+    background: var(--base-09);
+}
+.top1_team_rectangle p{
+    font-family: var(--text-medium-lcg);
+    font-size: 16px;
+    margin: 0;
+    color: var(--base-08);
+    cursor: pointer;
+    user-select: none;
+}
+.top1_team_rectangle p:hover{
+    color: white;
+}
