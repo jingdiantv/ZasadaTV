@@ -319,13 +319,19 @@
     font-family: "GraphikLCGRegular";
     font-size: 12px;
 }
+.map_points .score p{
+    margin: 0;
+    color: white;
+    font-family: "GraphikLCGRegular";
+    font-size: 12px;
+}
 #map_1 .map_img{
     background-image: url("img/maps/desc/overpass.jpg");
     height: 30px;
     width: 330px;
 }
 #map_2{
-    opacity: 0.3;
+    opacity: 1;
 }
 #map_2 .map_img{
     background-image: url("img/maps/desc/anubis.svg");
@@ -340,7 +346,61 @@
     height: 30px;
     width: 330px;
 }
-
+/*то что находится в мини карте*/
+/*лого первой команды*/
+.map .logo_first_team{
+    width: 25px;
+    height: 25px;
+    background-image: url("img/teams_logo/AbuDabi.svg");
+    background-size: cover;
+}
+.map .logo_second_team{
+    width: 25px;
+    height: 25px;
+    background-image: url("img/teams_logo/pupa.svg");
+    background-size: cover;
+}
+.pick{
+    width: 24px;
+    height: 10px;
+    background-image: url("img/pick.svg");
+}
+.map .name_first_team{ /*название первой команды*/
+    width: 57px;
+    height: 17px;
+    
+}
+.map .name_first_team p{
+    margin: 0;
+}
+.map .name_second_team p{
+    margin: 0;
+}
+.map .name_second_team{
+    width: 57px;
+    height: 17px;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+.map .score_first_team{
+    width: 57px;
+    height: 19px;
+}
+.map .score_first_team p{
+    color: red;
+    margin: 0;
+}
+.map .score_second_team{
+    width: 57px;
+    height: 19px;
+    display: flex;
+    justify-content: flex-end;
+}
+.map .score_second_team p{
+    color: green;
+    margin: 0;
+}
 .map_points{
     background-color: #191919;
     height: 47px;
@@ -355,13 +415,24 @@
 .map_points .first_team{
     width: 86px;
     height: 37px;
-    background-color: red;
+    gap: 4px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 .map_points .second_team{
     width: 86px;
     height: 37px;
-    background-color: #1cbcff;
+    gap: 4px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
 }
+#first_team_first_match{
+    opacity: 0.4;
+}
+.score{}
 .scoreboard_block{
     width: 648px;
     height: 497px;
@@ -418,4 +489,55 @@
     width: 648px;
     height: 475px;
     margin-top: 50px;
+  }
+  /* 
+  fg/sg/tg - first game/ second game/ third game
+  fh/sh - first half/ second half
+  ft/st - first team/ second team
+  */
+  #fg_fh_ft{
+    color: #f44e1c;
+  }
+  #fg_fh_st{
+    color:#1cbcff;
+  }
+  #fg_sh_ft{
+    color: #1cbcff;
+  }
+  #fg_sh_st{
+    color: #f44e1c;
+  }
+  #sg_fh_ft{
+    color: #f44e1c;
+  }
+  #sg_fh_st{
+    color:#1cbcff;
+  }
+  #sg_sh_ft{
+    color: white;
+  }
+  #sg_sh_st{
+    color: white;
+  }
+  #tg_fh_ft{
+    color: white;
+  }
+  #tg_fh_st{
+    color:white;
+  }
+  #tg_sh_ft{
+    color: white;
+  }
+  #tg_sh_st{
+    color: white;
+  }
+
+  #fg_score{
+
+  }
+  #sg_score{
+
+  }
+  #tg_score{
+    visibility: collapse;
   }
