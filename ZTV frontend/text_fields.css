@@ -61,6 +61,7 @@
 }
 #select_list{
     width: 227px;
+    height: 196px;
     background: var(--plashka);
     overflow: hidden;
     padding: 0;
@@ -68,13 +69,28 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
+    overflow-y: auto;
+}
+#select_list::-webkit-scrollbar {
+    width: 8px;               /* ширина scrollbar */
+}
+#select_list::-webkit-scrollbar-track {
+    background: #242424;        /* цвет дорожки */
+}
+#select_list::-webkit-scrollbar-thumb {
+    background-color: #191919;    /* цвет плашки */
+    border-radius: 20px;       /* закругления плашки */
+    /*border: 3px solid orange;   padding вокруг плашки */
+}
+#select_list::-webkit-scrollbar-corner {
+    background: #242424;
 }
 .text_field_half_options{
     width: 227px;
     list-style: none;
     cursor: pointer;
     box-sizing: border-box;
-    position: relative;
+    position: relative; 
     display: flex;
     align-items: center;
     flex-direction: row;
