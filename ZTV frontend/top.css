@@ -18,7 +18,7 @@
     font-family: var(--text-medium-lcg);
 }
 
-/*Это прямоугольник шириной в 50px*/
+/*Это прямоугольник шириной в 50px (заголовок команды)*/
 .rectangle_50px_top{
     width: 724px;
     height: 50px;
@@ -74,10 +74,59 @@
     font-family: var(--text-medium-lcg);
     font-size: 16px;
     margin: 0;
-    color: var(--base-08);
+    color: var(--white25);
     cursor: pointer;
     user-select: none;
 }
 .top1_team_rectangle p:hover{
     color: white;
+}
+
+/*Предварительно кропаю фотку, чтоб поместилось больше*/
+.crop img{
+    width: 207px;
+    height: 330px;
+}
+
+/*Отображение фотки с ником с нужным расстоянием*/
+.player_top{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 5px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/*Отображние фотки с заливкой на фоне*/
+.players_background{
+    width: 127px;
+    height: 158px;
+    overflow: hidden;
+    background-color: var(--base-10);
+    object-position: center;
+}
+.players_background img{
+    margin: -10px 0px 0px -40px;
+}
+
+/*Всё связанное с никами с топа*/
+.nick{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 3px;
+}
+.nick p{
+    font-family: var(--text-regular-lcg);
+    font-size: 16px;
+    margin: 0;
+    color: var(--white25);
+    pointer-events: none; /*вроде отключил ховер*/
+}
+.nick img{
+    height: 12px;
 }
