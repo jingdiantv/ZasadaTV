@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="splash_window.css">
     <link rel="stylesheet" href="buttons.css">
     <link rel="stylesheet" href="team.css">
-    <link rel="stylesheet" href="players.css">
     <link
       rel="icon"
       type="image/svg+xml"
@@ -123,23 +122,23 @@
             <div class="col_center_gap10">
               <div class="row_center_6">
                 <div class="text-field_half">
-                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Имя пользователя">
+                  <input class="text-field_half input" type="text" name="name_signup" id="name_signup" placeholder="Имя пользователя">
                 </div>
                 <div class="text-field_half">
-                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Фамилия пользователя">
-                </div>
-              </div>
-              <div class="row_center_6">
-                <div class="text-field_half">
-                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Пароль">
-                </div>
-                <div class="text-field_half">
-                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Почта">
+                  <input class="text-field_half input" type="text" name="surname_signup" id="surname_signup" placeholder="Фамилия пользователя">
                 </div>
               </div>
               <div class="row_center_6">
                 <div class="text-field_half">
-                  <input class="text-field_half input" type="text" name="login" id="login" placeholder="Никнейм пользователя">
+                  <input class="text-field_half input" type="password" name="password_signup" id="password_signup" placeholder="Пароль">
+                </div>
+                <div class="text-field_half">
+                  <input class="text-field_half input" type="email" name="email_signup" id="email_signup" placeholder="Почта">
+                </div>
+              </div>
+              <div class="row_center_6">
+                <div class="text-field_half">
+                  <input class="text-field_half input" type="text" name="nickname_signup" id="nickname_signup" placeholder="Никнейм пользователя">
                 </div>
                 <div class="text-field_half">
                   <div class="text-field_half_selector">
@@ -182,19 +181,131 @@
             </div>
           </div>
         </div>
-      </div> 
+      </div>
 
       <main>
-        <div class="team_rectangle">
-            <div class="team_nick_fix">
-                <div class="players_team">
-                    <div class="crop_team"><img id="team_player1" src="img/players/Tamada.png" alt="Tamada"></div>
+        <div class="col_center_gap30">
+          <!-- Это верхняя часть - основная инфа о команде + игроки -->
+          <div>
+            <div class="team_rectangle">
+                <div class="player_card_wrapper">
+                    <div class="players_team">
+                        <div class="crop_team"><img id="team_player1" src="img/players/Tamada.png" alt="Tamada"></div>
+                    </div>
+                    <div class="nick_team">
+                      <img id="team_player1_flag" src="img/flags/mini/Spain.svg" alt="Испания">
+                      <p>Tamada</p>
+                    </div>
                 </div>
-                <div class="nick_team">
-                    <img id="top_team_player1_flag" src="img/flags/mini/Russia.svg" alt="Россия">
+                <div class="player_card_wrapper">
+                  <div class="players_team">
+                      <div class="crop_team"><img id="team_player2" src="img/players/Hitriy_Kazah.png" alt="Hitriy_Kazah"></div>
+                  </div>
+                  <div class="nick_team">
+                    <img id="team_player2_flag" src="img/flags/mini/Kosovo.svg" alt="Косово">
+                    <p>Hitriy_Kazah</p>
+                  </div>
+                </div>
+                <div class="player_card_wrapper">
+                  <div class="players_team">
+                      <div class="crop_team"><img id="team_player3" src="img/players/_SD_.png" alt="_SD_"></div>
+                  </div>
+                  <div class="nick_team">
+                    <img id="team_player3_flag" src="img/flags/mini/IsleOfMan.svg" alt="Остров Мэн">
+                    <p>_SD_</p>
+                  </div>
+                </div>
+                <div class="player_card_wrapper">
+                  <div class="players_team">
+                      <div class="crop_team"><img id="team_player4" src="img/players/rusttle.png" alt="rusttle"></div>
+                  </div>
+                  <div class="nick_team">
+                    <img id="team_player4_flag" src="img/flags/mini/Belize.svg" alt="Белиз">
+                    <p>rusttle</p>
+                  </div>
+                </div>
+                <div class="player_card_wrapper">
+                  <div class="players_team">
+                      <div class="crop_team"><img id="team_player5" src="img/players/ugly4.png" alt="ugly4"></div>
+                  </div>
+                  <div class="nick_team">
+                    <img id="team_player5_flag" src="img/flags/mini/Russia.svg" alt="Россия">
                     <p>ugly4</p>
+                  </div>
                 </div>
             </div>
+            <div class="devider_line"></div>
+            <div class="info_container">
+              <div class="team_info">
+                <img src="img/teams_logo/Amfier.png" id="team_logo">
+                <div class="info_teamname">
+                  <div class="flag_location">
+                    <img id="team_flag" src="img/flags/mini/Russia.svg" alt="Россия">
+                    <p id="team_location">Россия, Пугачёв</p>
+                  </div>
+                  <p>Amfier</p>
+                </div>
+              </div>
+              <div class="top_position">
+                <p>Место в рейтинге</p>
+                <p id="team_top_position">#1</p>
+              </div>
+            </div>
+            <div class="devider_line"></div>
+            <div class="trophies_container">
+              <div id="trophies">
+                <img src="img\trophies\cup1.svg">
+                <img src="img\trophies\cup2.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+                <img src="img\trophies\cup3.svg">
+              </div>
+            </div>
+          </div>
+          
+          <!-- Это часть с табами -->
+          <div>
+            <div class="tab">
+              <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'Description')">Описание</button>
+              <button class="tablinks" onclick="openTab(event, 'Matches')">Матчи</button>
+              <button class="tablinks" onclick="openTab(event, 'Tournaments')">Турниры</button>
+              <button class="tablinks" onclick="openTab(event, 'Achievements')">Достижения</button>
+              <button class="tablinks" onclick="openTab(event, 'Roster')">Состав</button>
+            </div>
+            <div id="Description" class="tabcontent_info">
+              <p>Самая командная команда из всех командных команд, которые только могут быть. Да, мы лучшие и мы
+                этого не скрываем, да. А всё почему? Потому что мы ПУПА - ПУзатые Пупсы в Автозаке. Вот так-то ебана</p>
+            </div>
+            <div id="Matches" class="tabcontent_info">
+              <p>Тут будут матчи</p>
+            </div>
+            <div id="Tournaments" class="tabcontent_info">
+              <p>Тут будут турниры</p>
+            </div>
+            <div id="Achievements" class="tabcontent_info">
+              <p>Тут будут достижения</p>
+            </div>
+            <div id="Roster" class="tabcontent_info">
+              <p>Тут будут все игроки, когда либо входившие в состав</p>
+            </div>
+          </div>
         </div>
       </main>
 
@@ -223,5 +334,6 @@
 
     <script src="main.js"></script>
     <script src="half_selector.js"></script>
+    <script src="team_tabs.js"></script>
   </body>
 </html>
