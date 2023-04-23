@@ -162,6 +162,7 @@
 }
 .tournament_sub_info img{
     height: 15px;
+    width: auto;
 }
 .tournament_sub_info p{
     font-family: var(--text-regular-lcg);
