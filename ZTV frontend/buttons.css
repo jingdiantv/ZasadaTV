@@ -2,6 +2,7 @@
 .full_grey_button{
     padding: 0px;
     margin: 0 auto;
+    width: 200px;
 }
 .full_grey_button input{
     color: white;
@@ -12,8 +13,32 @@
     font-family: var(--text-regular-lcg);
     border: 1px solid var(--base-07);
     font-size: 14px;
+
+    cursor: pointer;
 }
 .full_grey_button input:hover{
+    background-color: #3c3c3c;
+}
+
+/*Кнопка с серым фоном, при наведении темнеет. Текст белый(логин, регистрация)*/
+.full_grey_button_gap15{
+    padding-top: 15px;
+    margin: 0 auto;
+    width: 200px;
+}
+.full_grey_button_gap15 input{
+    color: white;
+    background-color: var(--base-07);
+    width: 200px;
+    height: 40px;
+    outline: none;
+    font-family: var(--text-regular-lcg);
+    border: 1px solid var(--base-07);
+    font-size: 14px;
+
+    cursor: pointer;
+}
+.full_grey_button_gap15 input:hover{
     background-color: #3c3c3c;
 }
 
@@ -40,7 +65,33 @@
     background-color: var(--window);
     box-shadow: 0px 0px 0px transparent;
     border: 0px solid transparent;
+
+    cursor: pointer;
 }
 .transparent_grey_border_button:hover{
     background-color: var(--plashka);
+}
+
+/*Кнопка, ведущая на матч*/
+.button_match{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 12px;
+    gap: 10px;
+
+    height: 16px;
+
+    background: var(--plashka);
+    border: 1px solid var(--splash-window);
+    border-radius: 100px;   
+
+    margin: 0;
+
+    cursor: pointer;
+    user-select: none;
+}
+.button_match:hover{
+    border-color: var(--base-05);
 }

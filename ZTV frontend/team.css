@@ -64,6 +64,7 @@
 /*С помощью неё мы регулируем положение ника и фотки*/
 .player_card_wrapper{
     position: relative;
+    user-select: none;
 }
 
 /*Линия под фотками*/
@@ -105,6 +106,7 @@
 }
 .team_info img{
     height: 40px;
+    user-select: none;
 }
 
 /*Настройки для отображения локации и названия*/
@@ -141,6 +143,7 @@
 }
 .flag_location img{
     height: 12px;
+    user-select: none;
 }
 
 /*Настройки для отображения позиции в топе*/
@@ -173,6 +176,7 @@
     background: var(--plashka);
     
     overflow-x: auto;
+    user-select: none;
 }
 .trophies_container::-webkit-scrollbar {
     height: 8px; 
@@ -199,56 +203,4 @@
 }
 #trophies img{
     height: 40px;
-}
-
-/*Блок с табами*/
-.tab {
-    overflow: hidden;
-    height: 41px;
-    width: 685px;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 30px;
-
-    background-color: var(--base-09); 
-}
-
-/*Стилизация кнопок(вкладок по сути)*/
-.tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-
-    font-family: var(--text-regular-lcg);
-    font-size: 16px;
-    margin: 0;
-    color: var(--white25);
-}
-.tab button:hover {
-    color: white;
-}
-.tab button.active {
-    color: white;
-}
-
-/*Стилизация содержимого вкладки с описанием*/
-.tabcontent_info {
-    display: none;
-    height: auto;
-    width: 715px;
-    padding: 10px 15px;
-    margin: 0;
-
-    background-color: var(--plashka);
-}
-.tabcontent_info p{
-    font-family: var(--text-regular-lcg);
-    font-size: 14px;
-    margin: 0;
-    color: white;
 }

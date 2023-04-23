@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="splash_window.css">
     <link rel="stylesheet" href="buttons.css">
     <link rel="stylesheet" href="team.css">
+    <link rel="stylesheet" href="tab.css">
+    <link rel="stylesheet" href="tournaments_tab.css">
+    <link rel="stylesheet" href="events.css">
+    <link rel="stylesheet" href="achievements.css">
+    <link rel="stylesheet" href="roster.css">
+    <link rel="stylesheet" href="top.css">
     <link
       rel="icon"
       type="image/svg+xml"
@@ -102,7 +108,7 @@
                 <input type="submit" id="loginsubmit" value="Войти">
               </div>
               <div class="transparent_grey_border_button text">
-                <a href="#signup" class="close">
+                <a href="#signup">
                   <input type="submit" id="loginsubmit" value="Регистрация">
                 </a>
               </div>
@@ -285,25 +291,682 @@
             <div class="tab">
               <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'Description')">Описание</button>
               <button class="tablinks" onclick="openTab(event, 'Matches')">Матчи</button>
-              <button class="tablinks" onclick="openTab(event, 'Tournaments')">Турниры</button>
-              <button class="tablinks" onclick="openTab(event, 'Achievements')">Достижения</button>
+              <button class="tablinks" id="Tournaments_button" onclick="openTab(event, 'Tournaments')">Турниры</button>
+              <button class="tablinks" id="Achievements_button" onclick="openTab(event, 'Achievements')">Достижения</button>
               <button class="tablinks" onclick="openTab(event, 'Roster')">Состав</button>
             </div>
             <div id="Description" class="tabcontent_info">
               <p>Самая командная команда из всех командных команд, которые только могут быть. Да, мы лучшие и мы
                 этого не скрываем, да. А всё почему? Потому что мы ПУПА - ПУзатые Пупсы в Автозаке. Вот так-то ебана</p>
             </div>
-            <div id="Matches" class="tabcontent_info">
-              <p>Тут будут матчи</p>
+            <div id="Matches" class="tabcontent_matches">
+              <!-- Ближайшие матчи -->
+              <div class="head_header"><p>Ближайшие матчи</p></div>
+              <div class="match_col">
+                <p>Дата</p>
+                <p>Матч</p>
+              </div>
+              <div class="tournaments" id="feature_tournaments">
+                <div class="col_center_gap10">
+                  <div class="match_header"> 
+                    <p>Zasada Gamer League 2023</p>
+                  </div>
+                  <!-- Плашки с матчами -->
+                  <div class="match_rect">
+                    <div class="match_date_wrapper"><p id="match_date">14.01.2023</p></div>
+                    <div class="match" id="match_id">
+                      <!-- Левая команда -->
+                      <div class="match_team">
+                        <div class="left_team_tag"><p id="left_match_team">Amfier</p></div>
+                        <img src="img/teams_logo/Amfier.png" id="left_match_team_logo">
+                      </div>
+                      <!-- Счёт в матче -->
+                      <div class="row_center_gap3">
+                        <div class="left_team_score"><p>-</p></div>
+                        <p>:</p>
+                        <div class="right_team_score"><p>-</p></div>
+                      </div>
+                      <!-- Правая команда -->
+                      <div class="match_team">
+                        <img src="img/teams_logo/Walhalla.png" id="right_match_team_logo">
+                        <div class="right_team_tag"><p id="right_match_team">Walhalla</p></div>
+                      </div>
+                    </div>
+                    <div class="match_button_wrapper"><div class="button_match" id="match_button"><p>Матч</p></div></div>
+                  </div>
+                  <div class="match_rect">
+                    <div class="match_date_wrapper"><p id="match_date">14.01.2023</p></div>
+                    <div class="match" id="match_id">
+                      <!-- Левая команда -->
+                      <div class="match_team">
+                        <div class="left_team_tag"><p id="left_match_team">AbuDabi</p></div>
+                        <img src="img/teams_logo/AbuDabi.svg" id="left_match_team_logo">
+                      </div>
+                      <!-- Счёт в матче -->
+                      <div class="row_center_gap3">
+                        <div class="left_team_score"><p>-</p></div>
+                        <p>:</p>
+                        <div class="right_team_score"><p>-</p></div>
+                      </div>
+                      <!-- Правая команда -->
+                      <div class="match_team">
+                        <img src="img/teams_logo/NoLogo.svg" id="right_match_team_logo">
+                        <div class="right_team_tag"><p id="right_match_team">G2</p></div>
+                      </div>
+                    </div>
+                    <div class="match_button_wrapper"><div class="button_match" id="match_button"><p>Матч</p></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Прошедшие матчи -->
+              <div class="head_header"><p>Прошедшие матчи</p></div>
+              <div class="match_col">
+                <p>Дата</p>
+                <p>Матч</p>
+              </div>
+              <div class="tournaments" id="past_tournaments">
+                <div class="col_center_gap10">
+                  <div class="match_header"> 
+                    <p>BLAST Pro League</p>
+                    <p>-</p>
+                    <p>2ое место</p>
+                  </div>
+                  <!-- Плашки с матчами -->
+                  <div class="match_rect">
+                    <div class="match_date_wrapper"><p id="match_date">14.01.2023</p></div>
+                    <div class="match" id="match_id">
+                      <!-- Левая команда -->
+                      <div class="match_team">
+                        <div class="left_team_tag"><p id="left_match_team">Amfier</p></div>
+                        <img src="img/teams_logo/Amfier.png" id="left_match_team_logo">
+                      </div>
+                      <!-- Счёт в матче -->
+                      <div class="row_center_gap3">
+                        <div class="left_team_score"><p>16</p></div>
+                        <p>:</p>
+                        <div class="right_team_score"><p style="opacity: 30%;">10</p></div>
+                      </div>
+                      <!-- Правая команда -->
+                      <div class="match_team" style="opacity: 30%;">
+                        <img src="img/teams_logo/Walhalla.png" id="right_match_team_logo">
+                        <div class="right_team_tag"><p id="right_match_team">Walhalla</p></div>
+                      </div>
+                    </div>
+                    <div class="match_button_wrapper"><div class="button_match" id="match_button"><p>Матч</p></div></div>
+                  </div>
+                  <div class="match_rect">
+                    <div class="match_date_wrapper"><p id="match_date">14.01.2023</p></div>
+                    <div class="match" id="match_id">
+                      <!-- Левая команда -->
+                      <div class="match_team">
+                        <div class="left_team_tag"><p id="left_match_team">Amfier</p></div>
+                        <img src="img/teams_logo/Amfier.png" id="left_match_team_logo">
+                      </div>
+                      <!-- Счёт в матче -->
+                      <div class="row_center_gap3">
+                        <div class="left_team_score"><p>16</p></div>
+                        <p>:</p>
+                        <div class="right_team_score"><p style="opacity: 30%;">10</p></div>
+                      </div>
+                      <!-- Правая команда -->
+                      <div class="match_team" style="opacity: 30%;">
+                        <img src="img/teams_logo/Walhalla.png" id="right_match_team_logo">
+                        <div class="right_team_tag"><p id="right_match_team">Walhalla</p></div>
+                      </div>
+                    </div>
+                    <div class="match_button_wrapper"><div class="button_match" id="match_button"><p>Матч</p></div></div>
+                  </div>
+                </div>
+                <div class="col_center_gap10">
+                  <div class="match_header"> 
+                    <p>Zasasda Community</p>
+                    <p>-</p>
+                    <p>1ое место</p>
+                  </div>
+                  <!-- Плашки с матчами -->
+                  <div class="match_rect">
+                    <div class="match_date_wrapper"><p id="match_date">14.01.2023</p></div>
+                    <div class="match" id="match_id">
+                      <!-- Левая команда -->
+                      <div class="match_team">
+                        <div class="left_team_tag"><p id="left_match_team">Amfier</p></div>
+                        <img src="img/teams_logo/Amfier.png" id="left_match_team_logo">
+                      </div>
+                      <!-- Счёт в матче -->
+                      <div class="row_center_gap3">
+                        <div class="left_team_score"><p>16</p></div>
+                        <p>:</p>
+                        <div class="right_team_score"><p style="opacity: 30%;">10</p></div>
+                      </div>
+                      <!-- Правая команда -->
+                      <div class="match_team" style="opacity: 30%;">
+                        <img src="img/teams_logo/Walhalla.png" id="right_match_team_logo">
+                        <div class="right_team_tag"><p id="right_match_team">Walhalla</p></div>
+                      </div>
+                    </div>
+                    <div class="match_button_wrapper"><div class="button_match" id="match_button"><p>Матч</p></div></div>
+                  </div>
+                  <div class="match_rect">
+                    <div class="match_date_wrapper"><p id="match_date">14.01.2023</p></div>
+                    <div class="match" id="match_id">
+                      <!-- Левая команда -->
+                      <div class="match_team">
+                        <div class="left_team_tag"><p id="left_match_team">Amfier</p></div>
+                        <img src="img/teams_logo/Amfier.png" id="left_match_team_logo">
+                      </div>
+                      <!-- Счёт в матче -->
+                      <div class="row_center_gap3">
+                        <div class="left_team_score"><p>16</p></div>
+                        <p>:</p>
+                        <div class="right_team_score"><p style="opacity: 30%;">10</p></div>
+                      </div>
+                      <!-- Правая команда -->
+                      <div class="match_team" style="opacity: 30%;">
+                        <img src="img/teams_logo/Walhalla.png" id="right_match_team_logo">
+                        <div class="right_team_tag"><p id="right_match_team">Walhalla</p></div>
+                      </div>
+                    </div>
+                    <div class="match_button_wrapper"><div class="button_match" id="match_button"><p>Матч</p></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="full_grey_button_gap15">
+                <a href="team_results.html">
+                  <input type="submit" id="loginsubmit" value="Все результаты команды">
+                </a>
+              </div>
             </div>
-            <div id="Tournaments" class="tabcontent_info">
-              <p>Тут будут турниры</p>
+            <div id="Tournaments" class="tabcontent_tournaments">
+                <div class="tab_tournaments">
+                  <div class="tab_event_button_wrapper">
+                    <button class="tablinks" id="defaultOpenT" onclick="openSubTab(event, 'UpcomingOngoing', 'Tournaments')">Ближайшие и текущие</button>
+                  </div>
+                  <div class="tab_event_button_wrapper">
+                    <button class="tablinks" onclick="openSubTab(event, 'Ended', 'Tournaments')">Завершённые</button>
+                  </div>
+                </div>
+                <div id="UpcomingOngoing" class="sub_tabcontent_tournaments">
+                  <div class="tournaments_wrapper">
+                    <div class="tournament_rect">
+                      <div class="tournament_full">
+                        <div class="tournament_logo"><img src="img/event_logo/BLAST.svg"></div>
+                        <div class="tournament_info">
+                          <p>Zasada Gamer League</p>
+                          <div class="tournament_sub_info">
+                            <p>07.03 - 12.04</p>
+                            <div class="participants_logo">
+                              <img src="img/teams_logo/AbuDabi.svg">
+                              <img src="img/teams_logo/Walhalla.png">
+                              <img src="img/teams_logo/AbuDabi.svg">
+                              <img src="img/teams_logo/Walhalla.png">
+                              <img src="img/teams_logo/NoLogo.svg">
+                              <img src="img/teams_logo/pupa.svg">
+                              <img src="img/teams_logo/Amfier.png">
+                              <img src="img/teams_logo/Walhalla.png">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tournament_rect">
+                      <div class="tournament_full">
+                        <div class="tournament_logo"><img src="img/event_logo/Zasada.svg"></div>
+                        <div class="tournament_info">
+                          <p>Zasada Gamer League</p>
+                          <div class="tournament_sub_info">
+                            <p>08.03 - 10.04</p>
+                            <div class="participants_logo">
+                              <img src="img/teams_logo/AbuDabi.svg">
+                              <img src="img/teams_logo/Walhalla.png">
+                              <img src="img/teams_logo/AbuDabi.svg">
+                              <img src="img/teams_logo/Walhalla.png">
+                              <img src="img/teams_logo/NoLogo.svg">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tournament_rect">
+                      <div class="tournament_full">
+                        <div class="tournament_logo"><img src="img/event_logo/Zasada.svg"></div>
+                        <div class="tournament_info">
+                          <p>Zasada Pugachev Major</p>
+                          <div class="tournament_sub_info">
+                            <p>08.03 - 10.04</p>
+                            <div class="participants_logo">
+                              <img src="img/teams_logo/AbuDabi.svg">
+                              <img src="img/teams_logo/Walhalla.png">
+                              <img src="img/teams_logo/AbuDabi.svg">
+                              <img src="img/teams_logo/Walhalla.png">
+                              <img src="img/teams_logo/NoLogo.svg">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tournament_rect">
+                      <div class="tournament_full">
+                        <div class="tournament_logo"><img src="img/event_logo/Zasada.svg"></div>
+                        <div class="tournament_info">
+                          <p>Zasada Pugachev Major</p>
+                          <div class="tournament_sub_info">
+                            <p>08.03 - 10.04</p>
+                            <div class="participants_logo">
+                              <img src="img/teams_logo/AbuDabi.svg">
+                              <img src="img/teams_logo/Walhalla.png">
+                              <img src="img/teams_logo/AbuDabi.svg">
+                              <img src="img/teams_logo/Walhalla.png">
+                              <img src="img/teams_logo/NoLogo.svg">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="Ended" class="sub_tabcontent_tournaments">
+                  <div class="tournaments_wrapper">
+                    <div class="tournament_rect">
+                      <div class="ended_event_wrapper">
+                        <div class="tournament_full">
+                          <div class="tournament_logo"><img src="img/event_logo/BLAST.svg"></div>
+                          <div class="tournament_info">
+                            <p>Zasada Gamer League</p>
+                            <div class="tournament_sub_info">
+                              <p>07.03 - 12.04</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="first_place">
+                          <img src="img/FirstPlace.svg">
+                          <p>1ое</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tournament_rect">
+                      <div class="ended_event_wrapper">
+                        <div class="tournament_full">
+                          <div class="tournament_logo"><img src="img/event_logo/BLAST.svg"></div>
+                          <div class="tournament_info">
+                            <p>Zasada Gamer League</p>
+                            <div class="tournament_sub_info">
+                              <p>07.03 - 12.04</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="second_place">
+                          <img src="img/SecondPlace.svg">
+                          <p>2ое</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tournament_rect">
+                      <div class="ended_event_wrapper">
+                        <div class="tournament_full">
+                          <div class="tournament_logo"><img src="img/event_logo/BLAST.svg"></div>
+                          <div class="tournament_info">
+                            <p>Zasada Gamer League</p>
+                            <div class="tournament_sub_info">
+                              <p>07.03 - 12.04</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="bronze_place">
+                          <img src="img/BronzePlace.svg">
+                          <p>3-4ое</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tournament_rect">
+                      <div class="ended_event_wrapper">
+                        <div class="tournament_full">
+                          <div class="tournament_logo"><img src="img/event_logo/BLAST.svg"></div>
+                          <div class="tournament_info">
+                            <p>Zasada Gamer League</p>
+                            <div class="tournament_sub_info">
+                              <p>07.03 - 12.04</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="full_grey_button_gap15">
+                    <a href="team_events.html">
+                      <input type="submit" id="loginsubmit" value="Все турниры команды">
+                    </a>
+                  </div>
+                </div>
             </div>
-            <div id="Achievements" class="tabcontent_info">
-              <p>Тут будут достижения</p>
+            <div id="Achievements" class="tabcontent_tournaments">
+              <div class="tab_tournaments">
+                <div class="tab_event_button_wrapper">
+                  <button class="tablinks" id="defaultOpenA" onclick="openSubTab(event, 'LanAchievements', 'Achievements')">Lan</button>
+                </div>
+                <div class="tab_event_button_wrapper">
+                  <button class="tablinks" onclick="openSubTab(event, 'OnlineAchievements', 'Achievements')">Online</button>
+                </div>
+              </div>
+              <div id="LanAchievements" class="sub_tabcontent_achievements">
+                <div class="achievements_col">
+                  <p>Место</p>
+                  <p>Турнир</p>
+                </div>
+                <div class="tournaments_wrapper">
+                  <div class="tournament_rect">
+                    <div class="place_event_wrapper">
+                      <div class="bronze_place">
+                        <img src="img/BronzePlace.svg">
+                        <p>3-4ое</p>
+                      </div>
+                      <div class="event_info">
+                        <div class="tournament_logo"><img src="img/event_logo/BLAST.svg"></div>
+                        <div class="tournament_info">
+                          <p>Zasada Gamer League</p>
+                          <div class="tournament_sub_info">
+                            <p>07.03 - 12.04</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tournament_rect">
+                    <div class="place_event_wrapper">
+                      <div class="first_place">
+                        <img src="img/FirstPlace.svg">
+                        <p>1-2ое</p>
+                      </div>
+                      <div class="event_info">
+                        <div class="tournament_logo"><img src="img/event_logo/BLAST.svg"></div>
+                        <div class="tournament_info">
+                          <p>Zasada Gamer League</p>
+                          <div class="tournament_sub_info">
+                            <p>07.03 - 12.04</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tournament_rect">
+                    <div class="place_event_wrapper">
+                      <div class="second_place">
+                        <img src="img/SecondPlace.svg">
+                        <p>2ое</p>
+                      </div>
+                      <div class="event_info">
+                        <div class="tournament_logo"><img src="img/event_logo/BLAST.svg"></div>
+                        <div class="tournament_info">
+                          <p>Zasada Gamer League</p>
+                          <div class="tournament_sub_info">
+                            <p>07.03 - 12.04</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tournament_rect">
+                    <div class="place_event_wrapper">
+                      <div class="first_place">
+                        <img src="img/FirstPlace.svg">
+                        <p>1ое</p>
+                      </div>
+                      <div class="event_info">
+                        <div class="tournament_logo"><img src="img/event_logo/Zasada.svg"></div>
+                        <div class="tournament_info">
+                          <p>Zasada League</p>
+                          <div class="tournament_sub_info">
+                            <p>07.03 - 12.04</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="OnlineAchievements" class="sub_tabcontent_achievements">
+                <div class="achievements_col">
+                  <p>Место</p>
+                  <p>Турнир</p>
+                </div>
+                <div class="tournaments_wrapper">
+                  <div class="tournament_rect">
+                    <div class="place_event_wrapper">
+                      <div class="bronze_place">
+                        <img src="img/BronzePlace.svg">
+                        <p>3-4ое</p>
+                      </div>
+                      <div class="event_info">
+                        <div class="tournament_logo"><img src="img/event_logo/BLAST.svg"></div>
+                        <div class="tournament_info">
+                          <p>Zasada Gamer League</p>
+                          <div class="tournament_sub_info">
+                            <p>07.03 - 12.04</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tournament_rect">
+                    <div class="place_event_wrapper">
+                      <div class="bronze_place">
+                        <img src="img/BronzePlace.svg">
+                        <p>3е</p>
+                      </div>
+                      <div class="event_info">
+                        <div class="tournament_logo"><img src="img/event_logo/Zasada.svg"></div>
+                        <div class="tournament_info">
+                          <p>Community Cup by Tamada</p>
+                          <div class="tournament_sub_info">
+                            <p>09.10 - 12.04.23</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tournament_rect">
+                    <div class="place_event_wrapper">
+                      <div class="second_place">
+                        <img src="img/SecondPlace.svg">
+                        <p>2ое</p>
+                      </div>
+                      <div class="event_info">
+                        <div class="tournament_logo"><img src="img/event_logo/BLAST.svg"></div>
+                        <div class="tournament_info">
+                          <p>Zasada Gamer League</p>
+                          <div class="tournament_sub_info">
+                            <p>07.03 - 12.04</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tournament_rect">
+                    <div class="place_event_wrapper">
+                      <div class="first_place">
+                        <img src="img/FirstPlace.svg">
+                        <p>1ое</p>
+                      </div>
+                      <div class="event_info">
+                        <div class="tournament_logo"><img src="img/event_logo/Zasada.svg"></div>
+                        <div class="tournament_info">
+                          <p>Zasada League</p>
+                          <div class="tournament_sub_info">
+                            <p>07.03 - 12.04</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div id="Roster" class="tabcontent_info">
-              <p>Тут будут все игроки, когда либо входившие в состав</p>
+            <div id="Roster" class="tabcontent_matches">
+              <div class="head_header"><p>Текущий состав</p></div>
+              <div class="row_left_gap20">
+                <div class="player_top">
+                  <div class="players_background_roster">
+                    <div class="crop_roster"><img src="img/players/Tamada.png" alt="Tamada"></div>
+                  </div>
+                  <div class="nick_roster">
+                    <img id="top_team_player1_flag" src="img/flags/mini/Spain.svg" alt="Испания">
+                    <p>Tamada</p>
+                  </div>
+                </div>
+                <div class="player_top">
+                  <div class="players_background_roster">
+                    <div class="crop_roster"><img src="img/players/Hitriy_Kazah.png" alt="Hitriy_Kazah"></div>
+                  </div>
+                  <div class="nick_roster">
+                    <img id="top_team_player1_flag" src="img/flags/mini/Kosovo.svg" alt="Косово">
+                    <p>Hitriy_Kazah</p>
+                  </div>
+                </div>
+                <div class="player_top">
+                  <div class="players_background_roster">
+                    <div class="crop_roster"><img src="img/players/_SD_.png" alt="_SD_"></div>
+                  </div>
+                  <div class="nick_roster">
+                    <img id="top_team_player1_flag" src="img/flags/mini/IsleOfMan.svg" alt="Остров Мэн">
+                    <p>_SD_</p>
+                  </div>
+                </div>
+                <div class="player_top">
+                  <div class="players_background_roster">
+                    <div class="crop_roster"><img src="img/players/rusttle.png" alt="rusttle"></div>
+                  </div>
+                  <div class="nick_roster">
+                    <img id="top_team_player1_flag" src="img/flags/mini/Belize.svg" alt="Белиз">
+                    <p>rusttle</p>
+                  </div>
+                </div>
+                <div class="player_top">
+                  <div class="players_background_roster">
+                    <div class="crop_roster"><img src="img/players/ugly4.png" alt="ugly4"></div>
+                  </div>
+                  <div class="nick_roster">
+                    <img id="top_team_player1_flag" src="img/flags/mini/Russia.svg" alt="Россия">
+                    <p>ugly4</p>
+                  </div>
+                </div>
+              </div>
+              <div class="head_header"><p>Бывшие игроки</p></div>
+              <div class="ex_players">
+                <div class="row_left_gap20">
+                  <div class="player_top">
+                    <div class="players_background_roster">
+                      <div class="crop_roster"><img src="img/players/Tamada.png" alt="Tamada"></div>
+                    </div>
+                    <div class="nick_roster">
+                      <img id="top_team_player1_flag" src="img/flags/mini/Spain.svg" alt="Испания">
+                      <p>Tamada</p>
+                    </div>
+                  </div>
+                  <div class="player_top">
+                    <div class="players_background_roster">
+                      <div class="crop_roster"><img src="img/players/Hitriy_Kazah.png" alt="Hitriy_Kazah"></div>
+                    </div>
+                    <div class="nick_roster">
+                      <img id="top_team_player1_flag" src="img/flags/mini/Kosovo.svg" alt="Косово">
+                      <p>Hitriy_Kazah</p>
+                    </div>
+                  </div>
+                  <div class="player_top">
+                    <div class="players_background_roster">
+                      <div class="crop_roster"><img src="img/players/_SD_.png" alt="_SD_"></div>
+                    </div>
+                    <div class="nick_roster">
+                      <img id="top_team_player1_flag" src="img/flags/mini/IsleOfMan.svg" alt="Остров Мэн">
+                      <p>_SD_</p>
+                    </div>
+                  </div>
+                  <div class="player_top">
+                    <div class="players_background_roster">
+                      <div class="crop_roster"><img src="img/players/rusttle.png" alt="rusttle"></div>
+                    </div>
+                    <div class="nick_roster">
+                      <img id="top_team_player1_flag" src="img/flags/mini/Belize.svg" alt="Белиз">
+                      <p>rusttle</p>
+                    </div>
+                  </div>
+                  <div class="player_top">
+                    <div class="players_background_roster">
+                      <div class="crop_roster"><img src="img/players/ugly4.png" alt="ugly4"></div>
+                    </div>
+                    <div class="nick_roster">
+                      <img id="top_team_player1_flag" src="img/flags/mini/Russia.svg" alt="Россия">
+                      <p>ugly4</p>
+                    </div>
+                  </div>
+                  <div class="player_top">
+                    <div class="players_background_roster">
+                      <div class="crop_roster"><img src="img/players/ugly4.png" alt="ugly4"></div>
+                    </div>
+                    <div class="nick_roster">
+                      <img id="top_team_player1_flag" src="img/flags/mini/Russia.svg" alt="Россия">
+                      <p>ugly4</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row_left_gap20">
+                  <div class="player_top">
+                    <div class="players_background_roster">
+                      <div class="crop_roster"><img src="img/players/Tamada.png" alt="Tamada"></div>
+                    </div>
+                    <div class="nick_roster">
+                      <img id="top_team_player1_flag" src="img/flags/mini/Spain.svg" alt="Испания">
+                      <p>Tamada</p>
+                    </div>
+                  </div>
+                  <div class="player_top">
+                    <div class="players_background_roster">
+                      <div class="crop_roster"><img src="img/players/Hitriy_Kazah.png" alt="Hitriy_Kazah"></div>
+                    </div>
+                    <div class="nick_roster">
+                      <img id="top_team_player1_flag" src="img/flags/mini/Kosovo.svg" alt="Косово">
+                      <p>Hitriy_Kazah</p>
+                    </div>
+                  </div>
+                  <div class="player_top">
+                    <div class="players_background_roster">
+                      <div class="crop_roster"><img src="img/players/_SD_.png" alt="_SD_"></div>
+                    </div>
+                    <div class="nick_roster">
+                      <img id="top_team_player1_flag" src="img/flags/mini/IsleOfMan.svg" alt="Остров Мэн">
+                      <p>_SD_</p>
+                    </div>
+                  </div>
+                  <div class="player_top">
+                    <div class="players_background_roster">
+                      <div class="crop_roster"><img src="img/players/rusttle.png" alt="rusttle"></div>
+                    </div>
+                    <div class="nick_roster">
+                      <img id="top_team_player1_flag" src="img/flags/mini/Belize.svg" alt="Белиз">
+                      <p>rusttle</p>
+                    </div>
+                  </div>
+                  <div class="player_top">
+                    <div class="players_background_roster">
+                      <div class="crop_roster"><img src="img/players/ugly4.png" alt="ugly4"></div>
+                    </div>
+                    <div class="nick_roster">
+                      <img id="top_team_player1_flag" src="img/flags/mini/Russia.svg" alt="Россия">
+                      <p>ugly4</p>
+                    </div>
+                  </div>
+                  <div class="player_top">
+                    <div class="players_background_roster">
+                      <div class="crop_roster"><img src="img/players/_SD_.png" alt="_SD_"></div>
+                    </div>
+                    <div class="nick_roster">
+                      <img id="top_team_player1_flag" src="img/flags/mini/IsleOfMan.svg" alt="Остров Мэн">
+                      <p>_SD_</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

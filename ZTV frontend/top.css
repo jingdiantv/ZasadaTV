@@ -30,7 +30,6 @@
     padding-right: 15px;
     justify-content: space-between;
     cursor: pointer;
-    user-select: none;
 }
 .rectangle_50px_top_text{
     font-family: var(--text-medium-lcg);
@@ -51,9 +50,10 @@
 }
 .rectangle_50px_top img{
     height: 30px;
+    user-select: none;
 }
 .rectangle_50px_top:hover{
-    background: var(--base-09);
+    background: var(--splash-window);
 }
 
 /*Прямоугольник для отображения игроков топ-1 команды*/
@@ -76,7 +76,6 @@
     margin: 0;
     color: var(--white25);
     cursor: pointer;
-    user-select: none;
 }
 .top1_team_rectangle p:hover{
     color: white;

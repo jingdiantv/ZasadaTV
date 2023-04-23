@@ -1,0 +1,48 @@
+/*Отображние фотки с заливкой на фоне*/
+.players_background_roster{
+    width: 91px;
+    height: 113px;
+    overflow: hidden;
+    background-color: var(--base-10);
+    object-position: center;
+}
+.players_background_roster img{
+    margin: -7px 0px 0px -30px;
+}
+
+/*Предварительно кропаю фотку, чтоб поместилось больше*/
+.crop_roster img{
+    width: 150px;
+    height: 237px;
+}
+
+/*Всё связанное с никами с топа*/
+.nick_roster{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    gap: 3px;
+}
+.nick_roster p{
+    font-family: var(--text-regular-lcg);
+    font-size: 14px;
+    margin: 0;
+    color: var(--white25);
+    pointer-events: none; /*вроде отключил ховер*/
+}
+.nick_roster img{
+    height: 11px;
+    opacity: 1;
+}
+
+/*Отступы между строками с бывшими игроками*/
+.ex_players{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 15px;
+    opacity: 0.3;
+}

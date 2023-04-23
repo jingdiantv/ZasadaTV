@@ -1,0 +1,270 @@
+/*Стилизация содержимого вкладки с турнирами*/
+.tabcontent_tournaments {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 715px;
+    padding: 25px 15px 15px;
+    margin: 0;
+
+    background-color: var(--plashka);
+}
+.tabcontent_tournaments p{
+    font-family: var(--text-regular-lcg);
+    font-size: 14px;
+    margin: 0;
+    color: white;
+}
+
+/*Блок с табами*/
+.tab_tournaments {
+    overflow: hidden;
+    height: auto;
+    width: 715px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: 5px;
+}
+
+/*Стилизация кнопок(вкладок по сути)*/
+.tab_tournaments button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    font-family: var(--text-regular-lcg);
+    font-size: 14px;
+    margin: 0;
+    color: var(--white25);
+}
+.tab_tournaments button:hover {
+    color: white;
+}
+.tab_tournaments button.active {
+    color: white;
+}
+
+/*Отображение кнопок в табах(Online/Lan, Бывшие/Текущие турниры)*/
+.tab_event_button_wrapper{
+    height: auto;
+    width: 355px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Настройки для отображения содержимого в табе с турнирами*/
+.sub_tabcontent_tournaments{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 25px;
+    margin: 0;
+}
+
+/*Расстояние между плашками с турнирами в 10px*/
+.tournaments_wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/*Прямоугольник с турниром*/
+.tournament_rect{
+    height: 53px;
+    width: 685px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0px 15px;
+
+    background-color: var(--base-09);
+
+    cursor: pointer;
+}
+.tournament_rect:hover{
+    background-color: var(--white70);
+}
+
+/*Настройки для отображения всей-всей инфы о турнире*/
+.tournament_full{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.tournament_full img{
+    user-select: none;
+    width: 100%;
+    height: 100%;
+}
+
+/*Задаём настрйоки лого турнира*/
+.tournament_logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+
+    width: 40px;
+    height: 40px;
+}
+
+/*Отступ между названием турнира и датой с командами*/
+.tournament_info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 3px;
+}
+.tournament_info p{
+    width: 200px;
+    font-family: var(--text-regular-lcg);
+    font-size: 14px;
+    margin: 0;
+    color: white;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*Настройки для отображения даты и команд-участниц*/
+.tournament_sub_info{
+    width: 100%;
+    height: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0px;
+    margin: 0;
+}
+.tournament_sub_info img{
+    height: 15px;
+}
+.tournament_sub_info p{
+    font-family: var(--text-regular-lcg);
+    font-size: 12px;
+    margin: 0;
+    color: var(--white40);
+}
+
+/*Настройки для отображения лого команд-участниц*/
+.participants_logo{
+    width: 155px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    gap: 5px;
+
+    overflow: hidden;
+}
+
+/*Настройки для прямоугольника с первым местом*/
+.first_place{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 12px;
+    gap: 5px;
+
+    width: 70px;
+    height: 16px;
+    border-radius: 100px;
+
+    background: #EDB404;
+}
+.first_place p{
+    font-family: var(--text-regular-lcg);
+    font-size: 14px;
+    margin: 0;
+    color: #503D00;
+}
+.first_place img{
+    height: 14px;
+}
+
+/*Настройки для прямоугольника со вторым местом*/
+.second_place{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 12px;
+    gap: 5px;
+    
+    width: 70px;
+    height: 16px;
+    border-radius: 100px;
+
+    background: #C0C0C0;
+}
+.second_place p{
+    font-family: var(--text-regular-lcg);
+    font-size: 14px;
+    margin: 0;
+    color: #525252;
+}
+.second_place img{
+    height: 14px;
+}
+
+/*Настройки для прямоугольника с третьим местом*/
+.bronze_place{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 12px;
+    gap: 5px;
+    
+    width: 70px;
+    height: 16px;
+    border-radius: 100px;
+
+    background: #CD7F32;
+}
+.bronze_place p{
+    font-family: var(--text-regular-lcg);
+    font-size: 14px;
+    margin: 0;
+    color: #522B04;
+}
+.bronze_place img{
+    height: 14px;
+}
+
+/*нужен, чтоб задать расстояние между инфой о турике и местом*/
+.ended_event_wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+}

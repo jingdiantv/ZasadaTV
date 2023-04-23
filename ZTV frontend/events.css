@@ -1,0 +1,133 @@
+/*Всё для турниров команды*/
+
+/*Расстояние 10px между каждой плашкой с туриком со страницы team_events*/
+.events{
+    margin-left: auto;
+    margin-right: auto;
+    width: 715px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+}
+
+/*Стартовые настройки для названий столбцов*/
+.events_col{
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 700px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 15px;
+    padding-bottom: 5px;
+}
+.events_col p{
+    font-family: var(--text-regular-lcg);
+    font-size: 14px;
+    margin: 0;
+    color: white;
+}
+
+/*Настройки для каждого столбца отдельно - двигаю*/
+.events_col_date{
+    padding-left: 15px;
+}
+
+.events_col_event{
+    padding-left: 85px;
+}
+
+.events_col_team{
+    padding-left: 322px;
+}
+
+/*Настройки для отображения занятого места*/
+.event_place{
+    width: 61px;
+    height: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+.event_place p{
+    font-family: var(--text-regular-lcg);
+    font-size: 14px;
+    margin: 0;
+    color: white;
+}
+
+/*По факту нужен, чтоб располагать всё от начала строки*/
+.event_wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/*Он задаёт расстояние между элементами*/
+.event_info_wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Настройки для отображения лого и названия команды*/
+.event_team{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 5px;
+
+    cursor: pointer;
+}
+.event_team img{
+    height: 30px;
+    user-select: none;
+}
+.event_team p{
+    font-family: var(--text-regular-lcg);
+    font-size: 14px;
+    margin: 0;
+    color: white;
+}
+
+/*Отодвигаем команду от границы прямоугольника*/
+.event_team_wrapper{
+    padding-right: 70px;
+    width: 113px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/*Настройки отображения данных о турике*/
+.event_info{
+    width: 300px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    gap: 5px;
+
+    cursor: pointer;
+}
+.event_info img{
+    user-select: none;
+    width: 100%;
+    height: 100%;
+}
