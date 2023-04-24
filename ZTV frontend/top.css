@@ -1,6 +1,6 @@
 /*Топ команд*/
 .top_teams{
-    width: 724px;
+    width: 745px;
     margin-left:auto;
     margin-right:auto;
     height: fit-content;
@@ -20,7 +20,7 @@
 
 /*Это прямоугольник шириной в 50px (заголовок команды)*/
 .rectangle_50px_top{
-    width: 724px;
+    width: 715px;
     height: 50px;
     background: var(--plashka);
     
@@ -58,7 +58,7 @@
 
 /*Прямоугольник для отображения игроков топ-1 команды*/
 .top1_team_rectangle{
-    width: 724px;
+    width: 715px;
     height: auto;
 
     display: flex;

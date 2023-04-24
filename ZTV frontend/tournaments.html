@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="text_fields.css">
     <link rel="stylesheet" href="splash_window.css">
     <link rel="stylesheet" href="buttons.css">
+    <link rel="stylesheet" href="tournaments.css">
     <link
       rel="icon"
       type="image/svg+xml"
@@ -183,12 +184,735 @@
       </div>
 
       <main>
+        <div class="tab_wrapper">
+          <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'OngoingEvents')">Текущие и будущие</button>
+          <button class="tablinks" onclick="openTab(event, 'PastEvents')">Прошедшие</button>
+        </div>
+
+        <div id="OngoingEvents" class="ongoing_events">
+          <div class="events_header"><p>Текущие турниры</p></div>
+          <div class="events_upcoming">
+            <div class="events_col">
+            <div class="events_row">
+              <div>
+                <div class="event_img_header">
+                  <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                </div>
+                <div class="event_desc">
+                  <div class="info_loc_wrapper">
+                    <p>Zasada Super Cup</p>
+                    <div class="event_sub_info">
+                      <div class="event_location">
+                        <img src="img/flags/mini/Russia.svg">
+                        <p>Россия, Пугачёв</p>
+                      </div>
+                      <p>|</p>
+                      <p>3.05 - 4.05</p>
+                      <p>|</p>
+                      <p>2x2</p>
+                    </div>
+                  </div>
+                  <div class="dev_line"></div>
+                  <div class="main_event_info">
+                    <div class="main_event_info_wrapper">
+                      <p>XX/YY</p>
+                      <div class="main_sub_info"><p>Команд</p></div>
+                    </div>
+                    <div class="main_event_info_wrapper">
+                      <p>Z</p>
+                      <div class="main_sub_info"><p>Приз</p></div>
+                    </div>
+                    <div class="main_event_info_wrapper">
+                      <p>N</p>
+                      <div class="main_sub_info"><p>Взнос</p></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="event_img_header">
+                  <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                </div>
+                <div class="event_desc">
+                  <div class="info_loc_wrapper">
+                    <p>Zasada Super Cup</p>
+                    <div class="event_sub_info">
+                      <div class="event_location">
+                        <img src="img/flags/mini/Russia.svg">
+                        <p>Россия, Пугачёв</p>
+                      </div>
+                      <p>|</p>
+                      <p>3.05 - 4.05</p>
+                      <p>|</p>
+                      <p>2x2</p>
+                    </div>
+                  </div>
+                  <div class="dev_line"></div>
+                  <div class="main_event_info">
+                    <div class="main_event_info_wrapper">
+                      <p>XX/YY</p>
+                      <div class="main_sub_info"><p>Команд</p></div>
+                    </div>
+                    <div class="main_event_info_wrapper">
+                      <p>Y</p>
+                      <div class="main_sub_info"><p>Приз</p></div>
+                    </div>
+                    <div class="main_event_info_wrapper">
+                      <p>N</p>
+                      <div class="main_sub_info"><p>Взнос</p></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="event_img_header">
+                  <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                </div>
+                <div class="event_desc">
+                  <div class="info_loc_wrapper">
+                    <p>Zasada Super Cup</p>
+                    <div class="event_sub_info">
+                      <div class="event_location">
+                        <img src="img/flags/mini/Russia.svg">
+                        <p>Россия, Пугачёв</p>
+                      </div>
+                      <p>|</p>
+                      <p>3.05 - 4.05</p>
+                      <p>|</p>
+                      <p>2x2</p>
+                    </div>
+                  </div>
+                  <div class="dev_line"></div>
+                  <div class="main_event_info">
+                    <div class="main_event_info_wrapper">
+                      <p>XX/YY</p>
+                      <div class="main_sub_info"><p>Команд</p></div>
+                    </div>
+                    <div class="main_event_info_wrapper">
+                      <p>Y</p>
+                      <div class="main_sub_info"><p>Приз</p></div>
+                    </div>
+                    <div class="main_event_info_wrapper">
+                      <p>N</p>
+                      <div class="main_sub_info"><p>Взнос</p></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="events_row">
+              <div>
+                <div class="event_img_header">
+                  <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                </div>
+                <div class="event_desc">
+                  <div class="info_loc_wrapper">
+                    <p>Zasada Super Cup</p>
+                    <div class="event_sub_info">
+                      <div class="event_location">
+                        <img src="img/flags/mini/Russia.svg">
+                        <p>Россия, Пугачёв</p>
+                      </div>
+                      <p>|</p>
+                      <p>3.05 - 4.05</p>
+                      <p>|</p>
+                      <p>2x2</p>
+                    </div>
+                  </div>
+                  <div class="dev_line"></div>
+                  <div class="main_event_info">
+                    <div class="main_event_info_wrapper">
+                      <p>XX/YY</p>
+                      <div class="main_sub_info"><p>Команд</p></div>
+                    </div>
+                    <div class="main_event_info_wrapper">
+                      <p>Y</p>
+                      <div class="main_sub_info"><p>Приз</p></div>
+                    </div>
+                    <div class="main_event_info_wrapper">
+                      <p>N</p>
+                      <div class="main_sub_info"><p>Взнос</p></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="event_img_header">
+                  <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                </div>
+                <div class="event_desc">
+                  <div class="info_loc_wrapper">
+                    <p>Zasada Super Cup</p>
+                    <div class="event_sub_info">
+                      <div class="event_location">
+                        <img src="img/flags/mini/Russia.svg">
+                        <p>Россия, Пугачёв</p>
+                      </div>
+                      <p>|</p>
+                      <p>3.05 - 4.05</p>
+                      <p>|</p>
+                      <p>2x2</p>
+                    </div>
+                  </div>
+                  <div class="dev_line"></div>
+                  <div class="main_event_info">
+                    <div class="main_event_info_wrapper">
+                      <p>XX/YY</p>
+                      <div class="main_sub_info"><p>Команд</p></div>
+                    </div>
+                    <div class="main_event_info_wrapper">
+                      <p>Y</p>
+                      <div class="main_sub_info"><p>Приз</p></div>
+                    </div>
+                    <div class="main_event_info_wrapper">
+                      <p>N</p>
+                      <div class="main_sub_info"><p>Взнос</p></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="events_header"><p>Будущие турниры</p></div>
+          <div class="events_upcoming">
+            <div class="events_col">
+              <div class="events_date"><p>Апрель 2023</p></div>
+              <div class="events_row">
+                <div>
+                  <div class="event_img_header">
+                    <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                  </div>
+                  <div class="event_desc">
+                    <div class="info_loc_wrapper">
+                      <p>Zasada Super Cup</p>
+                      <div class="event_sub_info">
+                        <div class="event_location">
+                          <img src="img/flags/mini/Russia.svg">
+                          <p>Россия, Пугачёв</p>
+                        </div>
+                        <p>|</p>
+                        <p>3.05 - 4.05</p>
+                        <p>|</p>
+                        <p>2x2</p>
+                      </div>
+                    </div>
+                    <div class="dev_line"></div>
+                    <div class="main_event_info">
+                      <div class="main_event_info_wrapper">
+                        <p>XX/YY</p>
+                        <div class="main_sub_info"><p>Команд</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>Y</p>
+                        <div class="main_sub_info"><p>Приз</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>N</p>
+                        <div class="main_sub_info"><p>Взнос</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="event_img_header">
+                    <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                  </div>
+                  <div class="event_desc">
+                    <div class="info_loc_wrapper">
+                      <p>Zasada Super Cup</p>
+                      <div class="event_sub_info">
+                        <div class="event_location">
+                          <img src="img/flags/mini/Russia.svg">
+                          <p>Россия, Пугачёв</p>
+                        </div>
+                        <p>|</p>
+                        <p>3.05 - 4.05</p>
+                        <p>|</p>
+                        <p>2x2</p>
+                      </div>
+                    </div>
+                    <div class="dev_line"></div>
+                    <div class="main_event_info">
+                      <div class="main_event_info_wrapper">
+                        <p>XX/YY</p>
+                        <div class="main_sub_info"><p>Команд</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>Y</p>
+                        <div class="main_sub_info"><p>Приз</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>N</p>
+                        <div class="main_sub_info"><p>Взнос</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="event_img_header">
+                    <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                  </div>
+                  <div class="event_desc">
+                    <div class="info_loc_wrapper">
+                      <p>Zasada Super Cup</p>
+                      <div class="event_sub_info">
+                        <div class="event_location">
+                          <img src="img/flags/mini/Russia.svg">
+                          <p>Россия</p>
+                        </div>
+                        <p>|</p>
+                        <p>3.05 - 4.05</p>
+                        <p>|</p>
+                        <p>2x2</p>
+                        <p>|</p>
+                        <p>Online</p>
+                      </div>
+                    </div>
+                    <div class="dev_line"></div>
+                    <div class="main_event_info">
+                      <div class="main_event_info_wrapper">
+                        <p>XX/YY</p>
+                        <div class="main_sub_info"><p>Команд</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>Y</p>
+                        <div class="main_sub_info"><p>Приз</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>N</p>
+                        <div class="main_sub_info"><p>Взнос</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="events_row">
+                <div>
+                  <div class="event_img_header">
+                    <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                  </div>
+                  <div class="event_desc">
+                    <div class="info_loc_wrapper">
+                      <p>Zasada Super Cup</p>
+                      <div class="event_sub_info">
+                        <div class="event_location">
+                          <img src="img/flags/mini/Russia.svg">
+                          <p>Россия, Пугачёв</p>
+                        </div>
+                        <p>|</p>
+                        <p>3.05 - 4.05</p>
+                        <p>|</p>
+                        <p>2x2</p>
+                      </div>
+                    </div>
+                    <div class="dev_line"></div>
+                    <div class="main_event_info">
+                      <div class="main_event_info_wrapper">
+                        <p>XX/YY</p>
+                        <div class="main_sub_info"><p>Команд</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>Y</p>
+                        <div class="main_sub_info"><p>Приз</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>N</p>
+                        <div class="main_sub_info"><p>Взнос</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="event_img_header">
+                    <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                  </div>
+                  <div class="event_desc">
+                    <div class="info_loc_wrapper">
+                      <p>Zasada Super Cup</p>
+                      <div class="event_sub_info">
+                        <div class="event_location">
+                          <img src="img/flags/mini/Russia.svg">
+                          <p>Россия, Пугачёв</p>
+                        </div>
+                        <p>|</p>
+                        <p>3.05 - 4.05</p>
+                        <p>|</p>
+                        <p>2x2</p>
+                      </div>
+                    </div>
+                    <div class="dev_line"></div>
+                    <div class="main_event_info">
+                      <div class="main_event_info_wrapper">
+                        <p>XX/YY</p>
+                        <div class="main_sub_info"><p>Команд</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>Y</p>
+                        <div class="main_sub_info"><p>Приз</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>N</p>
+                        <div class="main_sub_info"><p>Взнос</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="events_col">
+              <div class="events_date"><p>Май 2023</p></div>
+              <div class="events_row">
+                <div>
+                  <div class="event_img_header">
+                    <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                  </div>
+                  <div class="event_desc">
+                    <div class="info_loc_wrapper">
+                      <p>Zasada Super Cup</p>
+                      <div class="event_sub_info">
+                        <div class="event_location">
+                          <img src="img/flags/mini/Russia.svg">
+                          <p>Россия, Пугачёв</p>
+                        </div>
+                        <p>|</p>
+                        <p>3.05 - 4.05</p>
+                        <p>|</p>
+                        <p>2x2</p>
+                      </div>
+                    </div>
+                    <div class="dev_line"></div>
+                    <div class="main_event_info">
+                      <div class="main_event_info_wrapper">
+                        <p>XX/YY</p>
+                        <div class="main_sub_info"><p>Команд</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>Y</p>
+                        <div class="main_sub_info"><p>Приз</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>N</p>
+                        <div class="main_sub_info"><p>Взнос</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="event_img_header">
+                    <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                  </div>
+                  <div class="event_desc">
+                    <div class="info_loc_wrapper">
+                      <p>Zasada Super Cup</p>
+                      <div class="event_sub_info">
+                        <div class="event_location">
+                          <img src="img/flags/mini/Russia.svg">
+                          <p>Россия, Пугачёв</p>
+                        </div>
+                        <p>|</p>
+                        <p>3.05 - 4.05</p>
+                        <p>|</p>
+                        <p>2x2</p>
+                      </div>
+                    </div>
+                    <div class="dev_line"></div>
+                    <div class="main_event_info">
+                      <div class="main_event_info_wrapper">
+                        <p>XX/YY</p>
+                        <div class="main_sub_info"><p>Команд</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>Y</p>
+                        <div class="main_sub_info"><p>Приз</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>N</p>
+                        <div class="main_sub_info"><p>Взнос</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="event_img_header">
+                    <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                  </div>
+                  <div class="event_desc">
+                    <div class="info_loc_wrapper">
+                      <p>Zasada Super Cup</p>
+                      <div class="event_sub_info">
+                        <div class="event_location">
+                          <img src="img/flags/mini/Russia.svg">
+                          <p>Россия</p>
+                        </div>
+                        <p>|</p>
+                        <p>3.05 - 4.05</p>
+                        <p>|</p>
+                        <p>2x2</p>
+                        <p>|</p>
+                        <p>Online</p>
+                      </div>
+                    </div>
+                    <div class="dev_line"></div>
+                    <div class="main_event_info">
+                      <div class="main_event_info_wrapper">
+                        <p>XX/YY</p>
+                        <div class="main_sub_info"><p>Команд</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>Y</p>
+                        <div class="main_sub_info"><p>Приз</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>N</p>
+                        <div class="main_sub_info"><p>Взнос</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="events_row">
+                <div>
+                  <div class="event_img_header">
+                    <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                  </div>
+                  <div class="event_desc">
+                    <div class="info_loc_wrapper">
+                      <p>Zasada Super Cup</p>
+                      <div class="event_sub_info">
+                        <div class="event_location">
+                          <img src="img/flags/mini/Russia.svg">
+                          <p>Россия, Пугачёв</p>
+                        </div>
+                        <p>|</p>
+                        <p>3.05 - 4.05</p>
+                        <p>|</p>
+                        <p>2x2</p>
+                      </div>
+                    </div>
+                    <div class="dev_line"></div>
+                    <div class="main_event_info">
+                      <div class="main_event_info_wrapper">
+                        <p>XX/YY</p>
+                        <div class="main_sub_info"><p>Команд</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>Y</p>
+                        <div class="main_sub_info"><p>Приз</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>N</p>
+                        <div class="main_sub_info"><p>Взнос</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="event_img_header">
+                    <div class="crop_event"><img src="img/event_logo/IEMHeader.png"></div>
+                  </div>
+                  <div class="event_desc">
+                    <div class="info_loc_wrapper">
+                      <p>Zasada Super Cup</p>
+                      <div class="event_sub_info">
+                        <div class="event_location">
+                          <img src="img/flags/mini/Russia.svg">
+                          <p>Россия, Пугачёв</p>
+                        </div>
+                        <p>|</p>
+                        <p>3.05 - 4.05</p>
+                        <p>|</p>
+                        <p>2x2</p>
+                      </div>
+                    </div>
+                    <div class="dev_line"></div>
+                    <div class="main_event_info">
+                      <div class="main_event_info_wrapper">
+                        <p>XX/YY</p>
+                        <div class="main_sub_info"><p>Команд</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>Y</p>
+                        <div class="main_sub_info"><p>Приз</p></div>
+                      </div>
+                      <div class="main_event_info_wrapper">
+                        <p>N</p>
+                        <div class="main_sub_info"><p>Взнос</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="PastEvents" class="ongoing_events">
+          <div class="events_past">
+            <div class="events_col">
+              <div class="events_date"><p>Апрель 2023</p></div>
+              <div class="event_rect_match">
+                <div class="past_event_info">
+                  <div class="img_wrapper"><img src="img/event_logo/BLAST.svg"></div>
+                  <div class="sub_up_info_wrapper">
+                    <div class="event_name"><p>Zasada Another Cup</p></div>
+                    <div class="sub_past_info">
+                      <div class="event_location">
+                        <img src="img/flags/mini/Russia.svg">
+                        <p>Пугачёв, Россия</p>
+                      </div>
+                      <p>|</p>
+                      <p>07.04 - 19.04</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="event_information">
+                  <div class="main_event_info_wrapper">
+                    <p>XX/YY</p>
+                    <div class="main_sub_info"><p>Команд</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>Z</p>
+                    <div class="main_sub_info"><p>Приз</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>N</p>
+                    <div class="main_sub_info"><p>Взнос</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>Lan</p>
+                    <div class="main_sub_info"><p>Тип</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>2x2</p>
+                    <div class="main_sub_info"><p>Формат</p></div>
+                  </div>
+                </div>
+              </div>
+              <div class="event_rect_match">
+                <div class="past_event_info">
+                  <div class="img_wrapper"><img src="img/event_logo/Zasada.svg"></div>
+                  <div class="sub_up_info_wrapper">
+                    <div class="event_name"><p>Zasada Another Cup</p></div>
+                    <div class="sub_past_info">
+                      <div class="event_location">
+                        <img src="img/flags/mini/Russia.svg">
+                        <p>Пугачёв, Россия</p>
+                      </div>
+                      <p>|</p>
+                      <p>07.04 - 19.04</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="event_information">
+                  <div class="main_event_info_wrapper">
+                    <p>XX/YY</p>
+                    <div class="main_sub_info"><p>Команд</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>Z</p>
+                    <div class="main_sub_info"><p>Приз</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>N</p>
+                    <div class="main_sub_info"><p>Взнос</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>Lan</p>
+                    <div class="main_sub_info"><p>Тип</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>2x2</p>
+                    <div class="main_sub_info"><p>Формат</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="events_col">
+              <div class="events_date"><p>Январь 2023</p></div>
+              <div class="event_rect_match">
+                <div class="past_event_info">
+                  <div class="img_wrapper"><img src="img/event_logo/BLAST.svg"></div>
+                  <div class="sub_up_info_wrapper">
+                    <div class="event_name"><p>Zasada Another Cup</p></div>
+                    <div class="sub_past_info">
+                      <div class="event_location">
+                        <img src="img/flags/mini/Russia.svg">
+                        <p>Пугачёв, Россия</p>
+                      </div>
+                      <p>|</p>
+                      <p>07.04 - 19.04</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="event_information">
+                  <div class="main_event_info_wrapper">
+                    <p>XX/YY</p>
+                    <div class="main_sub_info"><p>Команд</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>Z</p>
+                    <div class="main_sub_info"><p>Приз</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>N</p>
+                    <div class="main_sub_info"><p>Взнос</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>Lan</p>
+                    <div class="main_sub_info"><p>Тип</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>2x2</p>
+                    <div class="main_sub_info"><p>Формат</p></div>
+                  </div>
+                </div>
+              </div>
+              <div class="event_rect_match">
+                <div class="past_event_info">
+                  <div class="img_wrapper"><img src="img/event_logo/Zasada.svg"></div>
+                  <div class="sub_up_info_wrapper">
+                    <div class="event_name"><p>Zasada Another Cup</p></div>
+                    <div class="sub_past_info">
+                      <div class="event_location">
+                        <img src="img/flags/mini/Russia.svg">
+                        <p>Пугачёв, Россия</p>
+                      </div>
+                      <p>|</p>
+                      <p>07.04 - 19.04</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="event_information">
+                  <div class="main_event_info_wrapper">
+                    <p>XX/YY</p>
+                    <div class="main_sub_info"><p>Команд</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>Z</p>
+                    <div class="main_sub_info"><p>Приз</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>N</p>
+                    <div class="main_sub_info"><p>Взнос</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>Lan</p>
+                    <div class="main_sub_info"><p>Тип</p></div>
+                  </div>
+                  <div class="main_event_info_wrapper">
+                    <p>2x2</p>
+                    <div class="main_sub_info"><p>Формат</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
 
       
       <footer>
         <div class="container">
-          <!-- TODO: пример приминения сеток через grid.css(но только для десктопа, для мобилок адаптив реализован в footer) -->
           <div class="grid grid-col-2 footer">
             <div class="copyright">
               <span>© 2023 Компьютерный клуб «Zasada»</span>
@@ -210,5 +934,6 @@
 
     <script src="main.js"></script>
     <script src="half_selector.js"></script>
+    <script src="team_tabs.js"></script>
   </body>
 </html>

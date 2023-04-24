@@ -18,6 +18,11 @@ function openTab(evt, tabName) {
         tabcontent[i].style.display = "none";
     }
 
+    tabcontent = document.getElementsByClassName("ongoing_events");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
     // Получаем все элементы класса "tablinks" и убираем класс "active"
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {

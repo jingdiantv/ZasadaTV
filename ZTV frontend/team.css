@@ -76,7 +76,7 @@
     margin-left:auto;
     margin-right:auto;
 
-    border: 1px solid #4F4F4F;
+    border: 1px solid var(--base-08);
 }
 
 /*Блок для краткой инфы о команде(название, локация и пр)*/
