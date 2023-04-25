@@ -10,7 +10,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 11px 15px 0px;
+    padding: 10px 15px 0px;
     gap: 20px;
 
     background: var(--base-09);
