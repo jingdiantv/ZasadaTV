@@ -10,6 +10,7 @@ public class Player {
     private String team; // текущая команда: ct, t, spectator(Unassigned)
     private String nickname; // никнейм игрока
     private boolean def_kit; // false - отсутствие, true - куплены
+    private String pistol; // пистолет игрока
     private String best_weapon; // лучшее оружие
     private int hp; // количество хп
     private int armor; // 0 - отсутствие, 1 - броня, 2 - шлем + броня
@@ -81,6 +82,10 @@ public class Player {
         return team;
     }
 
+    public String getPistol(){
+        return pistol;
+    }
+
 
     public void setAssists(int assists){this.assists = assists;}
 
@@ -121,4 +126,6 @@ public class Player {
 
 
     public void setTeam(String team){this.team = team;}
+
+    public void setPistol(String pistol){this.pistol = pistol;}
 }

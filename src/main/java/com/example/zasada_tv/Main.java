@@ -1,6 +1,5 @@
 package com.example.zasada_tv;
 
-
 import com.example.zasada_tv.mongo_collections.documents.*;
 import com.example.zasada_tv.mongo_collections.embedded.*;
 import com.example.zasada_tv.mongo_collections.interfaces.*;
@@ -10,12 +9,18 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
 
+@RestController
+@RequestMapping("")
 @SpringBootApplication
 @EnableMongoRepositories
 public class Main implements CommandLineRunner {
@@ -41,35 +46,39 @@ public class Main implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// Тестируем запросы в БД
-		testAdmin();
-		testPlayer();
-		testTeam();
-		testTournament();
+//		testAdmin();
+//		testPlayer();
+//		testTeam();
+//		testTournament();
 
 		// Тестируем добавление статистики после парсинга в БД
-		String match_id = "1";
+//		String match_id = "1";
 
 		ArrayList<Player> players = LogParser.parse();
-		for(Player player : players){
-			for(PlayerDoc playerDoc : playerRepository.findByNick(player.getNickname())){
-				for(PlayerStats playerStats : playerDoc.getPlayerStats()){
-					if(Objects.equals(playerStats.getMatch_id(), match_id)){
-						System.out.println(playerDoc.toString());
-						int kills = playerStats.getKills() + player.getKills();
-						int assists = playerStats.getAssists() + player.getAssists();
-						int deaths = playerStats.getDeaths() + player.getDeaths();
-
-						playerStats.setKills(kills);
-						playerStats.setAssists(assists);
-						playerStats.setDeaths(deaths);
-						System.out.println(playerDoc.toString());
-						playerRepository.save(playerDoc);
-					}
-				}
-			}
-		}
+//		for(Player player : players){
+//			for(PlayerDoc playerDoc : playerRepository.findByNick(player.getNickname())){
+//				for(PlayerStats playerStats : playerDoc.getPlayerStats()){
+//					if(Objects.equals(playerStats.getMatch_id(), match_id)){
+//						System.out.println(playerDoc.toString());
+//						int kills = playerStats.getKills() + player.getKills();
+//						int assists = playerStats.getAssists() + player.getAssists();
+//						int deaths = playerStats.getDeaths() + player.getDeaths();
+//
+//						playerStats.setKills(kills);
+//						playerStats.setAssists(assists);
+//						playerStats.setDeaths(deaths);
+//						System.out.println(playerDoc.toString());
+//						playerRepository.save(playerDoc);
+//					}
+//				}
+//			}
+//		}
 	}
 
+	@PostMapping("")
+	public void getPost(@RequestBody String input){
+//		System.out.println("Ну.... " + input);
+	}
 
 	private void testPlayer() {
 		System.out.println("\n-----------Игроки-----------");
