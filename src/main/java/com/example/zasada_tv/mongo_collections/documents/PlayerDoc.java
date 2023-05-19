@@ -20,6 +20,9 @@ public class PlayerDoc {
     @Id
     private String userId;
 
+    private String password;
+    private String token;
+
     private String nick;
     private String fname;
     private LocalDateTime bdate;
@@ -30,17 +33,18 @@ public class PlayerDoc {
     private String discord;
     private String vk;
     private String teamName;
-    private String teamRole; // капитан, офицер, игрок
+    private String teamRole; // капитан, игрок
     private String photoLink;
     private ArrayList<TournamentHistoryPlayers> tournamentHistory;
     private ArrayList<PlayerStats> playerStats;
 
 
-    public PlayerDoc(String userId, String nick, String fname, LocalDateTime bdate, String country,
+    public PlayerDoc(String userId, String password, String nick, String fname, LocalDateTime bdate, String country,
                      String city, String steam, String faceit, String discord, String vk, String teamName,
                      String teamRole, String photoLink, ArrayList<TournamentHistoryPlayers> tournamentHistory,
                      ArrayList<PlayerStats> playerStats){
         this.userId = userId;
+        this.password = password;
         this.nick = nick;
         this.fname = fname;
         this.bdate = bdate;
@@ -63,10 +67,10 @@ public class PlayerDoc {
         String day = fix_number(bdate.getDayOfMonth());
         String month = fix_number(bdate.getMonthValue());
 
-        return String.format("Player{userId=%s, nick=%s, fname=%s, bdate=%s-%s-%d, country=%s, " +
+        return String.format("Player{userId=%s, password=%s nick=%s, fname=%s, bdate=%s-%s-%d, country=%s, " +
                         "city=%s, steam=%s, faceit=%s, discord=%s, vk=%s, teamName=%s, teamRole=%s, " +
                         "photoLink=%s, tournamentHistory=%s, playerStats=%s}",
-                userId, nick, fname, day, month, bdate.getYear(), country, city, steam, faceit, discord,
+                userId, password, nick, fname, day, month, bdate.getYear(), country, city, steam, faceit, discord,
                 vk, teamName, teamRole, photoLink, tournamentHistory.toString(), playerStats.toString());
     }
 
@@ -81,5 +85,25 @@ public class PlayerDoc {
 
     public ArrayList<PlayerStats> getPlayerStats() {
         return playerStats;
+    }
+
+
+    public String getNick(){
+        return nick;
+    }
+
+
+    public String getPassword(){
+        return password;
+    }
+
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+
+    public void setToken(String token){
+        this.token = token;
     }
 }

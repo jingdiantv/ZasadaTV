@@ -23,4 +23,9 @@ public interface TeamRepository extends MongoRepository<TeamDoc, String> {
     void deleteByDescription(final String description);
     void deleteByCity(final String city);
     void deleteByCountry(final String country);
+
+    boolean existsByTeamName(final String teamName);
+    boolean existsByDescription(final String description);
+    boolean existsByCity(final String city);
+    boolean existsByCountry(final String country);
 }

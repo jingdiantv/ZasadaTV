@@ -26,6 +26,7 @@ public class Player {
         this.nickname = nickname;
         this.def_kit = false;
         this.best_weapon = "";
+        this.pistol = "";
         this.hp = 100;
         this.armor = 0;
         this.money = 800;

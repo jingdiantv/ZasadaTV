@@ -38,9 +38,6 @@
 }
 
 .ongoing_events{
-    /* margin-left: auto;
-    margin-right: auto;
-    width: 745px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -71,9 +68,6 @@
 }
 
 .events_col{
-    /* margin-left: auto;
-    margin-right: auto; */
-
     width: 745px;
 
     display: flex;

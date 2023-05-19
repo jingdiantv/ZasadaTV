@@ -40,4 +40,17 @@ public interface PlayerRepository extends MongoRepository<PlayerDoc, String> {
     void deleteByVk(final String vk);
     void deleteByTeamName(final String teamName);
     void deleteByTeamRole(final String teamRole);
+
+    boolean existsByUserId(final String userId);
+    boolean existsByNick(final String nick);
+    boolean existsByFname(final String fname);
+    boolean existsByBdate(final LocalDateTime bdate);
+    boolean existsByCountry(final String country);
+    boolean existsByCity(final String city);
+    boolean existsBySteam(final String steam);
+    boolean existsByFaceit(final String faceit);
+    boolean existsByDiscord(final String discord);
+    boolean existsByVk(final String vk);
+    boolean existsByTeamName(final String teamName);
+    boolean existsByTeamRole(final String teamRole);
 }

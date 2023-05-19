@@ -12,14 +12,62 @@ import java.util.Objects;
  * */
 
 public class LogParser {
-    private static ArrayList<Player> player_stats = new ArrayList<>(); // вся статистика
-    private static String ct_team = ""; // какая команда сейчас за КТ
-    private static String t_team = ""; // какая команда сейчас за Т
+    private ArrayList<Player> player_stats; // вся статистика
+    private String ct_team; // какая команда сейчас за КТ
+    private String t_team; // какая команда сейчас за Т
 
-    private static HashMap<String, String> weapons = new HashMap<>(); // набор всех оружий для выбора лучшего
+    private HashMap<String, String> weapons; // набор всех оружий для выбора лучшего
 
     // инициализация weapons
-    static {
+//    {
+//        weapons.put("usp_silencer", "pistol");
+//        weapons.put("usp_silencer_off", "pistol");
+//        weapons.put("hkp2000", "pistol");
+//        weapons.put("elite", "pistol");
+//        weapons.put("p250", "pistol");
+//        weapons.put("fiveseven", "pistol");
+//        weapons.put("deagle", "pistol");
+//        weapons.put("glock", "pistol");
+//        weapons.put("tec9", "pistol");
+//        weapons.put("cz75a", "pistol");
+//        weapons.put("revolver", "pistol");
+//
+//        weapons.put("mp7", "two-handed");
+//        weapons.put("mac10", "two-handed");
+//        weapons.put("mp9", "two-handed");
+//        weapons.put("ump45", "two-handed");
+//        weapons.put("p90", "two-handed");
+//        weapons.put("bizon", "two-handed");
+//        weapons.put("mp5sd", "two-handed");
+//
+//        weapons.put("nova", "two-handed");
+//        weapons.put("xm1014", "two-handed");
+//        weapons.put("mag7", "two-handed");
+//        weapons.put("sawedoff", "two-handed");
+//
+//        weapons.put("m249", "two-handed");
+//        weapons.put("negev", "two-handed");
+//
+//        weapons.put("famas", "two-handed");
+//        weapons.put("m4a1", "two-handed");
+//        weapons.put("m4a1_silencer", "two-handed");
+//        weapons.put("ssg08", "two-handed");
+//        weapons.put("aug", "two-handed");
+//        weapons.put("awp", "two-handed");
+//        weapons.put("scar20", "two-handed");
+//        weapons.put("galilar", "two-handed");
+//        weapons.put("ak47", "two-handed");
+//        weapons.put("sg556", "two-handed");
+//        weapons.put("g3sg1", "two-handed");
+//    }
+
+    public LogParser(){
+        player_stats = new ArrayList<>();
+        ct_team = "";
+        t_team = "";
+        weapons = new HashMap<>();
+
+        // инициализация weapons
         weapons.put("usp_silencer", "pistol");
         weapons.put("hkp2000", "pistol");
         weapons.put("elite", "pistol");
@@ -59,217 +107,234 @@ public class LogParser {
         weapons.put("sg556", "two-handed");
         weapons.put("g3sg1", "two-handed");
     }
-
     /**
      * Метод, который парсит входящие логи и выводит результат каждого действия на экран
      * */
-    public static ArrayList<Player> parse() {
-        try {
-//            File f = new File("C:\\Users\\1\\Desktop\\ZTV\\console.log");
-            File f = new File("E:\\Server\\csgo\\console.log");
+    public void parse(String readLine) {
+        System.out.println("А какой же у нас массив " + player_stats);
+        if ((readLine.contains("connected") && readLine.contains("Client")) || (readLine.contains("STEAM") && readLine.contains("entered the game"))) {
 
-            BufferedReader b = new BufferedReader(new FileReader(f));
+            // Это серым, типа в наблюдатели зашел
+            String nick;
+            if(!readLine.contains("entered the game"))
+                nick = get_substring_lidx(readLine, "\"", "\"");
+            else
+                nick = get_substring_idx(readLine, "\"", "<");
 
-            String readLine = "";
+            if (!contains_player(nick))
+                player_stats.add(new Player(nick));
 
-            while ((readLine = b.readLine()) != null) {
-                //System.out.println(readLine);
-                if (readLine.contains("connected") && readLine.contains("Client")) {
+            System.out.println(nick + " зашёл на сервер как НАБЛЮДАТЕЛЬ");
+            set_team(nick, "Unassigned");
 
-                    // Это серым, типа в наблюдатели зашел
-                    String nick = get_substring_lidx(readLine, "\"", "\"");
-                    //System.out.println(nick + " зашёл на сервер как НАБЛЮДАТЕЛЬ");
-                    set_team(nick, "Unassigned");
+        } else if (readLine.contains("switched from team") && readLine.contains("STEAM")) {
 
-                    if (!contains_player(nick))
-                        player_stats.add(new Player(nick));
+            String nick = get_substring_idx(readLine, "\"", "<");
+            String substring1 = readLine.substring(readLine.indexOf("\" switched from team"), readLine.indexOf("to <"));
+            String substring2 = readLine.substring(readLine.indexOf("to <"));
 
-                }
-                else if (readLine.contains("switched from team") && readLine.contains("STEAM")){
+            String team1 = get_substring_idx(substring1, "<", ">");
+            String team2 = get_substring_idx(substring2, "<", ">");
 
-                    String nick = get_substring_idx(readLine, "\"", "<");
-                    String substring1 = readLine.substring(readLine.indexOf("\" switched from team"), readLine.indexOf("to <"));
-                    String substring2 = readLine.substring(readLine.indexOf("to <"));
+            set_team(nick, team2);
 
-                    String team1 = get_substring_idx(substring1, "<", ">");
-                    String team2 = get_substring_idx(substring2, "<", ">");
+            //System.out.println(nick + " сменил команду с " + team1 + " на " + team2);
 
-                    set_team(nick, team2);
+        } else if (readLine.contains("killed") && readLine.contains("with")) {
 
-                    //System.out.println(nick + " сменил команду с " + team1 + " на " + team2);
-
-                }
-                else if (readLine.contains("killed") && readLine.contains("with")){
-                    String gun = get_substring_lidx(readLine.substring(readLine.indexOf("with")), "\"", "\"");
-
-                    String killed_how = "";
-                    if (readLine.contains(")"))
-                        killed_how = get_substring_idx(readLine.substring(readLine.indexOf("with")), "(", ")");
-
-                    String nick1 = get_substring_idx(readLine.substring(0, readLine.indexOf("[")), "\"", "<");
-                    String nick2 = get_substring_idx(readLine.substring(readLine.indexOf("killed")), "\"", "<");
-
-                    System.out.println(nick1 + " убил " + nick2 + " с помощью " + gun + " - " + killed_how);
-                    if(isTeamKill(nick1, nick2)) {
-                        fix_stats(nick1, nick2, -1);
-                        System.out.println(nick1 + " убил тиммейта " + nick2 + " с помощью " + gun);
+            String gunSubstring = readLine.substring(readLine.indexOf("with"));
+            int firstIdx = -1;
+            int secondIdx = -1;
+            int counter = 0;
+            for (int i = 0; i < gunSubstring.length(); ++i){
+                if (gunSubstring.charAt(i) == '\"'){
+                    counter++;
+                    if (counter == 1)
+                        firstIdx = i + 1;
+                    else if (counter == 2) {
+                        secondIdx = i;
+                        break;
                     }
-                    else
-                        fix_stats(nick1, nick2, 1);
-                    death_reset(nick2);
-//                    set_killer_gun(nick1, gun);
-                }
-                else if (readLine.contains("killed by the bomb")){
-                    // выбираем кого убило бомбой
-                    String nick = get_substring_idx(readLine, "\"", "<");
-                    b.readLine();
-                    //System.out.println(nick + " был убит бомбой");
-                    death_reset(nick);
-                }
-                else if (readLine.contains("committed suicide")){
-                    String nick = get_substring_idx(readLine, "\"", "<");
-                    //System.out.println(nick + " совершил суицид");
-                    fix_stats("", nick, 1);
-                    death_reset(nick);
-                }
-                else if (readLine.contains("World triggered \"Round_Start\"")){
-                    // У всех, у кого хп меньше 100 - поднять до 100.
-                    // У кого best_gun = "" - пистолет в зависимости от команды
-                    round_start();
-                    //System.out.println("Раунд начался");
-                }
-                else if (readLine.contains("World triggered \"Match_Start\"")){
-                    // Всё обнулить
-                    // Всем дать по 800 долларов стартовых
-                    match_start();
-                }
-                else if (readLine.contains("triggered \"SFUI_Notice_Target_Bombed\"")){
-                    String t_score = get_substring_lidx(readLine.substring(readLine.indexOf(") (T ")), "\"", "\"");
-                    String ct_score = get_substring_lidx(readLine.substring(readLine.indexOf(" (CT "), readLine.indexOf(") (T ")), "\"", "\"");
-
-                    //System.out.println("Раунд окончен - победили Т(" + t_score + " - " + ct_score + ") - Взорвана бомба");
-                }
-                else if (readLine.contains("triggered \"SFUI_Notice_Terrorists_Win\"")){
-                    String t_score = get_substring_lidx(readLine.substring(readLine.indexOf(") (T ")), "\"", "\"");
-                    String ct_score = get_substring_lidx(readLine.substring(readLine.indexOf(" (CT "), readLine.indexOf(") (T ")), "\"", "\"");
-
-                    //System.out.println("Раунд окончен - победили Т(" + t_score + " - " + ct_score + ") - Враги уничтожены");
-                }
-                else if (readLine.contains("triggered \"SFUI_Notice_CTs_Win\"")){
-                    String t_score = get_substring_lidx(readLine.substring(readLine.indexOf(") (T ")), "\"", "\"");
-                    String ct_score = get_substring_lidx(readLine.substring(readLine.indexOf(" (CT "), readLine.indexOf(") (T ")), "\"", "\"");
-
-                    //System.out.println("Раунд окончен - победили CT(" + t_score + " - " + ct_score + ") - Враги уничтожены");
-                }
-                else if(readLine.contains("triggered \"SFUI_Notice_Target_Saved\"")){
-                    String t_score = get_substring_lidx(readLine.substring(readLine.indexOf(") (T ")), "\"", "\"");
-                    String ct_score = get_substring_lidx(readLine.substring(readLine.indexOf(" (CT "), readLine.indexOf(") (T ")), "\"", "\"");
-
-                    //System.out.println("Раунд окончен - победили CT(" + t_score + " - " + ct_score + ") - Время истекло");
-                }
-                else if(readLine.contains("triggered \"SFUI_Notice_Bomb_Defused\"")){
-                    String t_score = get_substring_lidx(readLine.substring(readLine.indexOf(") (T ")), "\"", "\"");
-                    String ct_score = get_substring_lidx(readLine.substring(readLine.indexOf(" (CT "), readLine.indexOf(") (T ")), "\"", "\"");
-
-                    //System.out.println("Раунд окончен - победили CT(" + t_score + " - " + ct_score + ") - Бомба обезврежена");
-                }
-                else if (readLine.contains("Game Over:") && readLine.contains(" score ")){
-                    // убираем отображение всего, кроме K A D
-                    // выводим в БД всё
-                    // player_stats.clear(); или просто у каждого убрать статистику
-                    return player_stats;
-                    //match_start();
-                }
-                else if (readLine.contains("Team playing \"CT\":")){
-                    String new_ct = get_substring_space(readLine.substring(readLine.indexOf("\"CT\":")));
-                    if (!Objects.equals(ct_team, new_ct))
-                        ct_team = new_ct;
-                }
-                else if (readLine.contains("Team playing \"TERRORIST\":")){
-                    String new_t = get_substring_space(readLine.substring(readLine.indexOf("\"TERRORIST\":")));
-                    if (!Objects.equals(t_team, new_t))
-                        t_team = new_t;
-                }
-                else if (readLine.contains("flash-assisted killing")){
-                    // Сделать задержку перед выводом килов на экран. Если сюда зашли, то выводить
-                    // ещё и иконку флеш-ассиста
-                    String nick = get_substring_idx(readLine, "\"", "<");
-
-                    //System.out.println("с флеш-ассистом от " + nick);
-                }
-                else if (readLine.contains("assisted killing") && !readLine.contains("flash-assisted killing")){
-                    // Сделать задержку перед выводом килов на экран. Если сюда зашли, то выводить
-                    // ещё и ассист
-                    String nick = get_substring_idx(readLine, "\"", "<");
-                    fix_assists(nick);
-
-                    //System.out.println("с ассистом от " + nick);
-                }
-                else if (readLine.contains("purchased")){
-                    String purchase = get_substring_lidx(readLine.substring(readLine.indexOf("purchased")), "\"", "\"");
-                    String nick = get_substring_idx(readLine, "\"", "<");
-                    check_purchase(nick, purchase);
-                }
-                else if (readLine.contains("\" dropped \"")){
-                    String rawGun = readLine.substring(readLine.indexOf(" dropped \""), readLine.lastIndexOf("\"") + 1);
-                    String droppedGun = get_substring_lidx(rawGun, "\"", "\"");
-
-                    String nick = get_substring_idx(readLine, "\"", "<");
-
-                    set_dropped_gun(nick, droppedGun);
-                }
-                else if (readLine.contains(">\" picked up \"")){
-                    String rawGun = readLine.substring(readLine.indexOf(" picked up \""), readLine.lastIndexOf("\"") + 1);
-
-                    String pickedGun = get_substring_lidx(rawGun, "\"", "\"");
-
-                    String nick = get_substring_idx(readLine, "\"", "<");
-
-                    set_picked_gun(nick, pickedGun);
-                }
-                else if (readLine.contains("money change")){
-                    String cur_money = get_money(readLine.substring(readLine.indexOf("=")));
-                    int money = Integer.parseInt(cur_money);
-
-                    String nick = get_substring_idx(readLine, "\"", "<");
-
-                    fix_money(nick, money);
-                }
-                else if (readLine.contains("hitgroup \"") && readLine.contains("attacked")){
-                    String substring = readLine.substring(readLine.indexOf("] attacked \""), readLine.indexOf("] with \""));
-                    String nick = get_substring_idx(substring, "\"", "<");
-
-                    String rawDamage = readLine.substring(readLine.indexOf("(health \""), readLine.indexOf(") (armor \""));
-                    String damaged_hp = get_substring_lidx(rawDamage, "\"", "\"");
-
-                    int hp = Integer.parseInt(damaged_hp);
-
-                    if (hp >= 1) {
-                        fix_hp(nick, hp);
-                        System.out.println("Игрок " + nick + " после дамага с хп = " + hp);
-                    }
-
-                }
-                else if (readLine.contains("triggered \"Planted_The_Bomb\" at")){
-                    String nick = get_substring_idx(readLine, "\"", "<");
-                    String bombsite = get_substring_space(readLine.substring(readLine.indexOf("at bombsite")));
-                    String situation = get_situation();
-
-                    //System.out.println(nick + " поставил бомбу на " + bombsite + " в ситуации (" + situation + ")");
-                }
-                else if (readLine.contains("triggered \"Defused_The_Bomb\"")){
-                    String nick = get_substring_idx(readLine, "\"", "<");
-                    //System.out.println(nick + " раздефузил бомбу");
-                }
-                else if (readLine.contains("disconnected (reason \"")){
-                    String nick = get_substring_idx(readLine, "\"", "<");
-                    System.out.println(nick + " вышел с сервера");
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            String gun = gunSubstring.substring(firstIdx, secondIdx);
+
+            String killed_how = "";
+            if (readLine.contains(")"))
+                killed_how = " - " + get_substring_idx(readLine.substring(readLine.indexOf("with")), "(", ")");
+
+            String nick1 = get_substring_idx(readLine.substring(0, readLine.indexOf("[")), "\"", "<");
+            String nick2 = get_substring_idx(readLine.substring(readLine.indexOf("killed")), "\"", "<");
+
+            String flashAssisted = "";
+            if (readLine.contains("flash-assisted killing")) {
+                flashAssisted = ". Флеш ассист от " + getNick("flash-assisted killing", readLine);
+            }
+
+            String assisted = "";
+            if (readLine.contains("assisted killing") && readLine.indexOf("assisted killing") != readLine.indexOf("flash-assisted killing") + 6) {
+                String nick = getNick("assisted killing", readLine);
+                assisted = ". Ассист от " + nick;
+                fix_assists(nick);
+            }
+
+            System.out.println(nick1 + " убил " + nick2 + " с помощью " + gun + killed_how + assisted + flashAssisted);
+            if (isTeamKill(nick1, nick2)) {
+                fix_stats(nick1, nick2, -1);
+                System.out.println(nick1 + " убил тиммейта " + nick2 + " с помощью " + gun + killed_how + assisted + flashAssisted);
+            } else
+                fix_stats(nick1, nick2, 1);
+            death_reset(nick2);
+            set_killer_gun(nick1, gun);
+        } else if (readLine.contains("killed by the bomb")) {
+            // выбираем кого убило бомбой
+            String nick = get_substring_idx(readLine, "\"", "<");
+
+            //System.out.println(nick + " был убит бомбой");
+            death_reset(nick);
+        } else if (readLine.contains("committed suicide")) {
+            String nick = get_substring_idx(readLine, "\"", "<");
+            //System.out.println(nick + " совершил суицид");
+            fix_stats("", nick, 1);
+            death_reset(nick);
+        } else if (readLine.contains("World triggered \"Round_Start\"")) {
+            // У всех, у кого хп меньше 100 - поднять до 100.
+            // У кого best_gun = "" - пистолет в зависимости от команды
+            // Тут equiped ПРОВЕРЯТЬ
+            round_start();
+            //System.out.println("Раунд начался");
+        } else if (readLine.contains("World triggered \"Match_Start\"")) {
+            // Всё обнулить
+            // Всем дать по 800 долларов стартовых
+            match_start();
+        } else if (readLine.contains("triggered \"SFUI_Notice_Target_Bombed\"")) {
+            String t_score = get_substring_lidx(readLine.substring(readLine.indexOf(") (T ")), "\"", "\"");
+            String ct_score = get_substring_lidx(readLine.substring(readLine.indexOf(" (CT "), readLine.indexOf(") (T ")), "\"", "\"");
+
+            //System.out.println("Раунд окончен - победили Т(" + t_score + " - " + ct_score + ") - Взорвана бомба");
+        } else if (readLine.contains("triggered \"SFUI_Notice_Terrorists_Win\"")) {
+            String t_score = get_substring_lidx(readLine.substring(readLine.indexOf(") (T ")), "\"", "\"");
+            String ct_score = get_substring_lidx(readLine.substring(readLine.indexOf(" (CT "), readLine.indexOf(") (T ")), "\"", "\"");
+
+            //System.out.println("Раунд окончен - победили Т(" + t_score + " - " + ct_score + ") - Враги уничтожены");
+        } else if (readLine.contains("triggered \"SFUI_Notice_CTs_Win\"")) {
+            String t_score = get_substring_lidx(readLine.substring(readLine.indexOf(") (T ")), "\"", "\"");
+            String ct_score = get_substring_lidx(readLine.substring(readLine.indexOf(" (CT "), readLine.indexOf(") (T ")), "\"", "\"");
+
+            //System.out.println("Раунд окончен - победили CT(" + t_score + " - " + ct_score + ") - Враги уничтожены");
+        } else if (readLine.contains("triggered \"SFUI_Notice_Target_Saved\"")) {
+            String t_score = get_substring_lidx(readLine.substring(readLine.indexOf(") (T ")), "\"", "\"");
+            String ct_score = get_substring_lidx(readLine.substring(readLine.indexOf(" (CT "), readLine.indexOf(") (T ")), "\"", "\"");
+
+            //System.out.println("Раунд окончен - победили CT(" + t_score + " - " + ct_score + ") - Время истекло");
+        } else if (readLine.contains("triggered \"SFUI_Notice_Bomb_Defused\"")) {
+            String t_score = get_substring_lidx(readLine.substring(readLine.indexOf(") (T ")), "\"", "\"");
+            String ct_score = get_substring_lidx(readLine.substring(readLine.indexOf(" (CT "), readLine.indexOf(") (T ")), "\"", "\"");
+
+            //System.out.println("Раунд окончен - победили CT(" + t_score + " - " + ct_score + ") - Бомба обезврежена");
+        } else if (readLine.contains("Game Over:") && readLine.contains(" score ")) {
+            // убираем отображение всего, кроме K A D
+            // выводим в БД всё
+            // player_stats.clear(); или просто у каждого убрать статистику
+            //return player_stats;
+            //match_start();
+        } else if (readLine.contains("Team playing \"CT\":")) {
+            String new_ct = get_substring_space(readLine.substring(readLine.indexOf("\"CT\":")));
+            if (!Objects.equals(ct_team, new_ct))
+                ct_team = new_ct;
+        } else if (readLine.contains("Team playing \"TERRORIST\":")) {
+            String new_t = get_substring_space(readLine.substring(readLine.indexOf("\"TERRORIST\":")));
+            if (!Objects.equals(t_team, new_t))
+                t_team = new_t;
+        } else if (readLine.contains("purchased")) {
+            String purchase = get_substring_lidx(readLine.substring(readLine.indexOf("purchased")), "\"", "\"");
+            String nick = get_substring_idx(readLine, "\"", "<");
+            check_purchase(nick, purchase);
+        } else if (readLine.contains("\" dropped \"")) {
+            String rawGun = readLine.substring(readLine.indexOf(" dropped \""), readLine.lastIndexOf("\"") + 1);
+            String droppedGun = get_substring_lidx(rawGun, "\"", "\"");
+
+            String nick = get_substring_idx(readLine, "\"", "<");
+
+            //System.out.println(nick + " выкинул " + droppedGun);
+            set_dropped_gun(nick, droppedGun);
+        } else if (readLine.contains(">\" picked up \"")) {
+            String rawGun = readLine.substring(readLine.indexOf(" picked up \""), readLine.lastIndexOf("\"") + 1);
+
+            String pickedGun = get_substring_lidx(rawGun, "\"", "\"");
+
+            String nick = get_substring_idx(readLine, "\"", "<");
+
+            if (Objects.equals(pickedGun, "hkp2000"))
+                pickedGun = "usp_silencer";
+
+            set_picked_gun(nick, pickedGun);
+        } else if (readLine.contains("money change")) {
+            String cur_money = get_money(readLine.substring(readLine.indexOf("=")));
+            int money = Integer.parseInt(cur_money);
+
+            String nick = get_substring_idx(readLine, "\"", "<");
+
+            fix_money(nick, money);
+        } else if (readLine.contains("hitgroup \"") && readLine.contains("attacked")) {
+            String rawDamage = readLine.substring(readLine.indexOf("(health \""), readLine.indexOf(") (armor \""));
+            String damaged_hp = get_substring_lidx(rawDamage, "\"", "\"");
+
+            int hp = Integer.parseInt(damaged_hp);
+
+            if (hp >= 1) {
+                String substring = readLine.substring(readLine.indexOf("] attacked \""), readLine.indexOf("] with \""));
+                String nick = get_substring_idx(substring, "\"", "<");
+
+                String rawArmor = readLine.substring(readLine.indexOf("(armor \""), readLine.indexOf(") (hitgroup \""));
+                String damaged_armor = get_substring_lidx(rawArmor, "\"", "\"");
+
+                int armor = Integer.parseInt(damaged_armor);
+                if(armor == 0)
+                    fix_armor(nick);
+
+                fix_hp(nick, hp);
+                System.out.println("Игрок " + nick + " после дамага с хп = " + hp);
+            }
+
+        } else if (readLine.contains("triggered \"Planted_The_Bomb\" at")) {
+            String nick = get_substring_idx(readLine, "\"", "<");
+            String bombsite = get_substring_space(readLine.substring(readLine.indexOf("at bombsite")));
+            String situation = get_situation();
+
+            //System.out.println(nick + " поставил бомбу на " + bombsite + " в ситуации (" + situation + ")");
+        } else if (readLine.contains("triggered \"Defused_The_Bomb\"")) {
+            String nick = get_substring_idx(readLine, "\"", "<");
+            //System.out.println(nick + " раздефузил бомбу");
+        } else if (readLine.contains("disconnected (reason \"")) {
+            String nick = get_substring_idx(readLine, "\"", "<");
+            System.out.println(nick + " вышел с сервера");
         }
-        return new ArrayList<>();
+        //}
+    }
+
+
+    private String getNick(String subString, String inputLine){
+        int counter = 0;
+        int firstIdx = -1;
+        int secondIdx = -1;
+        int baCounter = 0;
+        for (int i = inputLine.indexOf(subString); i > 0; i--){
+            if (inputLine.charAt(i) == '\"'){
+                counter++;
+                if (counter == 2) {
+                    firstIdx = i + 1;
+                    break;
+                }
+            }
+            if (inputLine.charAt(i) == '<'){
+                baCounter++;
+                if (baCounter == 3) {
+                    secondIdx = i;
+                }
+            }
+        }
+        return inputLine.substring(firstIdx, secondIdx);
     }
 
 
@@ -279,7 +344,7 @@ public class LogParser {
      * @param nick1 - убийца
      * @param nick2 - убитый
      * */
-    private static boolean isTeamKill(String nick1, String nick2) {
+    private boolean isTeamKill(String nick1, String nick2) {
         String team1 = "";
         String team2 = "";
 
@@ -297,7 +362,7 @@ public class LogParser {
     /**
      * В данном методе мы получаем ситуацию (количество КТ и Т) на момент поставленной бомбы
      * */
-    private static String get_situation() {
+    private String get_situation() {
         int ct = 0;
         int t = 0;
         for (Player player : player_stats){
@@ -318,7 +383,7 @@ public class LogParser {
      * @param nick - игрок, у которого нужно изменить количество денег
      * @param cur_money - текущее количество денег игрока
      * */
-    private static void fix_money(String nick, int cur_money) {
+    private void fix_money(String nick, int cur_money) {
         for (Player player : player_stats){
             if (Objects.equals(player.getNickname(), nick)) {
                 player.setMoney(cur_money);
@@ -330,18 +395,28 @@ public class LogParser {
     /**
      * Данный метод изменяет хп игрока, если тот получил урон
      * @param nick - игрок, которому нанесли урон
-     * @param damage - урон, нанесённый игроку
      * */
-    private static void fix_hp(String nick, int damage){
+    private void fix_hp(String nick, int hp){
         for (Player player : player_stats){
             if (Objects.equals(player.getNickname(), nick)) {
-                if (player.getHp() - damage >= 0){
-                    int cur_hp = player.getHp() - damage;
-                    player.setHp(cur_hp);
+//                if (player.getHp() - damage >= 0){
+//                    int cur_hp = player.getHp() - damage;
+//                    player.setHp(cur_hp);
+//
+//                    if (cur_hp == 0)
+//                        death_reset(nick);
+//                }
+                player.setHp(hp);
+                System.out.println("УРОН ПОСЛЕ ПОСЛЕ ДАМАГА У ИРОКА " + player.getNickname() + " " + hp);
+            }
+        }
+    }
 
-                    if (cur_hp == 0)
-                        death_reset(nick);
-                }
+
+    private void fix_armor(String nick){
+        for (Player player : player_stats){
+            if (Objects.equals(player.getNickname(), nick)) {
+                player.setArmor(0);
             }
         }
     }
@@ -353,7 +428,7 @@ public class LogParser {
      * @param nick - игрок, совершивший покупку
      * @param purchase - то, что игрок купил
      * */
-    private static void check_purchase(String nick, String purchase) {
+    private void check_purchase(String nick, String purchase) {
         for (Player player : player_stats){
             if (Objects.equals(player.getNickname(), nick)) {
                 if (Objects.equals(purchase, "item_defuser"))
@@ -382,7 +457,7 @@ public class LogParser {
      * В данном методе увеличивается количество ассистов соответствующего игрока
      * @param nick - игрок, который сделал ассист
      * */
-    private static void fix_assists(String nick) {
+    private void fix_assists(String nick) {
         for (Player player : player_stats){
             if (Objects.equals(player.getNickname(), nick)){
                 int assists = player.getAssists() + 1;
@@ -395,7 +470,7 @@ public class LogParser {
     /**
      * При старте матча каждый игрок получает "стартовые настройки"
      * */
-    private static void match_start() {
+    private void match_start() {
         for (Player player : player_stats){
             player.setBest_weapon("");
             player.setPistol("");
@@ -414,19 +489,19 @@ public class LogParser {
      * При старте раунда каждому игроку восстанавливают здоровье и дают стартовое оружие,
      * если таковое отсутствует
      * */
-    private static void round_start() {
+    private void round_start() {
         for (Player player : player_stats){
             player.setHp(100);
-            if (player.getBest_weapon().isEmpty()){
-                if (Objects.equals(player.getTeam(), "CT")){
-                    player.setBest_weapon("usp_silencer");
-                    player.setPistol("usp_silencer");
-                }
-                else if (Objects.equals(player.getTeam(), "TERRORIST")){
-                    player.setBest_weapon("glock");
-                    player.setPistol("glock");
-                }
-            }
+//            if (player.getBest_weapon().isEmpty()){
+//                if (Objects.equals(player.getTeam(), "CT")){
+//                    player.setBest_weapon("usp_silencer");
+//                    player.setPistol("usp_silencer");
+//                }
+//                else if (Objects.equals(player.getTeam(), "TERRORIST")){
+//                    player.setBest_weapon("glock");
+//                    player.setPistol("glock");
+//                }
+//            }
         }
     }
 
@@ -436,7 +511,7 @@ public class LogParser {
      * @param nick1 - убийца. У него увеличиваются килы
      * @param nick2 - убитый. У него увеличиваются смерти
      * */
-    private static void fix_stats(String nick1, String nick2, int score) {
+    private void fix_stats(String nick1, String nick2, int score) {
         for (Player player_stat : player_stats) {
             if (Objects.equals(player_stat.getNickname(), nick1)) {
                 int kills = player_stat.getKills() + score;
@@ -455,7 +530,7 @@ public class LogParser {
      * Данный метод сбрасывает все показатели игрока при смерти
      * @param nick - умерший игрок. У него сбрасываем все характеристики
      * */
-    private static void death_reset(String nick){
+    private void death_reset(String nick){
         //Если чел умер - не показывается армор, дефуза, оружие, а хп на 0
         for (Player player : player_stats) {
             if (Objects.equals(player.getNickname(), nick)){
@@ -473,7 +548,7 @@ public class LogParser {
      * @param nick - игрок, сделавший кил
      * @param gun - оружие, с которого игрок сделал кил
      * */
-    private static void set_killer_gun(String nick, String gun){
+    private void set_killer_gun(String nick, String gun){
         for (Player player : player_stats) {
             if (Objects.equals(player.getNickname(), nick)) {
                 player.setBest_weapon(get_best_gun(player.getBest_weapon(), gun));
@@ -481,14 +556,15 @@ public class LogParser {
         }
     }
 
-    private static void set_dropped_gun(String nick, String gun){
+
+    private void set_dropped_gun(String nick, String gun){
         if (weapons.containsKey(gun)){
             for (Player player : player_stats) {
                 if (Objects.equals(player.getNickname(), nick)) {
                     System.out.println("1)Игрок " + nick + " выкинул " + gun + "\n Его пистолет: " + player.getPistol() + ", а оружие: " + player.getBest_weapon());
                     String cur_gun = player.getBest_weapon();
 
-                    if (Objects.equals(player.getPistol(), gun))
+                    if (Objects.equals(player.getPistol(), gun) || Objects.equals(player.getPistol(), "cz75a") && Objects.equals(gun, "p250") || Objects.equals(player.getPistol(), "usp_silencer") && Objects.equals(gun, "hkp2000"))
                         player.setPistol("");
 
                     if (Objects.equals(cur_gun, gun))
@@ -500,7 +576,7 @@ public class LogParser {
         }
     }
 
-    private static void set_picked_gun(String nick, String gun){
+    private void set_picked_gun(String nick, String gun){
         if (weapons.containsKey(gun)){
             for (Player player : player_stats){
                 if (Objects.equals(player.getNickname(), nick)) {
@@ -528,7 +604,7 @@ public class LogParser {
      * @param new_gun - оружие, которое игрок купил/с которого совершил кил. С ним происходит сравнение
      * @return оружие, которое будет отображено
      * */
-    private static String get_best_gun(String cur_gun, String new_gun){
+    private String get_best_gun(String cur_gun, String new_gun){
         if (weapons.containsKey(new_gun)){
             if (!weapons.containsKey(cur_gun))
                 return new_gun;
@@ -557,7 +633,7 @@ public class LogParser {
     /**
      * В данном методе соответствующему игроку изменяется команда при смене сторон
      * */
-    private static void set_team(String nick, String team){
+    private void set_team(String nick, String team){
         for (Player player : player_stats) {
             if (Objects.equals(player.getNickname(), nick)){
                 player.setTeam(team);
@@ -570,7 +646,7 @@ public class LogParser {
      * В данном методе соответствующему игроку изменяется команда при смене сторон
      * @param nick - игрок, который сменил сторону
      * */
-    private static boolean contains_player(String nick){
+    private boolean contains_player(String nick){
         for (Player player : player_stats) {
             if (Objects.equals(player.getNickname(), nick))
                 return true;
@@ -584,7 +660,7 @@ public class LogParser {
      * @param input - входная строка, из которой будем вылинять количество денег
      * @return количество денег после операции
      * */
-    private static String get_money(String input){
+    private String get_money(String input){
         int start = input.indexOf("$") + 1;
         int end = input.indexOf("(") - 1;
 
@@ -599,7 +675,7 @@ public class LogParser {
      * @param ch2 - второй символ, для которого ищем индекс. Им закончится наша подстрока
      * @return полученная подстрока
      * */
-    private static String get_substring_idx(String input, String ch1, String ch2){
+    private String get_substring_idx(String input, String ch1, String ch2){
         int start = input.indexOf(ch1) + 1;
         int end = input.indexOf(ch2);
 
@@ -614,7 +690,7 @@ public class LogParser {
      * @param ch2 - второй символ, для которого ищем индекс. Им закончится наша подстрока
      * @return полученная подстрока
      * */
-    private static String get_substring_lidx(String input, String ch1, String ch2){
+    private String get_substring_lidx(String input, String ch1, String ch2){
         int start = input.indexOf(ch1) + 1;
         int end = input.lastIndexOf(ch2);
 
@@ -627,7 +703,7 @@ public class LogParser {
      * @param input - входная строка, из которой будем вылинять подстроку
      * @return полученная подстрока
      * */
-    private static String get_substring_space(String input) {
+    private String get_substring_space(String input) {
         int start = input.indexOf(" ") + 1;
 
         return input.substring(start);

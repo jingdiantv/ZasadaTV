@@ -17,4 +17,6 @@ public interface AdminRepository extends MongoRepository<AdminDoc, String> {
     ArrayList<AdminDoc> findByAdminId(final String adminId);
 
     void deleteByAdminId(final String adminId);
+
+    boolean existsByAdminId(final String adminId);
 }

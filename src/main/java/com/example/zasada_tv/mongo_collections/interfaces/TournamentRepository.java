@@ -32,4 +32,13 @@ public interface TournamentRepository extends MongoRepository<TournamentDoc, Str
     void deleteByCity(final String city);
     void deleteByPrize(final String prize);
     void deleteByName(final String name);
+
+    boolean existsByDateStart(final LocalDateTime dateStart);
+    boolean existsByDateEnd(final LocalDateTime dateEnd);
+    boolean existsByType(final String type);
+    boolean existsByStatus(final String status);
+    boolean existsByCountry(final String country);
+    boolean existsByCity(final String city);
+    boolean existsByPrize(final String prize);
+    boolean existsByName(final String name);
 }
