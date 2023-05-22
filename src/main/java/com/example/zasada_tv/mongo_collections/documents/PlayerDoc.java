@@ -21,10 +21,10 @@ public class PlayerDoc {
     private String userId;
 
     private String password;
-    private String token;
 
     private String nick;
-    private String fname;
+    private String firstName;
+    private String secondName;
     private LocalDateTime bdate;
     private String country;
     private String city;
@@ -35,18 +35,20 @@ public class PlayerDoc {
     private String teamName;
     private String teamRole; // капитан, игрок
     private String photoLink;
+    private String email;
     private ArrayList<TournamentHistoryPlayers> tournamentHistory;
     private ArrayList<PlayerStats> playerStats;
 
 
-    public PlayerDoc(String userId, String password, String nick, String fname, LocalDateTime bdate, String country,
+    public PlayerDoc(String userId, String password, String nick, String firstName, String secondName, LocalDateTime bdate, String country,
                      String city, String steam, String faceit, String discord, String vk, String teamName,
-                     String teamRole, String photoLink, ArrayList<TournamentHistoryPlayers> tournamentHistory,
+                     String teamRole, String photoLink, String email, ArrayList<TournamentHistoryPlayers> tournamentHistory,
                      ArrayList<PlayerStats> playerStats){
         this.userId = userId;
         this.password = password;
         this.nick = nick;
-        this.fname = fname;
+        this.firstName = firstName;
+        this.secondName = secondName;
         this.bdate = bdate;
         this.country = country;
         this.city = city;
@@ -57,6 +59,7 @@ public class PlayerDoc {
         this.teamName = teamName;
         this.teamRole = teamRole;
         this.photoLink = photoLink;
+        this.email = email;
         this.tournamentHistory = tournamentHistory;
         this.playerStats = playerStats;
     }
@@ -67,11 +70,11 @@ public class PlayerDoc {
         String day = fix_number(bdate.getDayOfMonth());
         String month = fix_number(bdate.getMonthValue());
 
-        return String.format("Player{userId=%s, password=%s nick=%s, fname=%s, bdate=%s-%s-%d, country=%s, " +
+        return String.format("Player{userId=%s, password=%s, nick=%s, firstName=%s, secondName=%s, bdate=%s-%s-%d, country=%s, " +
                         "city=%s, steam=%s, faceit=%s, discord=%s, vk=%s, teamName=%s, teamRole=%s, " +
-                        "photoLink=%s, tournamentHistory=%s, playerStats=%s}",
-                userId, password, nick, fname, day, month, bdate.getYear(), country, city, steam, faceit, discord,
-                vk, teamName, teamRole, photoLink, tournamentHistory.toString(), playerStats.toString());
+                        "photoLink=%s, email=%s, tournamentHistory=%s, playerStats=%s}",
+                userId, password, nick, firstName, secondName, day, month, bdate.getYear(), country, city, steam, faceit, discord,
+                vk, teamName, teamRole, photoLink, email, tournamentHistory.toString(), playerStats.toString());
     }
 
 
@@ -98,12 +101,32 @@ public class PlayerDoc {
     }
 
 
-    public void setPassword(String password){
-        this.password = password;
+    public String getFirstName() {
+        return firstName;
     }
 
 
-    public void setToken(String token){
-        this.token = token;
+    public String getSecondName() {
+        return secondName;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+
+    public String getCountry() {
+        return country;
+    }
+
+
+    public String getUserId() {
+        return userId;
+    }
+
+
+    public void setPassword(String password){
+        this.password = password;
     }
 }

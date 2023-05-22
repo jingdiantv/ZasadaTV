@@ -1,6 +1,12 @@
-package com.example.zasada_tv;
+package com.example.zasada_tv.exceptions;
+
 
 import org.springframework.http.HttpStatus;
+
+
+/**
+ * Данный класс расширяет RuntimeException, чтоб обрабатывать ошибки, полученные при запросах с указанием кода
+ * */
 
 public class AppException extends RuntimeException{
 

@@ -1,6 +1,7 @@
-package com.example.zasada_tv;
+package com.example.zasada_tv.config;
 
 
+import com.example.zasada_tv.dtos.ErrorDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,6 +15,10 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 
+/**
+ * Данный класс является стартовой точкой входа при аутентификации
+ * */
+
 @Component
 public class UserAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
@@ -23,6 +28,6 @@ public class UserAuthenticationEntryPoint implements AuthenticationEntryPoint {
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-        OBJECT_MAPPER.writeValue(response.getOutputStream(), new ErrorDTO("Unauthorized"));
+        OBJECT_MAPPER.writeValue(response.getOutputStream(), new ErrorDTO("Не авторизован"));
     }
 }

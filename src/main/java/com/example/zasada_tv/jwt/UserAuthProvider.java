@@ -1,10 +1,11 @@
-package com.example.zasada_tv;
+package com.example.zasada_tv.jwt;
 
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.example.zasada_tv.services.PlayerService;
 import com.example.zasada_tv.mongo_collections.documents.PlayerDoc;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,10 @@ import java.util.Base64;
 import java.util.Collections;
 import java.util.Date;
 
+
+/**
+ * В данном классе реализуются методы создания и валидации токена
+ * */
 
 @RequiredArgsConstructor
 @Component

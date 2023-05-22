@@ -14,6 +14,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import java.util.Arrays;
 
 
+/**
+ * В данном классе настраиваем CORS, указывая допустимые хедеры, адрес фронта, допустимые методы,
+ * приоритет выполнения конфига
+ * */
+
 @Configuration
 @EnableWebMvc
 public class WebConfig {

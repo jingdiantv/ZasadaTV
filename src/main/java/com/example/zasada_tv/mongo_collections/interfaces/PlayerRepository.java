@@ -17,7 +17,8 @@ import java.util.ArrayList;
 public interface PlayerRepository extends MongoRepository<PlayerDoc, String> {
     ArrayList<PlayerDoc> findByUserId(final String userId);
     ArrayList<PlayerDoc> findByNick(final String nick);
-    ArrayList<PlayerDoc> findByFname(final String fname);
+    ArrayList<PlayerDoc> findByFirstName(final String firstName);
+    ArrayList<PlayerDoc> findBySecondName(final String secondName);
     ArrayList<PlayerDoc> findByBdate(final LocalDateTime bdate);
     ArrayList<PlayerDoc> findByCountry(final String country);
     ArrayList<PlayerDoc> findByCity(final String city);
@@ -30,7 +31,8 @@ public interface PlayerRepository extends MongoRepository<PlayerDoc, String> {
 
     void deleteByUserId(final String userId);
     void deleteByNick(final String nick);
-    void deleteByFname(final String fname);
+    void deleteByFirstName(final String firstName);
+    void deleteBySecondName(final String secondName);
     void deleteByBdate(final LocalDateTime bdate);
     void deleteByCountry(final String country);
     void deleteByCity(final String city);
@@ -43,7 +45,8 @@ public interface PlayerRepository extends MongoRepository<PlayerDoc, String> {
 
     boolean existsByUserId(final String userId);
     boolean existsByNick(final String nick);
-    boolean existsByFname(final String fname);
+    boolean existsByFirstName(final String firstName);
+    boolean existsBySecondName(final String secondName);
     boolean existsByBdate(final LocalDateTime bdate);
     boolean existsByCountry(final String country);
     boolean existsByCity(final String city);

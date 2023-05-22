@@ -1,6 +1,5 @@
 package com.example.zasada_tv.jwt;
 
-import com.example.zasada_tv.UserAuthProvider;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +11,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+
+/**
+ * Данный класс отвечает за проверку токена на валидность - на "срок годности"
+ * */
 
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
