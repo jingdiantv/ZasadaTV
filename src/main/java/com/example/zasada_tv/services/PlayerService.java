@@ -15,6 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.nio.CharBuffer;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 
 
@@ -67,9 +69,15 @@ public class PlayerService {
 
 
     private PlayerDoc registrationToPlayer(RegistrationDTO registrationDTO){
-        return new PlayerDoc(new ObjectId(registrationDTO.toString()).toString(), "",
+        String id = "";
+        do {
+            id = new ObjectId().toString();
+        } while (!playerRepository.existsByUserId(id));
+
+
+        return new PlayerDoc(id, "",
                 registrationDTO.getNick(), registrationDTO.getFirstName(), registrationDTO.getLastName(),
-                null, registrationDTO.getCountry(), "", "", "", "", "",
+                LocalDate.of(100, Month.JANUARY, 5), registrationDTO.getCountry(), "", "", "", "", "",
                 "", "Игрок", "", registrationDTO.getEmail(),
                 new ArrayList<>(), new ArrayList<>());
     }

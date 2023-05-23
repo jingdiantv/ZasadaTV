@@ -6,7 +6,7 @@ import com.example.zasada_tv.mongo_collections.embedded.TournamentHistoryPlayers
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -25,7 +25,7 @@ public class PlayerDoc {
     private String nick;
     private String firstName;
     private String secondName;
-    private LocalDateTime bdate;
+    private LocalDate bdate;
     private String country;
     private String city;
     private String steam;
@@ -40,7 +40,7 @@ public class PlayerDoc {
     private ArrayList<PlayerStats> playerStats;
 
 
-    public PlayerDoc(String userId, String password, String nick, String firstName, String secondName, LocalDateTime bdate, String country,
+    public PlayerDoc(String userId, String password, String nick, String firstName, String secondName, LocalDate bdate, String country,
                      String city, String steam, String faceit, String discord, String vk, String teamName,
                      String teamRole, String photoLink, String email, ArrayList<TournamentHistoryPlayers> tournamentHistory,
                      ArrayList<PlayerStats> playerStats){
@@ -67,13 +67,19 @@ public class PlayerDoc {
 
     @Override
     public String toString() {
-        String day = fix_number(bdate.getDayOfMonth());
-        String month = fix_number(bdate.getMonthValue());
+        String day = "";
+        String month = "";
+        String year = "";
+        if(bdate != null) {
+            day = fix_number(bdate.getDayOfMonth());
+            month = fix_number(bdate.getMonthValue());
+            year = String.valueOf(bdate.getYear());
+        }
 
-        return String.format("Player{userId=%s, password=%s, nick=%s, firstName=%s, secondName=%s, bdate=%s-%s-%d, country=%s, " +
+        return String.format("Player{userId=%s, password=%s, nick=%s, firstName=%s, secondName=%s, bdate=%s-%s-%s, country=%s, " +
                         "city=%s, steam=%s, faceit=%s, discord=%s, vk=%s, teamName=%s, teamRole=%s, " +
                         "photoLink=%s, email=%s, tournamentHistory=%s, playerStats=%s}",
-                userId, password, nick, firstName, secondName, day, month, bdate.getYear(), country, city, steam, faceit, discord,
+                userId, password, nick, firstName, secondName, day, month, year, country, city, steam, faceit, discord,
                 vk, teamName, teamRole, photoLink, email, tournamentHistory.toString(), playerStats.toString());
     }
 

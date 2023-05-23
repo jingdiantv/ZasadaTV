@@ -9,6 +9,7 @@ import com.example.zasada_tv.services.PlayerService;
 import com.example.zasada_tv.mongo_collections.documents.PlayerDoc;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -30,6 +31,7 @@ public class UserAuthProvider {
     @Value("${security.jwt.token.secret-key:secret-value}")
     private String secretKey;
 
+    @Autowired
     private PlayerService playerService;
 
     @PostConstruct
