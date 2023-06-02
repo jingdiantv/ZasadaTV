@@ -1,0 +1,106 @@
+.map_upcoming{
+    width: 330px;
+    height: 30px;
+    
+    /* background-image: url('img/maps/desc/TBA.svg'); */
+    margin-bottom: 5px;
+
+}
+.map{
+    display: flex;
+    width: 330px;
+    height: 77px;
+    margin-bottom: 5px;
+    flex-direction: column;
+}
+
+.map_points .score{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: white;
+    opacity: 0.7;
+    
+    align-content: flex-end;
+    font-family: "GraphikLCGRegular";
+    font-size: 12px;
+}
+.map_points .score p{
+    margin: 0;
+    color: white;
+    font-family: "GraphikLCGRegular";
+    font-size: 12px;
+}
+.map .logo_team{
+    width: 25px;
+    height: 25px;
+}
+.pick{
+    width: 24px;
+    height: 10px;
+    /*background-image: url("img/pick.svg");*/
+}
+.map .name_first_team{ /*название первой команды*/
+    width: 57px;
+    height: 17px;
+    
+}
+.map .name_first_team p{
+    margin: 0;
+}
+.map .name_second_team p{
+    margin: 0;
+}
+.map .name_second_team{
+    width: 57px;
+    height: 17px;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+.map .score_first_team{
+    width: 57px;
+    height: 19px;
+}
+.map .score_first_team p{
+    color: red;
+    margin: 0;
+}
+.map .score_second_team{
+    width: 57px;
+    height: 19px;
+    display: flex;
+    justify-content: flex-end;
+}
+.map .score_second_team p{
+    color: green;
+    margin: 0;
+}
+.map_points{
+    background-color: #191919;
+    height: 47px;
+    width: 320px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-between;
+    padding: 5px;
+}
+.map_points .first_team{
+    width: 86px;
+    height: 37px;
+    gap: 4px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.map_points .second_team{
+    width: 86px;
+    height: 37px;
+    gap: 4px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+}

@@ -1,0 +1,58 @@
+.match_info_upcoming_maps_desc{
+    width: 320px;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 0px 10px 10px;
+
+    margin-bottom: 25px;
+
+    background-color: var(--base-09);
+}
+.container .match_info_upcoming_maps_desc p{
+    color: #ffffff;
+   
+    font-family: var(--text-regular-lcg);
+    font-size: 12px;
+    
+    line-height: 120%;
+    opacity: 0.5;
+    margin: 0;
+}
+.maps_news{
+    width: 320px;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 0px 10px 10px;
+
+    margin-bottom: 25px;
+
+    background-color: var(--base-09);
+}
+.container .maps_news p{
+    font-family: var(--text-regular-lcg);
+    font-size: 12px;
+    line-height: 120%;
+    margin: 0;
+    margin-top: 5px;
+    color: white;
+    opacity: 0.5;
+}
+
+.container .onStart{
+    color: var(--white25);
+    font-size: 16px;
+    opacity: 1;
+    font-family: var(--text-regular-lcg);
+}
+.container .choosed{
+    color: white;
+    font-size: 16px;
+    opacity: 1;
+    font-family: var(--text-regular-lcg);
+}

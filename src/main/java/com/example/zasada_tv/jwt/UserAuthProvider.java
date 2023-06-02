@@ -45,7 +45,7 @@ public class UserAuthProvider {
         return JWT.create()
                 .withIssuer(login)
                 .withIssuedAt(now)
-                .withExpiresAt(validity)
+//                .withExpiresAt(validity)
                 .sign(Algorithm.HMAC256(secretKey));
     }
 

@@ -1,0 +1,38 @@
+.stream{
+    width: 100% - 15px;
+    height: 32px;
+    background-color: #191919;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 5px 0px 10px;
+}
+/* .stream p{
+    margin: 0;
+    margin-left: 5px;
+    margin-top: 9px;
+    font-size: 12px;
+} */
+.stream_country{
+    width: 20px;
+    height: 15px;
+    margin-left: 6px;
+    margin-top: 9px;
+}
+
+.stream_viewers {
+    display: flex;
+    margin-right: 5px;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.stream_viewers p{
+    margin: 0;
+}
+.stream_viewers a{
+    width: 10px;
+    height: 10px;
+    margin-left: 5px;
+    background-image: url("/public/img/twitch_link.svg");
+}

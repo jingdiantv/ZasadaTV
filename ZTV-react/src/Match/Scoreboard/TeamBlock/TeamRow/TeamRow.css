@@ -1,0 +1,79 @@
+.team_row{
+    width: 620px;
+    height: 20px;
+    padding: 2px 5px 3px 5px;
+    background: rgba(28, 188, 255, 0.7);
+    display: flex;
+    align-items: center;
+}
+.team_row_name{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 4px;
+
+    position: absolute;
+    height: 23px;
+    
+}
+.team_row_name p{
+    color: white;
+    font-family: var(--text-medium-lcg);
+    font-size: 13px;
+    margin: 0;
+    margin-top: 2px;
+}
+.states{
+    position: absolute;
+    display: flex;
+    width: 154px;
+    height: 16px;
+    left: 298px;
+    gap: 30px;
+}
+.money{
+    position: absolute;
+    
+    height: 16px;
+    left: 145px;
+    font-family: var(--text-medium-lcg);
+    color:white;
+    
+}
+.kda_block{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 30px;
+
+    position: absolute;
+    width: 112px;
+    height: 16px;
+    left: 502px;
+}
+.kda{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    padding: 0px;
+    gap: 15px;
+
+    width: 57px;
+    height: 16px;
+}
+.kda p, .cyp p{
+    font-family: var(--text-regular-lcg);
+    color: white;
+    margin: 0;
+}
+.cyp{
+    width: 25px;
+    height: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    padding: 0px;
+}

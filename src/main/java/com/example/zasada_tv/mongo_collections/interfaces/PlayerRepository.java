@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 @Repository
 public interface PlayerRepository extends MongoRepository<PlayerDoc, String> {
-    ArrayList<PlayerDoc> findByUserId(final String userId);
+    ArrayList<PlayerDoc> findByUserID(final int userID);
     ArrayList<PlayerDoc> findByNick(final String nick);
     ArrayList<PlayerDoc> findByFirstName(final String firstName);
     ArrayList<PlayerDoc> findBySecondName(final String secondName);
@@ -29,7 +29,7 @@ public interface PlayerRepository extends MongoRepository<PlayerDoc, String> {
     ArrayList<PlayerDoc> findByTeamName(final String teamName);
     ArrayList<PlayerDoc> findByTeamRole(final String teamRole);
 
-    void deleteByUserId(final String userId);
+    void deleteByUserID(final int userID);
     void deleteByNick(final String nick);
     void deleteByFirstName(final String firstName);
     void deleteBySecondName(final String secondName);
@@ -43,7 +43,7 @@ public interface PlayerRepository extends MongoRepository<PlayerDoc, String> {
     void deleteByTeamName(final String teamName);
     void deleteByTeamRole(final String teamRole);
 
-    boolean existsByUserId(final String userId);
+    boolean existsByUserID(final int userID);
     boolean existsByNick(final String nick);
     boolean existsByFirstName(final String firstName);
     boolean existsBySecondName(final String secondName);

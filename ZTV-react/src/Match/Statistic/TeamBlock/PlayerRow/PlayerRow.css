@@ -1,0 +1,88 @@
+.statistic_player_row{
+    width: 648px;
+    height: 32px;
+    background: #191919;
+    display: flex;
+    align-items: center;
+}
+.statistic_player_row_nick{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 4px;
+    width: 153px;
+    height: 16px;
+    left: 5.5px;
+    position: absolute;
+}
+.statistic_player_row_nick p{
+    font-family: var(--text-regular-lcg);
+    color: white;
+    margin-bottom: 0px;
+}
+.player_row_flag{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+
+    width: 20px;
+    height: 15px;
+}
+.kills-deaths_text{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+    position: absolute;
+    width: 54px;
+    height: 16px;
+    left: 443px;
+    
+}
+.kills-deaths_text p, .plus_minus p, .cyp_text p, .k-d_texts p{
+    color: white;
+    font-family: var(--text-regular-lcg);
+    font-size: 13px;
+    margin-bottom: 0;
+}
+.plus_minus{
+    position: absolute;
+    width: 10px;
+    height: 16px;
+    left: 515px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.cyp_text{
+    position: absolute;
+    width: 35px;
+    height: 16px;
+    left: 553px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.k-d_texts{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+
+    position: absolute;
+    width: 45px;
+    height: 16px;
+    left: 602px;
+}

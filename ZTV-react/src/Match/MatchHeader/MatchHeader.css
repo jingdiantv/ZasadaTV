@@ -1,0 +1,104 @@
+.header_match{
+    position: relative;
+    margin: 0 auto;
+    height: 150px;
+    width: 940px;
+    background: #191919;
+}
+.flag_team{
+    position: absolute;
+    top:0;
+    
+    bottom:0;
+   
+    flex-direction: column-reverse;
+    align-items: center;
+    
+    height: auto;
+    width: 250px;
+    display: flex;
+}
+
+
+.match_logo_team{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    left: 84px;
+    top: 22px;
+    background-size: cover;
+}
+.name_score_wrapper{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2px;
+}
+.name_score_wrapper p{
+    text-decoration: none;
+    font-family: "GraphikLCGMedium";
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0;
+    color: white;
+}
+
+.container_time_match{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin:13px auto;
+    height: 130px;
+    width: 100%;
+}
+.container_time_match_time a{
+    font-size: 32px;
+    font-weight: 500;
+    font-family: "GraphikLCGMedium";
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+.container_time_match_date{
+    color: rgba(255,255,255,0.5);
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    margin-top: 16px;
+    font-family: "GraphikLCGRegular";
+}
+.container_time_match_cup{
+    color: #1cbcff;
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    font-family: "GraphikLCGRegular";
+}
+.container_time_match_cup a{
+    text-decoration: none;
+    color: #1cbcff;
+}
+.container_time_match_cup a:hover{
+    transition: color 0.2s 0s ease-in-out;
+    color: #8dddff;
+}
+.container_time_match_live{
+    color: white;
+    font-family: "GraphikLCGMedium";
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 15px;
+}
+#points{
+    font-family: "GraphikLCGMedium";
+    font-size: 20px;
+    margin: 0px;
+}

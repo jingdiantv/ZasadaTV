@@ -1,0 +1,62 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+      margin-top: 108px;
+      padding: 20px 0 24px 0;
+      /* border-top: 1px solid #e7e8ea; */
+      border-top: 3px solid var(--base-03);
+      background-color:#0f0f0f;;
+    }
+    
+    .copyright {
+      margin-left: 32px;
+      font-family: var(--text-font);
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 20px;
+      color: rgb(74,77,74);
+    }
+    
+    .contact {
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 32px;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .contact-telephone{
+      font-family: var(--text-font);
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 20px;
+      color: rgb(74,77,74);
+      
+    }
+    .contact-address {
+      font-family: var(--text-font);
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 20px;
+      color: rgb(74,77,74);
+    }
+  
+    .contact-address a{
+      font-family: var(--text-font);
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 20px;
+      text-decoration: none;
+      color: rgb(74,77,74);
+    }
+    .contact-address:hover {
+      transition: color 0.3s 0s ease-in-out;
+      color: white;
+    }
+    .contact-address:hover a{
+      transition: color 0.3s 0s ease-in-out;
+      color: #00ff90;
+    }

@@ -1,13 +1,20 @@
 package com.example.zasada_tv.mongo_collections.documents;
 
 
-import com.example.zasada_tv.mongo_collections.embedded.PlayerStats;
+import com.example.zasada_tv.mongo_collections.embedded.Matches;
+import com.example.zasada_tv.mongo_collections.embedded.PlayerMatchStats;
+import com.example.zasada_tv.mongo_collections.embedded.Rosters;
 import com.example.zasada_tv.mongo_collections.embedded.TournamentHistoryPlayers;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import static com.example.zasada_tv.controllers.helpers.Helper.fix_number;
 
 
 /**
@@ -15,14 +22,15 @@ import java.util.ArrayList;
  * */
 
 @Document("Player")
+@Getter
+@Setter
 public class PlayerDoc {
 
     @Id
-    private String userId;
-
-    private String password;
+    private int userID;
 
     private String nick;
+    private String password;
     private String firstName;
     private String secondName;
     private LocalDate bdate;
@@ -37,14 +45,17 @@ public class PlayerDoc {
     private String photoLink;
     private String email;
     private ArrayList<TournamentHistoryPlayers> tournamentHistory;
-    private ArrayList<PlayerStats> playerStats;
+    private ArrayList<PlayerMatchStats> playerMatchStats;
+    private ArrayList<String> trophies;
+    private HashMap<String, Object> stats = new HashMap<>();
+    private ArrayList<Rosters> rosters;
 
 
-    public PlayerDoc(String userId, String password, String nick, String firstName, String secondName, LocalDate bdate, String country,
+    public PlayerDoc(int userID, String password, String nick, String firstName, String secondName, LocalDate bdate, String country,
                      String city, String steam, String faceit, String discord, String vk, String teamName,
                      String teamRole, String photoLink, String email, ArrayList<TournamentHistoryPlayers> tournamentHistory,
-                     ArrayList<PlayerStats> playerStats){
-        this.userId = userId;
+                     ArrayList<PlayerMatchStats> playerMatchStats, ArrayList<String> trophies, ArrayList<Rosters> rosters){
+        this.userID = userID;
         this.password = password;
         this.nick = nick;
         this.firstName = firstName;
@@ -61,7 +72,10 @@ public class PlayerDoc {
         this.photoLink = photoLink;
         this.email = email;
         this.tournamentHistory = tournamentHistory;
-        this.playerStats = playerStats;
+        this.playerMatchStats = playerMatchStats;
+        this.trophies = trophies;
+        this.rosters = rosters;
+        initStats();
     }
 
 
@@ -76,63 +90,23 @@ public class PlayerDoc {
             year = String.valueOf(bdate.getYear());
         }
 
-        return String.format("Player{userId=%s, password=%s, nick=%s, firstName=%s, secondName=%s, bdate=%s-%s-%s, country=%s, " +
+        return String.format("Player{userID=%d, password=%s, nick=%s, firstName=%s, secondName=%s, bdate=%s-%s-%s, country=%s, " +
                         "city=%s, steam=%s, faceit=%s, discord=%s, vk=%s, teamName=%s, teamRole=%s, " +
-                        "photoLink=%s, email=%s, tournamentHistory=%s, playerStats=%s}",
-                userId, password, nick, firstName, secondName, day, month, year, country, city, steam, faceit, discord,
-                vk, teamName, teamRole, photoLink, email, tournamentHistory.toString(), playerStats.toString());
+                        "photoLink=%s, email=%s, tournamentHistory=%s, playerMatchStats=%s, trophies=%s, stats=%s, rosters=%s}",
+                userID, password, nick, firstName, secondName, day, month, year, country, city, steam, faceit, discord,
+                vk, teamName, teamRole, photoLink, email, tournamentHistory.toString(), playerMatchStats.toString(),
+                trophies.toString(), stats.toString(), rosters.toString());
     }
 
 
-    private String fix_number(int number){
-        String str = Integer.toString(number);
-        if(number < 10)
-            str = "0" + str;
-        return str;
-    }
-
-
-    public ArrayList<PlayerStats> getPlayerStats() {
-        return playerStats;
-    }
-
-
-    public String getNick(){
-        return nick;
-    }
-
-
-    public String getPassword(){
-        return password;
-    }
-
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-
-    public String getEmail() {
-        return email;
-    }
-
-
-    public String getCountry() {
-        return country;
-    }
-
-
-    public String getUserId() {
-        return userId;
-    }
-
-
-    public void setPassword(String password){
-        this.password = password;
+    private void initStats() {
+        stats.put("kills", 0);
+        stats.put("deaths", 0);
+        stats.put("kd", 0.0);
+        stats.put("kdd", 0.0);
+        stats.put("hsp", 0.0);
+        stats.put("dpr", 0.0);
+        stats.put("maps", 0);
+        stats.put("kpm", 0.0);
     }
 }

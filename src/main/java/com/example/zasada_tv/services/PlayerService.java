@@ -8,8 +8,8 @@ import com.example.zasada_tv.dtos.UserDTO;
 import com.example.zasada_tv.exceptions.AppException;
 import com.example.zasada_tv.mongo_collections.documents.PlayerDoc;
 import com.example.zasada_tv.mongo_collections.interfaces.PlayerRepository;
+import com.example.zasada_tv.mongo_collections.interfaces.TeamRepository;
 import lombok.RequiredArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,6 +29,7 @@ import java.util.ArrayList;
 public class PlayerService {
 
     private final PlayerRepository playerRepository;
+    private final TeamRepository teamRepository;
     private final PasswordEncoder passwordEncoder;
 
 
@@ -52,6 +53,8 @@ public class PlayerService {
     public UserDTO register(RegistrationDTO player){
         if (playerRepository.existsByNick(player.getNick()))
             throw new AppException("Пользователь с таким ником уже существует", HttpStatus.BAD_REQUEST);
+        if (teamRepository.existsByTeamName(player.getNick()))
+            throw new AppException("Пользователь с таким ником уже существует", HttpStatus.BAD_REQUEST);
 
         PlayerDoc playerDoc = registrationToPlayer(player);
         playerDoc.setPassword(passwordEncoder.encode(CharBuffer.wrap(player.getPassword())));
@@ -63,22 +66,18 @@ public class PlayerService {
 
 
     private UserDTO toUserDto(PlayerDoc player){
-        return new UserDTO(player.getUserId(), player.getFirstName(), player.getSecondName(),
+        return new UserDTO(player.getFirstName(), player.getSecondName(),
                 player.getEmail(), player.getCountry(), player.getNick(), "");
     }
 
 
     private PlayerDoc registrationToPlayer(RegistrationDTO registrationDTO){
-        String id = "";
-        do {
-            id = new ObjectId().toString();
-        } while (!playerRepository.existsByUserId(id));
 
 
-        return new PlayerDoc(id, "",
+        return new PlayerDoc(playerRepository.findAll().size() + 1, "",
                 registrationDTO.getNick(), registrationDTO.getFirstName(), registrationDTO.getLastName(),
                 LocalDate.of(100, Month.JANUARY, 5), registrationDTO.getCountry(), "", "", "", "", "",
-                "", "Игрок", "", registrationDTO.getEmail(),
-                new ArrayList<>(), new ArrayList<>());
+                "", "", "/players/NonPhoto.png", registrationDTO.getEmail(),
+                new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 }

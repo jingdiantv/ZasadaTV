@@ -20,17 +20,21 @@ public class CountryDoc {
 
     private String countryENG;
     private ArrayList<String> cities;
+    private String flagPathMini;
+    private String flagPath;
 
 
-    public CountryDoc(String countryRU, String countryENG, ArrayList<String> cities){
+    public CountryDoc(String countryRU, String countryENG, ArrayList<String> cities, String flagPathMini, String flagPath){
         this.countryRU = countryRU;
         this.countryENG = countryENG;
         this.cities = cities;
+        this.flagPathMini = flagPathMini;
+        this.flagPath = flagPath;
     }
 
 
     @Override
     public String toString() {
-        return String.format("Country{countryRU=%s, countryENG=%s, cities=%s}", countryRU, countryENG, cities.toString());
+        return String.format("Country{countryRU=%s, countryENG=%s, cities=%s, flagPathMini=%s, flagPath=%s}", countryRU, countryENG, cities.toString(), flagPathMini, flagPath);
     }
 }

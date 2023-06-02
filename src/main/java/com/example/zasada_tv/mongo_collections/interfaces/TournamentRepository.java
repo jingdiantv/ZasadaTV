@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 @Repository
 public interface TournamentRepository extends MongoRepository<TournamentDoc, String> {
+    ArrayList<TournamentDoc> findById(final int id);
     ArrayList<TournamentDoc> findByDateStart(final LocalDateTime dateStart);
     ArrayList<TournamentDoc> findByDateEnd(final LocalDateTime dateEnd);
     ArrayList<TournamentDoc> findByType(final String type);
@@ -24,6 +25,7 @@ public interface TournamentRepository extends MongoRepository<TournamentDoc, Str
     ArrayList<TournamentDoc> findByPrize(final String prize);
     ArrayList<TournamentDoc> findByName(final String name);
 
+    void deleteById(final int id);
     void deleteByDateStart(final LocalDateTime dateStart);
     void deleteByDateEnd(final LocalDateTime dateEnd);
     void deleteByType(final String type);
@@ -33,6 +35,7 @@ public interface TournamentRepository extends MongoRepository<TournamentDoc, Str
     void deleteByPrize(final String prize);
     void deleteByName(final String name);
 
+    boolean existsById(final int id);
     boolean existsByDateStart(final LocalDateTime dateStart);
     boolean existsByDateEnd(final LocalDateTime dateEnd);
     boolean existsByType(final String type);

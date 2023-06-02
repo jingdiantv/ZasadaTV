@@ -2,6 +2,8 @@ package com.example.zasada_tv.mongo_collections.embedded;
 
 
 import com.example.zasada_tv.mongo_collections.documents.TournamentDoc;
+import lombok.Getter;
+import lombok.Setter;
 
 
 /**
@@ -9,6 +11,8 @@ import com.example.zasada_tv.mongo_collections.documents.TournamentDoc;
  * {@link TournamentDoc} базы данных MongoDB
  * */
 
+@Getter
+@Setter
 public class TournamentHistoryTeams {
     private String teamName;
     private String place;
@@ -24,7 +28,7 @@ public class TournamentHistoryTeams {
 
     @Override
     public String toString() {
-        return String.format("TournamentHistoryTeams{teamName=%s, place=%s, reward=%s}",
+        return String.format("TournamentHistoryTeams{teamName=%s, place=%s, reward=%s, matches=%s}",
                 teamName, place, reward);
     }
 }

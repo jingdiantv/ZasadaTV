@@ -1,0 +1,154 @@
+.player_row{
+    width: 620px;
+    height: 16px;
+    padding: 5px 5px 4px 5px;
+    background: rgba(28, 188, 255, 0.4) ;
+    
+    display: flex;
+    align-items: center;
+}
+.player_row_nick{
+    position: absolute;
+    height: 16px;
+}
+.player_row_nick p{
+    font-family: var(--text-medium-lcg);
+    color: white;
+    opacity: 1;
+    font-size: 13px;
+    margin-bottom: 0px;
+    margin-top: 1px;
+}
+.defuse_kit{
+    position: absolute;
+    height: 14px;
+    left: 250px;
+}
+.weapon{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+
+    position: absolute;
+    width: 50px;
+    height: 12px;
+    left: 282px;
+}
+.HP_block{
+    position: absolute;
+    width: 40px;
+    height: 12px;
+    left: 337px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 100px;
+
+    overflow: hidden;
+}
+.HP{
+    position: absolute;
+    width: 16px;
+    height: 12px;
+    border-radius: 100px;
+    background: var(--hp-high);
+}
+.HP_block p{
+    color: black;
+    font-family: var(--text-medium-lcg);
+    margin: 0;
+    font-size: 10px;
+    z-index: 1;
+    margin-left: 3px;
+    margin-top: 2px;
+    position: absolute;
+}
+.armor{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+
+    position: absolute;
+    width: 14px;
+    height: 16px;
+    left: 394px;
+}
+.player_money{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 49px;
+    height: 16px;
+    left: 423px;
+}
+.player_money p{
+    font-family: var(--text-regular-lcg);
+    color: white;
+    margin: 0;
+}
+.player_stats{
+    position: absolute;
+    width: 116px;
+    height: 16px;
+    left: 504px;
+}
+.player_kills{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    position: absolute;
+    width: 24px;
+    height: 16px;
+    left: -10px;
+}
+.player_assists{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    position: absolute;
+    width: 24px;
+    height: 16px;
+    left: 14px;
+}
+.player_deaths{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    position: absolute;
+    width: 24px;
+    height: 16px;
+    left: 38px;
+    top: 0px;
+}
+.player_cyp{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    position: absolute;
+    width: 36px;
+    height: 16px;
+    left: 80px;
+}
+.player_kills p, .player_assists p, .player_deaths p, .player_cyp p{
+    font-family: var(--text-regular-lcg);
+    color: white;
+    margin: 0;
+}

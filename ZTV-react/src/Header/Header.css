@@ -1,0 +1,143 @@
+
+.Header {
+    background-color: #0f0f0f;
+    width: 100vw;
+}
+.Header-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    
+}
+.Header-logo {
+    display: block;
+    height: 32px;
+    width: 138px;
+    margin-left: 32px;
+    background-image: url('/public/img/web/Frame_13.svg');
+    background-size: cover;
+}
+.Navigation {
+    flex: 1 0;
+    height: 64px;
+    margin: 0;
+    padding: 10px;
+    
+}
+.Navigation-list {
+    
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    padding: 0;
+}
+.Navigation-list > .Navigation-link:last-child {
+    margin-right: 0;
+}
+.Navigation-link {
+    display: flex;
+    font-family: var(--text-font);
+    align-items: center;
+    margin-left: 18px;
+    margin-right: 18px;
+    text-decoration: none;
+    height: 19px;
+    font-size: 16px;
+
+}
+.Navigation-link a{
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(74,77,74);
+    font-size: 16px;
+}
+.Navigation-link a:hover{
+    color: white;
+    transition: color 0.3s 0s ease-in-out;
+}
+.Login {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-family: var(--text-font);
+    margin-right: 14px;
+    padding: 10px;
+    
+}
+.Login-btn {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+.Login-btn a{
+    text-decoration: none;
+}
+.Login-btn-name {
+    margin-right: 8px;
+    color: rgb(74,77,74);
+    transition: color 0.3s 0s ease-in-out;
+    font-size: 13px;
+}
+.Login-btn-name a {
+    
+    color: rgb(74,77,74);
+    transition: color 0.3s 0s ease-in-out;
+    font-size: 14px;
+}
+.Login-btn-icon {
+    display: flex;
+}
+.Login-btn-icon svg a text{
+    margin-right: 10px;
+    color: rgb(74,77,74);
+    transition: color 0.3s 0s ease-in-out;
+    font-size: 13px;
+}
+.Login-btn-icon svg {
+    fill: rgb(74,77,74);
+    color: rgb(74,77,74);
+    transition: fill 0.3s 0s ease-in-out;
+}
+.Login-btn:hover .Login-btn-name a{
+    color: white;
+}
+.Login-btn:hover .Login-btn-icon svg {
+    fill: #00ff90;
+}
+
+.Authorized{
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 14px;
+    gap: 10px;
+
+    width: 96px;
+    height: 38px;
+
+    background: #141414;
+    border: 1px solid #242424;
+    border-radius: 100px;
+
+    text-decoration: none;
+}
+.Authorized p{
+    font-size: 14px;
+    font-family: var(--text-font);
+    color: white;
+    text-decoration: none;
+}
