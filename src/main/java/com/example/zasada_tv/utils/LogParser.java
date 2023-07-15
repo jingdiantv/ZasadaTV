@@ -285,16 +285,13 @@ public class LogParser {
                 logMap.put("headshot", false);
                 logMap.put("attackerblind", false);
 
-                if (killed_how.equals("noscope")){
-                    logMap.put("noscope", true);
-                } else if (killed_how.equals("penetrated")){
-                    logMap.put("penetrated", true);
-                } else if (killed_how.equals("throughsmoke")){
-                    logMap.put("throughsmoke", true);
-                } else if (killed_how.equals("headshot")){
-                    logMap.put("headshot", true);
-                } else if (killed_how.equals("attackerblind"))
-                    logMap.put("attackerblind", true);
+                switch (killed_how) {
+                    case "noscope" -> logMap.put("noscope", true);
+                    case "penetrated" -> logMap.put("penetrated", true);
+                    case "throughsmoke" -> logMap.put("throughsmoke", true);
+                    case "headshot" -> logMap.put("headshot", true);
+                    case "attackerblind" -> logMap.put("attackerblind", true);
+                }
             }
             else {
                 logMap.put("noscope", false);
@@ -306,16 +303,13 @@ public class LogParser {
                 String[] killedBy = killed_how.split(" ");
 
                 for (String kill : killedBy){
-                    if (kill.equals("noscope")){
-                        logMap.put("noscope", true);
-                    } else if (kill.equals("penetrated")){
-                        logMap.put("penetrated", true);
-                    } else if (kill.equals("throughsmoke")){
-                        logMap.put("throughsmoke", true);
-                    } else if (kill.equals("headshot")){
-                        logMap.put("headshot", true);
-                    } else if (killed_how.equals("attackerblind"))
-                    logMap.put("attackerblind", true);
+                    switch (kill) {
+                        case "noscope" -> logMap.put("noscope", true);
+                        case "penetrated" -> logMap.put("penetrated", true);
+                        case "throughsmoke" -> logMap.put("throughsmoke", true);
+                        case "headshot" -> logMap.put("headshot", true);
+                        case "attackerblind" -> logMap.put("attackerblind", true);
+                    }
                 }
             }
 
