@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  * Интерфейс, отвечающий за выполнение всех операций с коллекцией {@link PlayerDoc}
- * */
+ */
 
 @Repository
 public interface PlayerRepository extends MongoRepository<PlayerDoc, String> {

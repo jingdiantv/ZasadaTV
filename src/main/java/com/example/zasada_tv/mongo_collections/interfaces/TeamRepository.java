@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Интерфейс, отвечающий за выполнение всех операций с коллекцией {@link TeamDoc}
- * */
+ */
 
 @Repository
 public interface TeamRepository extends MongoRepository<TeamDoc, String> {

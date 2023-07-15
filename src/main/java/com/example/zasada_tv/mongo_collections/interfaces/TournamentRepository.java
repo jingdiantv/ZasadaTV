@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  * Интерфейс, отвечающий за выполнение всех операций с коллекцией {@link TournamentDoc}
- * */
+ */
 
 @Repository
 public interface TournamentRepository extends MongoRepository<TournamentDoc, String> {

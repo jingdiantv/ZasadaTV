@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Интерфейс, отвечающий за выполнение всех операций с коллекцией {@link AdminDoc}
- * */
+ */
 
 @Repository
 public interface AdminRepository extends MongoRepository<AdminDoc, String> {

@@ -17,14 +17,14 @@ import java.util.Arrays;
 /**
  * В данном классе настраиваем CORS, указывая допустимые хедеры, адрес фронта, допустимые методы,
  * приоритет выполнения конфига
- * */
+ */
 
 @Configuration
 @EnableWebMvc
 public class WebConfig {
 
     @Bean
-    public FilterRegistrationBean corsFilter(){
+    public FilterRegistrationBean corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);

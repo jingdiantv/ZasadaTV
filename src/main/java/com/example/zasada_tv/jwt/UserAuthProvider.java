@@ -5,8 +5,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.example.zasada_tv.services.PlayerService;
 import com.example.zasada_tv.mongo_collections.documents.PlayerDoc;
+import com.example.zasada_tv.services.AuthService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import java.util.Date;
 
 /**
  * В данном классе реализуются методы создания и валидации токена
- * */
+ */
 
 @RequiredArgsConstructor
 @Component
@@ -32,14 +32,14 @@ public class UserAuthProvider {
     private String secretKey;
 
     @Autowired
-    private PlayerService playerService;
+    private AuthService authService;
 
     @PostConstruct
-    protected void init(){
+    protected void init() {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
-    public String createToken(String login){
+    public String createToken(String login) {
         Date now = new Date();
         Date validity = new Date(now.getTime() + 3_600_000);
         return JWT.create()
@@ -49,12 +49,12 @@ public class UserAuthProvider {
                 .sign(Algorithm.HMAC256(secretKey));
     }
 
-    public Authentication validateToken(String token){
+    public Authentication validateToken(String token) {
         JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(secretKey)).build();
 
         DecodedJWT decodedJWT = jwtVerifier.verify(token);
 
-        PlayerDoc player = playerService.findByNick(decodedJWT.getIssuer());
+        PlayerDoc player = authService.findByNick(decodedJWT.getIssuer());
 
         return new UsernamePasswordAuthenticationToken(player, null, Collections.emptyList());
     }

@@ -1,11 +1,11 @@
 package com.example.zasada_tv.controllers;
 
 
-import com.example.zasada_tv.dtos.CredentialsDTO;
-import com.example.zasada_tv.dtos.RegistrationDTO;
-import com.example.zasada_tv.dtos.UserDTO;
+import com.example.zasada_tv.controllers.dto.CredentialsDTO;
+import com.example.zasada_tv.controllers.dto.RegistrationDTO;
+import com.example.zasada_tv.controllers.dto.UserDTO;
 import com.example.zasada_tv.jwt.UserAuthProvider;
-import com.example.zasada_tv.services.PlayerService;
+import com.example.zasada_tv.services.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +23,12 @@ import java.net.URI;
 @RestController
 public class AuthController {
 
-    private final PlayerService playerService;
+    private final AuthService authService;
     private final UserAuthProvider userAuthProvider;
 
     @PostMapping("/login")
     public ResponseEntity<UserDTO> login(@RequestBody CredentialsDTO credentialsDTO){
-        UserDTO userDTO = playerService.login(credentialsDTO);
+        UserDTO userDTO = authService.login(credentialsDTO);
         userDTO.setToken(userAuthProvider.createToken(userDTO.getNick()));
 
         return ResponseEntity.ok(userDTO);
@@ -36,7 +36,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<UserDTO> register(@RequestBody RegistrationDTO registrationDTO){
-        UserDTO userDTO = playerService.register(registrationDTO);
+        UserDTO userDTO = authService.register(registrationDTO);
         userDTO.setToken(userAuthProvider.createToken(userDTO.getNick()));
 
         return ResponseEntity.created(URI.create("/" + userDTO.getNick())).body(userDTO);

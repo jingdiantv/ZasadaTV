@@ -7,12 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Основной класс, который отвечает за запуск Spring приложения
- * */
+ */
 
 @SpringBootApplication
-public class Main{
+public class Main {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Main.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
+    }
 }

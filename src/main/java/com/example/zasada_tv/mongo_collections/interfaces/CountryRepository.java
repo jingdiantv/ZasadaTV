@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Интерфейс, отвечающий за выполнение всех операций с коллекцией {@link CountryDoc}
- * */
+ */
 
 @Repository
 public interface CountryRepository extends MongoRepository<CountryDoc, String> {

@@ -1,8 +1,10 @@
 package com.example.zasada_tv.mongo_collections.embedded;
 
 
-import com.example.zasada_tv.controllers.match_controller.Player;
+import com.example.zasada_tv.controllers.match_controller.dto.Player;
+import com.example.zasada_tv.dto.MapDTO;
 import com.example.zasada_tv.mongo_collections.documents.TournamentDoc;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,14 +12,17 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.example.zasada_tv.utils.Utils.fix_number;
+
 
 /**
  * Данный класс описывает вложенный массив Matches коллекции {@link TournamentDoc}
  * базы данных MongoDB
- * */
+ */
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class Matches {
     private int matchId;
     private int scoreFirst;
@@ -30,7 +35,7 @@ public class Matches {
     private String nameSecond;
     private String type;
     private int tier;
-    private ArrayList<HashMap<String, Object>> maps;
+    private ArrayList<MapDTO> maps;
     private ArrayList<HashMap<String, Object>> logs;
     private ArrayList<Player> activePlayers;
     private String ct;
@@ -38,33 +43,6 @@ public class Matches {
     private String description;
     private ArrayList<String> veto;
     private String format;
-
-
-    public Matches(int matchId, int scoreFirst, int scoreSecond, LocalDateTime matchDate, String status,
-                   String nameFirst, String tagFirst, String tagSecond, String nameSecond, String type,
-                   int tier, ArrayList<HashMap<String, Object>> maps, ArrayList<HashMap<String, Object>> logs,
-                   ArrayList<Player> activePlayers, String ct, String t, String description, ArrayList<String> veto,
-                   String format){
-        this.matchId = matchId;
-        this.scoreFirst = scoreFirst;
-        this.scoreSecond = scoreSecond;
-        this.matchDate = matchDate;
-        this.status = status;
-        this.nameFirst = nameFirst;
-        this.tagFirst = tagFirst;
-        this.tagSecond = tagSecond;
-        this.nameSecond = nameSecond;
-        this.type = type;
-        this.tier = tier;
-        this.maps = maps;
-        this.logs = logs;
-        this.activePlayers = activePlayers;
-        this.ct = ct;
-        this.t = t;
-        this.description = description;
-        this.veto = veto;
-        this.format = format;
-    }
 
 
     @Override
@@ -81,13 +59,5 @@ public class Matches {
                 matchId, scoreFirst, scoreSecond, day, month, matchDate.getYear(), hour, minutes,
                 status, nameFirst, tagFirst, tagSecond, nameSecond, type, tier, maps.toString(),
                 logs.toString(), activePlayers.toString(), ct, t, description, veto.toString(), format);
-    }
-
-
-    private String fix_number(int number){
-        String str = Integer.toString(number);
-        if(number < 10)
-            str = "0" + str;
-        return str;
     }
 }

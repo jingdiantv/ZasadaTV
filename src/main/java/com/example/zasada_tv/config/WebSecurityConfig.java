@@ -1,8 +1,8 @@
 package com.example.zasada_tv.config;
 
 
-import com.example.zasada_tv.jwt.UserAuthProvider;
 import com.example.zasada_tv.jwt.JwtAuthFilter;
+import com.example.zasada_tv.jwt.UserAuthProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * В данном классе указываем какие пути должны быть защищены
- * */
+ */
 
 @RequiredArgsConstructor
 @Configuration
@@ -31,14 +31,14 @@ public class WebSecurityConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.exceptionHandling().authenticationEntryPoint(userAuthenticationEntryPoint)
                 .and()
-                    .addFilterBefore(new JwtAuthFilter(userAuthProvider), BasicAuthenticationFilter.class)
-                    .csrf().disable()
-                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .addFilterBefore(new JwtAuthFilter(userAuthProvider), BasicAuthenticationFilter.class)
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                    .authorizeHttpRequests((req) -> req
-                            .requestMatchers(HttpMethod.POST, "/auth/login", "/auth", "/auth/register").permitAll()
-                            .anyRequest().authenticated()
-                    );
+                .authorizeHttpRequests((req) -> req
+                        .requestMatchers(HttpMethod.POST, "/auth/login", "/auth", "/auth/register").permitAll()
+                        .anyRequest().authenticated()
+                );
         return http.build();
     }
 }

@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 
 /**
  * В данном классе настраиваем тип шифрования для PasswordEncoder - хешируем пароль
- * */
+ */
 
 @Component
 public class PasswordConfig {
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

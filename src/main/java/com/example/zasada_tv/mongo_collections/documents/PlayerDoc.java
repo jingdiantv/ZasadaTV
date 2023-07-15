@@ -1,7 +1,7 @@
 package com.example.zasada_tv.mongo_collections.documents;
 
 
-import com.example.zasada_tv.mongo_collections.embedded.Matches;
+import com.example.zasada_tv.dto.StatsDTO;
 import com.example.zasada_tv.mongo_collections.embedded.PlayerMatchStats;
 import com.example.zasada_tv.mongo_collections.embedded.Rosters;
 import com.example.zasada_tv.mongo_collections.embedded.TournamentHistoryPlayers;
@@ -14,12 +14,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static com.example.zasada_tv.controllers.helpers.Helper.fix_number;
+import static com.example.zasada_tv.utils.Utils.fix_number;
 
 
 /**
  * Данный класс описывает коллекцию Player из базы данных MongoDB
- * */
+ */
 
 @Document("Player")
 @Getter
@@ -47,14 +47,14 @@ public class PlayerDoc {
     private ArrayList<TournamentHistoryPlayers> tournamentHistory;
     private ArrayList<PlayerMatchStats> playerMatchStats;
     private ArrayList<String> trophies;
-    private HashMap<String, Object> stats = new HashMap<>();
+    private StatsDTO stats = new StatsDTO();
     private ArrayList<Rosters> rosters;
 
 
     public PlayerDoc(int userID, String password, String nick, String firstName, String secondName, LocalDate bdate, String country,
                      String city, String steam, String faceit, String discord, String vk, String teamName,
                      String teamRole, String photoLink, String email, ArrayList<TournamentHistoryPlayers> tournamentHistory,
-                     ArrayList<PlayerMatchStats> playerMatchStats, ArrayList<String> trophies, ArrayList<Rosters> rosters){
+                     ArrayList<PlayerMatchStats> playerMatchStats, ArrayList<String> trophies, ArrayList<Rosters> rosters) {
         this.userID = userID;
         this.password = password;
         this.nick = nick;
@@ -75,7 +75,6 @@ public class PlayerDoc {
         this.playerMatchStats = playerMatchStats;
         this.trophies = trophies;
         this.rosters = rosters;
-        initStats();
     }
 
 
@@ -84,7 +83,7 @@ public class PlayerDoc {
         String day = "";
         String month = "";
         String year = "";
-        if(bdate != null) {
+        if (bdate != null) {
             day = fix_number(bdate.getDayOfMonth());
             month = fix_number(bdate.getMonthValue());
             year = String.valueOf(bdate.getYear());
@@ -96,17 +95,5 @@ public class PlayerDoc {
                 userID, password, nick, firstName, secondName, day, month, year, country, city, steam, faceit, discord,
                 vk, teamName, teamRole, photoLink, email, tournamentHistory.toString(), playerMatchStats.toString(),
                 trophies.toString(), stats.toString(), rosters.toString());
-    }
-
-
-    private void initStats() {
-        stats.put("kills", 0);
-        stats.put("deaths", 0);
-        stats.put("kd", 0.0);
-        stats.put("kdd", 0.0);
-        stats.put("hsp", 0.0);
-        stats.put("dpr", 0.0);
-        stats.put("maps", 0);
-        stats.put("kpm", 0.0);
     }
 }

@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static com.example.zasada_tv.controllers.helpers.Helper.fix_number;
+import static com.example.zasada_tv.utils.Utils.fix_number;
 
 
 @AllArgsConstructor

@@ -1,7 +1,7 @@
 package com.example.zasada_tv.config;
 
 
-import com.example.zasada_tv.dtos.ErrorDTO;
+import com.example.zasada_tv.dto.ErrorDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,7 +17,7 @@ import java.io.IOException;
 
 /**
  * Данный класс является стартовой точкой входа при аутентификации
- * */
+ */
 
 @Component
 public class UserAuthenticationEntryPoint implements AuthenticationEntryPoint {
