@@ -49,6 +49,7 @@ public class TeamController {
         return ResponseEntity.ok(teamInfo);
     }
 
+
     @RequestMapping(value = "/isParticipant/{id}/{player}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Boolean> isParticipant(@PathVariable("id") String id, @PathVariable("player") String player) throws IOException {
         boolean isParticipant = teamService.isParticipant(id, player);

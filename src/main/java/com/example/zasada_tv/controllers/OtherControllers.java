@@ -30,6 +30,7 @@ public class OtherControllers {
         return ResponseEntity.ok(countryRepository.findAll());
     }
 
+
     @RequestMapping(value = "/isAdmin/{id}", method = RequestMethod.GET)
     public ResponseEntity<Boolean> isAdmin(@PathVariable String id){
         //adminRepository.save(new AdminDoc(id));

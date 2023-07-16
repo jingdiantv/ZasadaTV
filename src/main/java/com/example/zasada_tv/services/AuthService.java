@@ -5,6 +5,7 @@ import com.example.zasada_tv.controllers.AuthController;
 import com.example.zasada_tv.controllers.dto.CredentialsDTO;
 import com.example.zasada_tv.controllers.dto.RegistrationDTO;
 import com.example.zasada_tv.controllers.dto.UserDTO;
+import com.example.zasada_tv.dto.StatsDTO;
 import com.example.zasada_tv.exceptions.AppException;
 import com.example.zasada_tv.mongo_collections.documents.PlayerDoc;
 import com.example.zasada_tv.mongo_collections.interfaces.PlayerRepository;
@@ -74,10 +75,8 @@ public class AuthService {
 
 
     private PlayerDoc registrationToPlayer(RegistrationDTO registrationDTO) {
-        return new PlayerDoc(playerRepository.findAll().size() + 1, "",
-                registrationDTO.getNick(), registrationDTO.getFirstName(), registrationDTO.getLastName(),
-                LocalDate.of(100, Month.JANUARY, 5), registrationDTO.getCountry(), "", "", "", "", "",
-                "", "", "/players/NonPhoto.png", registrationDTO.getEmail(),
-                new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        return new PlayerDoc(playerRepository.findAll().size() + 1, registrationDTO.getNick(),
+                registrationDTO.getFirstName(), registrationDTO.getLastName(),
+                registrationDTO.getCountry(), registrationDTO.getEmail());
     }
 }

@@ -27,7 +27,6 @@ public interface PlayerRepository extends MongoRepository<PlayerDoc, String> {
     ArrayList<PlayerDoc> findByDiscord(final String discord);
     ArrayList<PlayerDoc> findByVk(final String vk);
     ArrayList<PlayerDoc> findByTeamName(final String teamName);
-    ArrayList<PlayerDoc> findByTeamRole(final String teamRole);
 
     void deleteByUserID(final int userID);
     void deleteByNick(final String nick);
@@ -41,7 +40,6 @@ public interface PlayerRepository extends MongoRepository<PlayerDoc, String> {
     void deleteByDiscord(final String discord);
     void deleteByVk(final String vk);
     void deleteByTeamName(final String teamName);
-    void deleteByTeamRole(final String teamRole);
 
     boolean existsByUserID(final int userID);
     boolean existsByNick(final String nick);
@@ -55,5 +53,4 @@ public interface PlayerRepository extends MongoRepository<PlayerDoc, String> {
     boolean existsByDiscord(final String discord);
     boolean existsByVk(final String vk);
     boolean existsByTeamName(final String teamName);
-    boolean existsByTeamRole(final String teamRole);
 }

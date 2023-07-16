@@ -87,11 +87,9 @@ public class TeamService {
 
         TeamDoc teamDoc = teamRepository.findByTeamName(teamName).get(0);
 
-        PlayerDoc playerDoc = playerRepository.findByNick(player).get(0);
-
         boolean isParticipant = teamDoc.getPlayers().contains(player);
 
-        boolean isCap = playerDoc.getTeamRole().equals("Капитан");
+        boolean isCap = teamDoc.getCaptain().equals(player);
 
         return isParticipant && isCap;
     }

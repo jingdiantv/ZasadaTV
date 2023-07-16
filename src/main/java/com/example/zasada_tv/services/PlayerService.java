@@ -46,7 +46,6 @@ public class PlayerService {
         teamRepository.save(newTeamToTeamDoc(newTeam));
 
         PlayerDoc captain = playerRepository.findByNick(newTeam.getCap()).get(0);
-        captain.setTeamRole("Капитан");
         captain.setTeamName(newTeam.getName());
         playerRepository.save(captain);
 
@@ -65,7 +64,6 @@ public class PlayerService {
 
         PlayerDoc playerDoc = playerRepository.findByNick(leftTeamDTO.getNick()).get(0);
         playerDoc.setTeamName("");
-        playerDoc.setTeamRole("");
 
         ArrayList<Rosters> rosters = playerDoc.getRosters();
 

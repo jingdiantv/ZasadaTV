@@ -11,8 +11,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static com.example.zasada_tv.utils.Utils.fix_number;
 
@@ -41,40 +41,36 @@ public class PlayerDoc {
     private String discord;
     private String vk;
     private String teamName;
-    private String teamRole; // капитан, игрок
     private String photoLink;
     private String email;
     private ArrayList<TournamentHistoryPlayers> tournamentHistory;
     private ArrayList<PlayerMatchStats> playerMatchStats;
     private ArrayList<String> trophies;
-    private StatsDTO stats = new StatsDTO();
+    private StatsDTO stats;
     private ArrayList<Rosters> rosters;
 
 
-    public PlayerDoc(int userID, String password, String nick, String firstName, String secondName, LocalDate bdate, String country,
-                     String city, String steam, String faceit, String discord, String vk, String teamName,
-                     String teamRole, String photoLink, String email, ArrayList<TournamentHistoryPlayers> tournamentHistory,
-                     ArrayList<PlayerMatchStats> playerMatchStats, ArrayList<String> trophies, ArrayList<Rosters> rosters) {
+    public PlayerDoc(int userID, String nick, String firstName, String secondName, String country, String email) {
         this.userID = userID;
-        this.password = password;
+        this.password = "";
         this.nick = nick;
         this.firstName = firstName;
         this.secondName = secondName;
-        this.bdate = bdate;
+        this.bdate = LocalDate.of(100, Month.JANUARY, 5);
         this.country = country;
-        this.city = city;
-        this.steam = steam;
-        this.faceit = faceit;
-        this.discord = discord;
-        this.vk = vk;
-        this.teamName = teamName;
-        this.teamRole = teamRole;
-        this.photoLink = photoLink;
+        this.city = "";
+        this.steam = "";
+        this.faceit = "";
+        this.discord = "";
+        this.vk = "";
         this.email = email;
-        this.tournamentHistory = tournamentHistory;
-        this.playerMatchStats = playerMatchStats;
-        this.trophies = trophies;
-        this.rosters = rosters;
+        this.teamName = "";
+        this.photoLink = "/players/NonPhoto.png";
+        this.tournamentHistory = new ArrayList<>();
+        this.playerMatchStats = new ArrayList<>();
+        this.trophies = new ArrayList<>();
+        this.stats = new StatsDTO();
+        this.rosters = new ArrayList<>();
     }
 
 
@@ -90,10 +86,10 @@ public class PlayerDoc {
         }
 
         return String.format("Player{userID=%d, password=%s, nick=%s, firstName=%s, secondName=%s, bdate=%s-%s-%s, country=%s, " +
-                        "city=%s, steam=%s, faceit=%s, discord=%s, vk=%s, teamName=%s, teamRole=%s, " +
+                        "city=%s, steam=%s, faceit=%s, discord=%s, vk=%s, teamName=%s, " +
                         "photoLink=%s, email=%s, tournamentHistory=%s, playerMatchStats=%s, trophies=%s, stats=%s, rosters=%s}",
                 userID, password, nick, firstName, secondName, day, month, year, country, city, steam, faceit, discord,
-                vk, teamName, teamRole, photoLink, email, tournamentHistory.toString(), playerMatchStats.toString(),
+                vk, teamName, photoLink, email, tournamentHistory.toString(), playerMatchStats.toString(),
                 trophies.toString(), stats.toString(), rosters.toString());
     }
 }
