@@ -40,7 +40,6 @@ public class PlayerDoc {
     private String faceit;
     private String discord;
     private String vk;
-    private String teamName;
     private String photoLink;
     private String email;
     private ArrayList<TournamentHistoryPlayers> tournamentHistory;
@@ -64,7 +63,6 @@ public class PlayerDoc {
         this.discord = "";
         this.vk = "";
         this.email = email;
-        this.teamName = "";
         this.photoLink = "/players/NonPhoto.png";
         this.tournamentHistory = new ArrayList<>();
         this.playerMatchStats = new ArrayList<>();
@@ -86,10 +84,10 @@ public class PlayerDoc {
         }
 
         return String.format("Player{userID=%d, password=%s, nick=%s, firstName=%s, secondName=%s, bdate=%s-%s-%s, country=%s, " +
-                        "city=%s, steam=%s, faceit=%s, discord=%s, vk=%s, teamName=%s, " +
+                        "city=%s, steam=%s, faceit=%s, discord=%s, vk=%s, " +
                         "photoLink=%s, email=%s, tournamentHistory=%s, playerMatchStats=%s, trophies=%s, stats=%s, rosters=%s}",
                 userID, password, nick, firstName, secondName, day, month, year, country, city, steam, faceit, discord,
-                vk, teamName, photoLink, email, tournamentHistory.toString(), playerMatchStats.toString(),
+                vk, photoLink, email, tournamentHistory.toString(), playerMatchStats.toString(),
                 trophies.toString(), stats.toString(), rosters.toString());
     }
 }

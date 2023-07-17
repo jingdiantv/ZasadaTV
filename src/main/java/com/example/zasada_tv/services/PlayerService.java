@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static com.example.zasada_tv.utils.Utils.fix_number;
 import static com.example.zasada_tv.utils.Utils.unFillSpaces;
@@ -46,7 +47,11 @@ public class PlayerService {
         teamRepository.save(newTeamToTeamDoc(newTeam));
 
         PlayerDoc captain = playerRepository.findByNick(newTeam.getCap()).get(0);
-        captain.setTeamName(newTeam.getName());
+
+        ArrayList<Rosters> rosters = captain.getRosters();
+        rosters.add(new Rosters(LocalDate.now(), null, newTeam.getName(), new ArrayList<>()));
+        captain.setRosters(rosters);
+
         playerRepository.save(captain);
 
         return newTeam;
@@ -63,7 +68,6 @@ public class PlayerService {
             throw new AppException("Неизвестная команда", HttpStatus.BAD_REQUEST);
 
         PlayerDoc playerDoc = playerRepository.findByNick(leftTeamDTO.getNick()).get(0);
-        playerDoc.setTeamName("");
 
         ArrayList<Rosters> rosters = playerDoc.getRosters();
 
@@ -204,9 +208,14 @@ public class PlayerService {
             throw new AppException("Неизвестный пользователь", HttpStatus.BAD_REQUEST);
 
         PlayerDoc playerDoc = playerRepository.findByNick(id).get(0);
-        String teamName = playerDoc.getTeamName();
+        AtomicReference<String> teamName = new AtomicReference<>("");
 
-        return List.of(new NameDTO(teamName));
+        playerDoc.getRosters().forEach((elem)->{
+            if (elem.getExitDate() == null)
+                teamName.set(elem.getTeamName());
+        });
+
+        return List.of(new NameDTO(teamName.get()));
     }
 
 

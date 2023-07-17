@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static com.example.zasada_tv.utils.Utils.parseMatchDate;
 import static com.example.zasada_tv.utils.Utils.unFillSpaces;
@@ -185,13 +186,18 @@ public class EventsTabService {
 
         List<TournamentDoc> tournaments = tournamentRepository.findAll();
 
-        String team = playerDoc.getTeamName();
+        AtomicReference<String> team = new AtomicReference<>("");
+
+        playerDoc.getRosters().forEach((elem)->{
+            if (elem.getExitDate() == null)
+                team.set(elem.getTeamName());
+        });
 
         for (TournamentDoc tournament : tournaments) {
             if (!tournament.getStatus().equals("ended")) {
                 HashMap<String, String> participants = tournament.getParticipants();
 
-                if (participants.containsKey(team) || participants.containsKey(id)) {
+                if (participants.containsKey(team.get()) || participants.containsKey(id)) {
 
                     String dateStart = parseMatchDate(tournament.getDateStart());
                     String dateEnd = parseMatchDate(tournament.getDateEnd());
