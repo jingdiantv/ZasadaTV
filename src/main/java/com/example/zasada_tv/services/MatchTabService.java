@@ -18,11 +18,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import static com.example.zasada_tv.utils.Utils.parseMatchDate;
-import static com.example.zasada_tv.utils.Utils.unFillSpaces;
+import static com.example.zasada_tv.utils.Utils.*;
 
 
 @Service
@@ -50,13 +48,7 @@ public class MatchTabService {
             MatchTabInfoDTO foundedEvent = new MatchTabInfoDTO();
             foundedEvent.setEvent(tournament.getTournamentName());
 
-            HashMap<String, String> participants = event.getParticipants();
-
-            if (participants.containsKey(id))
-                foundedEvent.setPlace(participants.get(id));
-            else
-                foundedEvent.setPlace(participants.get(tournament.getTeamName()));
-
+            foundedEvent.setPlace(getPlace(event, tournament.getTeamName(), id));
 
             if (foundedEvent.getPlace().isEmpty())
                 foundedEvent.setType("upcoming");
@@ -151,40 +143,41 @@ public class MatchTabService {
         ArrayList<MatchTabInfoDTO> idMatches = new ArrayList<>();
 
         for (TournamentDoc tournamentDoc : tournamentDocList) {
-            HashMap<String, String> participants = tournamentDoc.getParticipants();
 
-            if (participants.containsKey(idName)) {
-                MatchTabInfoDTO foundedEvent = new MatchTabInfoDTO();
-                foundedEvent.setEvent(tournamentDoc.getName());
+            tournamentDoc.getHistoryTeams().forEach((team) -> {
+                if (team.getTeamName().equals(idName)) {
+                    MatchTabInfoDTO foundedEvent = new MatchTabInfoDTO();
+                    foundedEvent.setEvent(tournamentDoc.getName());
 
-                foundedEvent.setPlace(participants.get(idName));
+                    foundedEvent.setPlace(team.getPlace());
 
-                if (foundedEvent.getPlace().isEmpty())
-                    foundedEvent.setType("upcoming");
-                else
-                    foundedEvent.setType("ended");
+                    if (foundedEvent.getPlace().isEmpty())
+                        foundedEvent.setType("upcoming");
+                    else
+                        foundedEvent.setType("ended");
 
-                ArrayList<Matches> matches = tournamentDoc.getMatches();
-                ArrayList<EventMatchDTO> evMatches = new ArrayList<>();
+                    ArrayList<Matches> matches = tournamentDoc.getMatches();
+                    ArrayList<EventMatchDTO> evMatches = new ArrayList<>();
 
-                for (Matches match : matches) {
-                    if (match.getStatus().equals(status)) {
-                        EventMatchDTO evMatch = new EventMatchDTO(match.getMatchId(), parseMatchDate(match.getMatchDate()),
-                                match.getNameFirst(), match.getTagFirst(), match.getNameSecond(), match.getTagSecond(),
-                                "-", "-");
+                    for (Matches match : matches) {
+                        if (match.getStatus().equals(status)) {
+                            EventMatchDTO evMatch = new EventMatchDTO(match.getMatchId(), parseMatchDate(match.getMatchDate()),
+                                    match.getNameFirst(), match.getTagFirst(), match.getNameSecond(), match.getTagSecond(),
+                                    "-", "-");
 
-                        if (!status.equals("upcoming")) {
-                            evMatch.setLeftScore(Integer.toString(match.getScoreFirst()));
-                            evMatch.setRightScore(Integer.toString(match.getScoreSecond()));
+                            if (!status.equals("upcoming")) {
+                                evMatch.setLeftScore(Integer.toString(match.getScoreFirst()));
+                                evMatch.setRightScore(Integer.toString(match.getScoreSecond()));
+                            }
+
+                            evMatches.add(evMatch);
                         }
-
-                        evMatches.add(evMatch);
                     }
-                }
-                foundedEvent.setMatches(evMatches);
+                    foundedEvent.setMatches(evMatches);
 
-                idMatches.add(foundedEvent);
-            }
+                    idMatches.add(foundedEvent);
+                }
+            });
         }
 
         return idMatches;
@@ -202,45 +195,45 @@ public class MatchTabService {
         ArrayList<MatchesByDateDTO> idMatches = new ArrayList<>();
 
         for (TournamentDoc tournamentDoc : tournamentDocList) {
-            HashMap<String, String> participants = tournamentDoc.getParticipants();
 
-            if (participants.containsKey(idName)) {
+            tournamentDoc.getHistoryTeams().forEach((team) -> {
+                if (team.getTeamName().equals(idName)) {
+                    ArrayList<MatchInfoDTO> evMatches = new ArrayList<>();
 
-                ArrayList<MatchInfoDTO> evMatches = new ArrayList<>();
+                    ArrayList<Matches> matches = tournamentDoc.getMatches();
 
-                ArrayList<Matches> matches = tournamentDoc.getMatches();
+                    for (Matches match : matches) {
+                        if (match.getStatus().equals("ended")) {
+                            MatchInfoDTO evMatch = new MatchInfoDTO(tournamentDoc.getName(), Integer.toString(match.getTier()), match.getMaps(), "../img/Top_star.svg");
 
-                for (Matches match : matches) {
-                    if (match.getStatus().equals("ended")) {
-                        MatchInfoDTO evMatch = new MatchInfoDTO(tournamentDoc.getName(), Integer.toString(match.getTier()), match.getMaps(), "../img/Top_star.svg");
-
-                        evMatch.setMatchId(match.getMatchId());
-                        evMatch.setLeftTeam(match.getNameFirst());
-                        evMatch.setLeftTag(match.getTagFirst());
-                        evMatch.setRightTag(match.getTagSecond());
-                        evMatch.setRightTeam(match.getNameSecond());
-                        evMatch.setLeftScore(Integer.toString(match.getScoreFirst()));
-                        evMatch.setRightScore(Integer.toString(match.getScoreSecond()));
-                        evMatch.setDate(parseMatchDate(match.getMatchDate()));
+                            evMatch.setMatchId(match.getMatchId());
+                            evMatch.setLeftTeam(match.getNameFirst());
+                            evMatch.setLeftTag(match.getTagFirst());
+                            evMatch.setRightTag(match.getTagSecond());
+                            evMatch.setRightTeam(match.getNameSecond());
+                            evMatch.setLeftScore(Integer.toString(match.getScoreFirst()));
+                            evMatch.setRightScore(Integer.toString(match.getScoreSecond()));
+                            evMatch.setDate(parseMatchDate(match.getMatchDate()));
 
 
-                        evMatches.add(evMatch);
+                            evMatches.add(evMatch);
+                        }
+                    }
+
+                    for (MatchInfoDTO match : evMatches) {
+                        String date = match.getDate();
+                        int idx = isInDict(idMatches, date);
+                        if (idx != -1) {
+                            List<MatchInfoDTO> eventMatches = idMatches.get(idx).getMatches();
+                            eventMatches.add(match);
+                            idMatches.get(idx).setMatches(eventMatches);
+                        } else {
+                            MatchesByDateDTO temp = new MatchesByDateDTO(date, List.of(match));
+                            idMatches.add(temp);
+                        }
                     }
                 }
-
-                for (MatchInfoDTO match : evMatches) {
-                    String date = match.getDate();
-                    int idx = isInDict(idMatches, date);
-                    if (idx != -1) {
-                        List<MatchInfoDTO> eventMatches = idMatches.get(idx).getMatches();
-                        eventMatches.add(match);
-                        idMatches.get(idx).setMatches(eventMatches);
-                    } else {
-                        MatchesByDateDTO temp = new MatchesByDateDTO(date, List.of(match));
-                        idMatches.add(temp);
-                    }
-                }
-            }
+            });
         }
         return idMatches;
     }

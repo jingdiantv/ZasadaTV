@@ -1,7 +1,7 @@
 package com.example.zasada_tv.controllers.tabs.dto;
 
 
-import com.example.zasada_tv.controllers.dto.NameDTO;
+import com.example.zasada_tv.mongo_collections.embedded.TournamentHistoryTeams;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -15,5 +15,5 @@ public class EventParticipantsDTO {
 
     private String date;
 
-    ArrayList<NameDTO> participants;
+    ArrayList<TournamentHistoryTeams> participants;
 }

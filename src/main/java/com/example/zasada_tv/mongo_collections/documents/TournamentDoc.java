@@ -44,7 +44,6 @@ public class TournamentDoc {
     private ArrayList<Requests> requests;
     private ArrayList<TournamentHistoryTeams> historyTeams;
     private ArrayList<Matches> matches;
-    private HashMap<String, String> participants;
 
 
     @Override
@@ -56,9 +55,9 @@ public class TournamentDoc {
 
         return String.format("Tournament{id=%s, name=%s, dateStart=%s-%s, dateEnd=%s-%s-%d, type=%s, status=%s, " +
                         "country=%s, city=%s, logoLink=%s, trophyLink=%s, prize=%s, requests=%s, " +
-                        "historyTeams=%s, matches=%s, participants=%s}",
+                        "historyTeams=%s, matches=%s}",
                 id, name, dayStart, monthStart, dayEnd, monthEnd, dateEnd.getYear(), type, status, country,
                 city, logoLink, trophyLink, prize, requests.toString(), historyTeams.toString(),
-                matches.toString(), participants.toString());
+                matches.toString());
     }
 }

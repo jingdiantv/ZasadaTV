@@ -9,6 +9,7 @@ import com.example.zasada_tv.exceptions.AppException;
 import com.example.zasada_tv.mongo_collections.documents.PlayerDoc;
 import com.example.zasada_tv.mongo_collections.documents.TournamentDoc;
 import com.example.zasada_tv.mongo_collections.embedded.TournamentHistoryPlayers;
+import com.example.zasada_tv.mongo_collections.embedded.TournamentHistoryTeams;
 import com.example.zasada_tv.mongo_collections.interfaces.PlayerRepository;
 import com.example.zasada_tv.mongo_collections.interfaces.TeamRepository;
 import com.example.zasada_tv.mongo_collections.interfaces.TournamentRepository;
@@ -16,14 +17,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static com.example.zasada_tv.utils.Utils.parseMatchDate;
-import static com.example.zasada_tv.utils.Utils.unFillSpaces;
+import static com.example.zasada_tv.utils.Utils.*;
 
 
 @Service
@@ -66,9 +67,7 @@ public class EventsTabService {
 
                 String teamName = event.getTeamName();
 
-                String place = fullEv.getParticipants().get(teamName);
-
-                idMatches.add(new AttendedEventDTO(eventName, dateStart + " - " + dateEnd, place, teamName));
+                idMatches.add(new AttendedEventDTO(eventName, dateStart + " - " + dateEnd, getPlace(fullEv, teamName, ""), teamName));
             }
         }
 
@@ -109,9 +108,7 @@ public class EventsTabService {
                 String dateStart = parseMatchDate(fullEv.getDateStart());
                 String dateEnd = parseMatchDate(fullEv.getDateEnd());
 
-                String place = fullEv.getParticipants().get(idName);
-
-                idMatches.add(new AttendedEventDTO(eventName, dateStart + " - " + dateEnd, place, idName));
+                idMatches.add(new AttendedEventDTO(eventName, dateStart + " - " + dateEnd, getPlace(fullEv, idName, ""), idName));
             }
         }
 
@@ -120,31 +117,9 @@ public class EventsTabService {
 
 
     private ArrayList<Object> getTeamOngoingEvents(String idName) {
-        ArrayList<Object> idMatches = new ArrayList<>();
-
         List<TournamentDoc> tournaments = tournamentRepository.findAll();
 
-        for (TournamentDoc tournament : tournaments) {
-            if (!tournament.getStatus().equals("ended")) {
-                HashMap<String, String> participants = tournament.getParticipants();
-
-                if (participants.containsKey(idName)) {
-
-                    String dateStart = parseMatchDate(tournament.getDateStart());
-                    String dateEnd = parseMatchDate(tournament.getDateEnd());
-
-                    ArrayList<NameDTO> participantsName = new ArrayList<>();
-
-                    for (Map.Entry<String, String> set : participants.entrySet()) {
-                        participantsName.add(new NameDTO(set.getKey()));
-                    }
-
-                    idMatches.add(new EventParticipantsDTO(tournament.getName(), dateStart + " - " + dateEnd, participantsName));
-                }
-            }
-        }
-
-        return idMatches;
+        return getEndedEvents(tournaments, idName, "");
     }
 
 
@@ -162,9 +137,7 @@ public class EventsTabService {
                 String dateStart = parseMatchDate(fullEv.getDateStart());
                 String dateEnd = parseMatchDate(fullEv.getDateEnd());
 
-                HashMap<String, String> participants = fullEv.getParticipants();
-
-                String place = participants.get(idName);
+                String place = getPlace(fullEv, idName, "");
 
                 if (place.endsWith("1") || place.endsWith("2") || place.endsWith("4"))
                     place += "ое";
@@ -182,38 +155,16 @@ public class EventsTabService {
     private ArrayList<Object> getPlayerOngoingEvents(String id) {
         PlayerDoc playerDoc = playerRepository.findByNick(id).get(0);
 
-        ArrayList<Object> idMatches = new ArrayList<>();
-
         List<TournamentDoc> tournaments = tournamentRepository.findAll();
 
         AtomicReference<String> team = new AtomicReference<>("");
 
-        playerDoc.getRosters().forEach((elem)->{
+        playerDoc.getRosters().forEach((elem) -> {
             if (elem.getExitDate() == null)
                 team.set(elem.getTeamName());
         });
 
-        for (TournamentDoc tournament : tournaments) {
-            if (!tournament.getStatus().equals("ended")) {
-                HashMap<String, String> participants = tournament.getParticipants();
-
-                if (participants.containsKey(team.get()) || participants.containsKey(id)) {
-
-                    String dateStart = parseMatchDate(tournament.getDateStart());
-                    String dateEnd = parseMatchDate(tournament.getDateEnd());
-
-                    ArrayList<NameDTO> participantsName = new ArrayList<>();
-
-                    for (Map.Entry<String, String> set : participants.entrySet()) {
-                        participantsName.add(new NameDTO(set.getKey()));
-                    }
-
-                    idMatches.add(new EventParticipantsDTO(tournament.getName(), dateStart + " - " + dateEnd, participantsName));
-                }
-            }
-        }
-
-        return idMatches;
+        return getEndedEvents(tournaments, team.get(), id);
     }
 
 
@@ -233,13 +184,7 @@ public class EventsTabService {
                 String dateStart = parseMatchDate(fullEv.getDateStart());
                 String dateEnd = parseMatchDate(fullEv.getDateEnd());
 
-                HashMap<String, String> participants = fullEv.getParticipants();
-
-                String place;
-                if (participants.containsKey(ev.getTeamName()))
-                    place = participants.get(ev.getTeamName());
-                else
-                    place = participants.get(id);
+                String place = getPlace(fullEv, ev.getTeamName(), id);
 
                 if (place.endsWith("1") || place.endsWith("2") || place.endsWith("4"))
                     place += "ое";
@@ -247,6 +192,29 @@ public class EventsTabService {
                     place += "е";
 
                 idMatches.add(new EventInfoDTO(evName, place, dateStart + " - " + dateEnd));
+            }
+        }
+
+        return idMatches;
+    }
+
+
+    private ArrayList<Object> getEndedEvents(List<TournamentDoc> tournaments, String teamName, String playerName) {
+        ArrayList<Object> idMatches = new ArrayList<>();
+
+        for (TournamentDoc tournament : tournaments) {
+            if (!tournament.getStatus().equals("ended")) {
+
+                ArrayList<TournamentHistoryTeams> tournamentHistoryTeams = tournament.getHistoryTeams();
+
+                for (TournamentHistoryTeams tournamentTeam : tournamentHistoryTeams) {
+                    if (tournamentTeam.getTeamName().equals(teamName) || tournamentTeam.getTeamName().equals(playerName)) {
+                        String dateStart = parseMatchDate(tournament.getDateStart());
+                        String dateEnd = parseMatchDate(tournament.getDateEnd());
+
+                        idMatches.add(new EventParticipantsDTO(tournament.getName(), dateStart + " - " + dateEnd, tournamentHistoryTeams));
+                    }
+                }
             }
         }
 

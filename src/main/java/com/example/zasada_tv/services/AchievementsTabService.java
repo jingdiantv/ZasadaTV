@@ -6,6 +6,7 @@ import com.example.zasada_tv.exceptions.AppException;
 import com.example.zasada_tv.mongo_collections.documents.PlayerDoc;
 import com.example.zasada_tv.mongo_collections.documents.TournamentDoc;
 import com.example.zasada_tv.mongo_collections.embedded.TournamentHistoryPlayers;
+import com.example.zasada_tv.mongo_collections.embedded.TournamentHistoryTeams;
 import com.example.zasada_tv.mongo_collections.interfaces.PlayerRepository;
 import com.example.zasada_tv.mongo_collections.interfaces.TeamRepository;
 import com.example.zasada_tv.mongo_collections.interfaces.TournamentRepository;
@@ -15,9 +16,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
-import static com.example.zasada_tv.utils.Utils.parseMatchDate;
-import static com.example.zasada_tv.utils.Utils.unFillSpaces;
+import static com.example.zasada_tv.utils.Utils.*;
 
 
 @Service
@@ -43,12 +44,10 @@ public class AchievementsTabService {
             TournamentDoc fullEv = tournamentRepository.findByName(evName).get(0);
             if (fullEv.getType().equals(type)) {
 
-                String place = fullEv.getParticipants().get(tournament.getTeamName());
-
                 String dateStart = parseMatchDate(fullEv.getDateStart());
                 String dateEnd = parseMatchDate(fullEv.getDateEnd());
 
-                idMatches.add(new EventInfoDTO(evName, place, dateStart + " - " + dateEnd));
+                idMatches.add(new EventInfoDTO(evName, getPlace(fullEv, tournament.getTeamName(), ""), dateStart + " - " + dateEnd));
             }
         }
 
@@ -71,12 +70,10 @@ public class AchievementsTabService {
             TournamentDoc fullEv = tournamentRepository.findByName(evName).get(0);
             if (fullEv.getType().equals(type)) {
 
-                String place = fullEv.getParticipants().get(idName);
-
                 String dateStart = parseMatchDate(fullEv.getDateStart());
                 String dateEnd = parseMatchDate(fullEv.getDateEnd());
 
-                idMatches.add(new EventInfoDTO(evName, place, dateStart + " - " + dateEnd));
+                idMatches.add(new EventInfoDTO(evName, getPlace(fullEv, idName, ""), dateStart + " - " + dateEnd));
             }
         }
 

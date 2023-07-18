@@ -1,7 +1,11 @@
 package com.example.zasada_tv.utils;
 
 
+import com.example.zasada_tv.mongo_collections.documents.TournamentDoc;
+import com.example.zasada_tv.mongo_collections.embedded.TournamentHistoryTeams;
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 
 public class Utils {
@@ -31,5 +35,19 @@ public class Utils {
 
     public static String fillSpaces(String string) {
         return string.replaceAll(" ", "-");
+    }
+
+
+    public static String getPlace(TournamentDoc fullEv, String teamName, String playerName) {
+
+        ArrayList<TournamentHistoryTeams> tournamentHistoryTeams = fullEv.getHistoryTeams();
+
+        for (TournamentHistoryTeams teamTournament : tournamentHistoryTeams) {
+            if (teamTournament.getTeamName().equals(teamName) || teamTournament.getTeamName().equals(playerName)) {
+                return teamTournament.getPlace();
+            }
+        }
+
+        return "";
     }
 }
