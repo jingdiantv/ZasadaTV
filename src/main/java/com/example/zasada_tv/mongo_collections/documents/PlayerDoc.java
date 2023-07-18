@@ -4,7 +4,6 @@ package com.example.zasada_tv.mongo_collections.documents;
 import com.example.zasada_tv.dto.StatsDTO;
 import com.example.zasada_tv.mongo_collections.embedded.PlayerMatchStats;
 import com.example.zasada_tv.mongo_collections.embedded.Rosters;
-import com.example.zasada_tv.mongo_collections.embedded.TournamentHistoryPlayers;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -42,7 +41,6 @@ public class PlayerDoc {
     private String vk;
     private String photoLink;
     private String email;
-    private ArrayList<TournamentHistoryPlayers> tournamentHistory;
     private ArrayList<PlayerMatchStats> playerMatchStats;
     private ArrayList<String> trophies;
     private StatsDTO stats;
@@ -64,7 +62,6 @@ public class PlayerDoc {
         this.vk = "";
         this.email = email;
         this.photoLink = "/players/NonPhoto.png";
-        this.tournamentHistory = new ArrayList<>();
         this.playerMatchStats = new ArrayList<>();
         this.trophies = new ArrayList<>();
         this.stats = new StatsDTO();
@@ -85,9 +82,9 @@ public class PlayerDoc {
 
         return String.format("Player{userID=%d, password=%s, nick=%s, firstName=%s, secondName=%s, bdate=%s-%s-%s, country=%s, " +
                         "city=%s, steam=%s, faceit=%s, discord=%s, vk=%s, " +
-                        "photoLink=%s, email=%s, tournamentHistory=%s, playerMatchStats=%s, trophies=%s, stats=%s, rosters=%s}",
+                        "photoLink=%s, email=%s, playerMatchStats=%s, trophies=%s, stats=%s, rosters=%s}",
                 userID, password, nick, firstName, secondName, day, month, year, country, city, steam, faceit, discord,
-                vk, photoLink, email, tournamentHistory.toString(), playerMatchStats.toString(),
+                vk, photoLink, email, playerMatchStats.toString(),
                 trophies.toString(), stats.toString(), rosters.toString());
     }
 }

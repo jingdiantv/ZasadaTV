@@ -4,6 +4,7 @@ package com.example.zasada_tv.utils;
 import com.example.zasada_tv.mongo_collections.documents.TournamentDoc;
 import com.example.zasada_tv.mongo_collections.embedded.TournamentHistoryTeams;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -49,5 +50,13 @@ public class Utils {
         }
 
         return "";
+    }
+
+
+    public static boolean isInTeam(LocalDate eventStart, LocalDate eventEnd, LocalDate teamEnter, LocalDate teamExit) {
+        LocalDate start = eventStart.isAfter(teamEnter) ? eventStart : teamEnter;
+        LocalDate end = eventEnd.isBefore(teamExit) ? eventEnd : teamExit;
+
+        return !((start == eventStart && end == eventEnd) || (start == teamEnter && end == teamExit));
     }
 }

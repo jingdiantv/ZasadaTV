@@ -5,8 +5,6 @@ import com.example.zasada_tv.controllers.tabs.dto.EventInfoDTO;
 import com.example.zasada_tv.exceptions.AppException;
 import com.example.zasada_tv.mongo_collections.documents.PlayerDoc;
 import com.example.zasada_tv.mongo_collections.documents.TournamentDoc;
-import com.example.zasada_tv.mongo_collections.embedded.TournamentHistoryPlayers;
-import com.example.zasada_tv.mongo_collections.embedded.TournamentHistoryTeams;
 import com.example.zasada_tv.mongo_collections.interfaces.PlayerRepository;
 import com.example.zasada_tv.mongo_collections.interfaces.TeamRepository;
 import com.example.zasada_tv.mongo_collections.interfaces.TournamentRepository;
@@ -14,9 +12,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 import static com.example.zasada_tv.utils.Utils.*;
 
@@ -37,18 +36,22 @@ public class AchievementsTabService {
 
         ArrayList<EventInfoDTO> idMatches = new ArrayList<>();
 
-        ArrayList<TournamentHistoryPlayers> tournamentHistory = playerDoc.getTournamentHistory();
+        List<TournamentDoc> tournamentDocs = tournamentRepository.findAll();
 
-        for (TournamentHistoryPlayers tournament : tournamentHistory) {
-            String evName = tournament.getTournamentName();
-            TournamentDoc fullEv = tournamentRepository.findByName(evName).get(0);
-            if (fullEv.getType().equals(type)) {
+        for (TournamentDoc tournamentDoc : tournamentDocs) {
+            tournamentDoc.getHistoryTeams().forEach((team) -> playerDoc.getRosters().forEach((roster) -> {
+                LocalDateTime dateStart = tournamentDoc.getDateStart();
+                LocalDateTime dateEnd = tournamentDoc.getDateEnd();
 
-                String dateStart = parseMatchDate(fullEv.getDateStart());
-                String dateEnd = parseMatchDate(fullEv.getDateEnd());
+                String teamName = team.getTeamName();
 
-                idMatches.add(new EventInfoDTO(evName, getPlace(fullEv, tournament.getTeamName(), ""), dateStart + " - " + dateEnd));
-            }
+                if (roster.getTeamName().equals(teamName) && isInTeam(dateStart.toLocalDate(), dateEnd.toLocalDate(), roster.getEnterDate(), roster.getExitDate()) && (tournamentDoc.getType().equals(type))) {
+                    String dateStartStr = parseMatchDate(dateStart);
+                    String dateEndStr = parseMatchDate(dateEnd);
+
+                    idMatches.add(new EventInfoDTO(tournamentDoc.getName(), getPlace(tournamentDoc, teamName, ""), dateStartStr + " - " + dateEndStr));
+                }
+            }));
         }
 
         return idMatches;
@@ -79,4 +82,7 @@ public class AchievementsTabService {
 
         return idMatches;
     }
+
+
+
 }
