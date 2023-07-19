@@ -24,7 +24,7 @@ public class ExPlayersService {
     private final PlayerRepository playerRepository;
 
 
-    public ArrayList<FlagNameDTO> getExPlayers(String id){
+    public ArrayList<FlagNameDTO> getExPlayers(String id) {
         String idName = unFillSpaces(id);
 
         if (!teamRepository.existsByTeamName(idName))
@@ -34,11 +34,11 @@ public class ExPlayersService {
 
         ArrayList<FlagNameDTO> exPlayers = new ArrayList<>();
 
-        for (PlayerDoc playerDoc : playerDocList){
+        for (PlayerDoc playerDoc : playerDocList) {
             ArrayList<Rosters> playerRosters = playerDoc.getRosters();
 
-            for (Rosters roster : playerRosters){
-                if (roster.getTeamName().equals(idName) && roster.getExitDate() != null){
+            for (Rosters roster : playerRosters) {
+                if (roster.getTeamName().equals(idName) && roster.getExitDate() != null) {
                     exPlayers.add(new FlagNameDTO(playerDoc.getCountry(), playerDoc.getNick()));
                 }
             }

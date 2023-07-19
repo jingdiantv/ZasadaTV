@@ -5,7 +5,6 @@ import com.example.zasada_tv.controllers.AuthController;
 import com.example.zasada_tv.controllers.dto.CredentialsDTO;
 import com.example.zasada_tv.controllers.dto.RegistrationDTO;
 import com.example.zasada_tv.controllers.dto.UserDTO;
-import com.example.zasada_tv.dto.StatsDTO;
 import com.example.zasada_tv.exceptions.AppException;
 import com.example.zasada_tv.mongo_collections.documents.PlayerDoc;
 import com.example.zasada_tv.mongo_collections.interfaces.PlayerRepository;
@@ -16,9 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.nio.CharBuffer;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.ArrayList;
 
 
 /**

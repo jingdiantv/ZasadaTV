@@ -210,7 +210,7 @@ public class PlayerService {
         PlayerDoc playerDoc = playerRepository.findByNick(id).get(0);
         AtomicReference<String> teamName = new AtomicReference<>("");
 
-        playerDoc.getRosters().forEach((elem)->{
+        playerDoc.getRosters().forEach((elem) -> {
             if (elem.getExitDate() == null)
                 teamName.set(elem.getTeamName());
         });

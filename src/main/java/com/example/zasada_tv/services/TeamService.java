@@ -52,8 +52,6 @@ public class TeamService {
 
         TeamDoc teamDoc = teamRepository.findByTeamName(teamName).get(0);
 
-        //teamInfo.put("trophies", teamDoc.getTrophies());
-
         ArrayList<FlagNameDTO> players = new ArrayList<>();
 
         List<String> teamPlayers = teamDoc.getPlayers();
